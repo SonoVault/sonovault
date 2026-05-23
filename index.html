@@ -1,1 +1,20 @@
-<!DOCTYPE html><html><body><h1>teste</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>SonoVault</title>
+</head>
+<body>
+<script src="https://accounts.google.com/gsi/client"></script>
+<h1>teste google</h1>
+<script>
+window.onload = function() {
+  if(typeof google !== 'undefined') {
+    document.body.innerHTML += '<p style="color:green">Google carregou OK!</p>';
+  } else {
+    document.body.innerHTML += '<p style="color:red">Google NAO carregou</p>';
+  }
+}
+</script>
+</body>
+</html>
