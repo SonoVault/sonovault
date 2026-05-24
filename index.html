@@ -6,163 +6,203 @@
 <title>SonoVault</title>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#1e2d4a;--navy2:#253555;--navy3:#2e3f63;--navy-light:#3a4f7a;--beige:#ede8dc;--beige2:#f5f2ec;--beige3:#faf8f5;--beige4:#fff;--text-dark:#1a2540;--text-mid:#4a5568;--text-soft:#8896a8;--text-beige:#b8a98a;--accent:#2563a8;--accent2:#3b7fd4;--success:#2d7a4f;--success-bg:#e8f5ee;--danger:#b91c1c;--danger-bg:#fef2f2;--warning:#92600a;--warning-bg:#fefce8;--border:#ddd8ce;--border2:#c8c2b6;--radius:6px;--radius-lg:10px;--font:'Georgia','Times New Roman',serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+:root{
+  --navy:#1e2d4a;--navy2:#253555;--navy3:#2e3f63;--navy-light:#3a4f7a;
+  --beige:#ede8dc;--beige2:#f5f2ec;--beige3:#faf8f5;--beige4:#fff;
+  --text-dark:#1a2540;--text-mid:#4a5568;--text-soft:#8896a8;--text-beige:#b8a98a;
+  --accent:#2563a8;--accent2:#3b7fd4;
+  --success:#2d7a4f;--success-bg:#e8f5ee;
+  --danger:#b91c1c;--danger-bg:#fef2f2;
+  --warning:#92600a;--warning-bg:#fefce8;
+  --border:#ddd8ce;--border2:#c8c2b6;
+  --radius:6px;--radius-lg:12px;
+  --font:'Georgia','Times New Roman',serif;
+  --ui:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
 html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(--text-dark);overflow:hidden}
-.login-screen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:200;flex-direction:column;gap:32px}
-.login-logo{display:flex;flex-direction:column;align-items:center;gap:16px}
-.login-title{font-family:var(--font);font-size:32px;font-weight:400;color:var(--beige);letter-spacing:1px}
-.login-title b{font-weight:700}
-.login-subtitle{font-size:13px;color:rgba(237,232,220,0.5);letter-spacing:0.5px}
-.login-btn{display:flex;align-items:center;gap:10px;background:var(--beige);border:none;border-radius:8px;padding:13px 28px;font-size:14px;font-weight:600;color:var(--navy);cursor:pointer;font-family:var(--ui);transition:all .15s}
-.login-btn:hover{background:#e8e3d8}
-.login-btn svg{width:20px;height:20px}
-.login-status{font-size:12px;color:rgba(237,232,220,0.4);margin-top:-16px}
-.sv{display:flex;flex-direction:column;height:100vh;background:var(--beige3)}
-.topbar{background:var(--navy);height:52px;display:flex;align-items:center;padding:0 18px;gap:12px;flex-shrink:0}
-.logo-wrap{display:flex;align-items:center;gap:10px}
+
+/* TOPBAR */
+.topbar{background:var(--navy);height:52px;display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0;position:fixed;top:0;left:0;right:0;z-index:50}
+.logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
 .logo-name{font-family:var(--font);font-size:17px;font-weight:400;color:var(--beige);letter-spacing:0.4px}
 .logo-name b{font-weight:700}
 .top-sep{flex:1}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(237,232,220,0.5)}
+.breadcrumb span{cursor:pointer;transition:color .15s}
+.breadcrumb span:hover{color:var(--beige)}
+.breadcrumb span.active{color:var(--beige)}
+.breadcrumb i{font-size:11px}
 .user-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:4px 10px 4px 4px}
 .user-avatar{width:22px;height:22px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)}
-.user-name{font-size:11px;color:rgba(237,232,220,0.7)}
-.top-stat{font-size:11px;color:var(--text-beige);background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:3px 10px}
+.user-name-top{font-size:11px;color:rgba(237,232,220,0.7)}
 .top-btn{background:transparent;border:0.5px solid rgba(255,255,255,0.25);border-radius:var(--radius);padding:5px 12px;color:rgba(255,255,255,0.8);font-size:11px;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:var(--ui);transition:all .15s}
 .top-btn:hover{background:rgba(255,255,255,0.1);color:#fff}
 .top-btn.cta{background:var(--beige);border-color:var(--beige);color:var(--navy);font-weight:500}
 .top-btn.cta:hover{background:#e8e3d8}
-.top-btn.capture{background:rgba(99,155,220,0.15);border-color:rgba(99,155,220,0.4);color:#93c5fd}
-.top-btn.capture:hover{background:rgba(99,155,220,0.25);color:#bfdbfe}
+.top-btn.hint{background:rgba(99,155,220,0.1);border-color:rgba(99,155,220,0.3);color:#93c5fd;font-size:10px}
 .top-btn.logout{border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.4)}
-.top-btn.logout:hover{color:rgba(255,255,255,0.8)}
-.body-row{display:flex;flex:1;overflow:hidden}
-.sidebar{width:200px;min-width:200px;background:var(--navy2);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
-.sb-section{padding:14px 0 6px}
-.sb-label{font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(237,232,220,0.35);padding:0 14px 7px}
-.sb-item{display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:12px;color:rgba(237,232,220,0.6);transition:all .12s}
-.sb-item:hover{background:rgba(255,255,255,0.06);color:var(--beige)}
-.sb-item.active{background:rgba(237,232,220,0.1);color:var(--beige);border-right:2px solid var(--beige2)}
-.sb-item i{font-size:14px;min-width:16px}
-.sb-item .n{margin-left:auto;font-size:10px;background:rgba(255,255,255,0.08);color:rgba(237,232,220,0.4);border-radius:10px;padding:1px 6px}
-.sb-item.active .n{background:rgba(237,232,220,0.15);color:rgba(237,232,220,0.7)}
-.sb-div{height:0.5px;background:rgba(255,255,255,0.08);margin:4px 0}
-.drive-status{padding:10px 14px;font-size:10px;color:rgba(237,232,220,0.3);display:flex;align-items:center;gap:5px;margin-top:auto;border-top:0.5px solid rgba(255,255,255,0.06)}
-.drive-status.ok{color:rgba(110,231,183,0.6)}
-.main-col{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.toolbar{background:var(--beige4);border-bottom:0.5px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.search-box{flex:1;position:relative}
-.search-box i{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--text-soft);pointer-events:none}
-.search-box input{width:100%;background:var(--beige2);border:0.5px solid var(--border);border-radius:var(--radius);padding:7px 10px 7px 30px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui);transition:border-color .15s}
-.search-box input:focus{border-color:var(--accent2);background:#fff}
-.search-box input::placeholder{color:var(--text-soft)}
-.vbtn{width:28px;height:28px;border:0.5px solid var(--border);border-radius:var(--radius);background:var(--beige2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-soft);font-size:13px;transition:all .12s}
-.vbtn:hover,.vbtn.on{background:var(--navy);color:var(--beige);border-color:var(--navy)}
-.gallery{flex:1;overflow-y:auto;padding:14px}
-.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
-.g-list{display:flex;flex-direction:column;gap:6px}
+.saving-badge{display:none;align-items:center;gap:5px;font-size:10px;color:rgba(237,232,220,0.5)}
+.saving-badge.show{display:flex}
+
+/* LOGIN */
+.login-screen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:200;flex-direction:column;gap:32px}
+.login-logo{display:flex;flex-direction:column;align-items:center;gap:16px}
+.login-title{font-family:var(--font);font-size:32px;font-weight:400;color:var(--beige);letter-spacing:1px}
+.login-title b{font-weight:700}
+.login-subtitle{font-size:13px;color:rgba(237,232,220,0.5)}
+.login-btn{display:flex;align-items:center;gap:10px;background:var(--beige);border:none;border-radius:8px;padding:13px 28px;font-size:14px;font-weight:600;color:var(--navy);cursor:pointer;font-family:var(--ui);transition:all .15s}
+.login-btn:hover{background:#e8e3d8}
+.login-btn svg{width:20px;height:20px}
+.login-status{font-size:12px;color:rgba(237,232,220,0.4);margin-top:-16px}
+
+/* MAIN */
+.app-body{padding-top:52px;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+
+/* HOME — sistemas */
+.home-view{padding:24px}
+.home-header{margin-bottom:24px}
+.home-header h1{font-family:var(--font);font-size:22px;font-weight:400;color:var(--text-dark);margin-bottom:4px}
+.home-header p{font-size:13px;color:var(--text-soft)}
+.drive-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--success);background:var(--success-bg);border:0.5px solid #bbf7d0;border-radius:20px;padding:3px 10px;margin-top:8px}
+.systems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.system-card{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;cursor:pointer;transition:all .18s;position:relative;overflow:hidden}
+.system-card:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 8px 24px rgba(30,45,74,0.1)}
+.system-card-icon{width:44px;height:44px;background:var(--navy);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.system-card-icon i{font-size:22px;color:var(--beige)}
+.system-card-name{font-family:var(--font);font-size:15px;color:var(--text-dark);margin-bottom:4px}
+.system-card-count{font-size:11px;color:var(--text-soft)}
+.system-card-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--navy);opacity:0;transition:opacity .18s}
+.system-card:hover .system-card-bar{opacity:1}
+
+/* ESTRUTURAS VIEW */
+.structures-view{padding:24px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-soft);cursor:pointer;margin-bottom:20px;transition:color .15s}
+.back-btn:hover{color:var(--navy)}
+.section-title{font-family:var(--font);font-size:20px;font-weight:400;color:var(--text-dark);margin-bottom:4px}
+.section-sub{font-size:12px;color:var(--text-soft);margin-bottom:20px}
+.structures-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.struct-card{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:16px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;gap:8px}
+.struct-card:hover{border-color:var(--navy);transform:translateY(-1px)}
+.struct-card-name{font-size:13px;font-weight:500;color:var(--text-dark)}
+.struct-card-meta{display:flex;gap:6px;align-items:center}
+.struct-count{font-size:10px;background:var(--beige2);color:var(--text-soft);border-radius:10px;padding:2px 7px}
+.struct-has-wiki{font-size:10px;background:rgba(37,99,168,0.1);color:var(--accent);border-radius:10px;padding:2px 7px;display:flex;align-items:center;gap:3px}
+
+/* DETAIL VIEW */
+.detail-view{display:flex;flex:1;overflow:hidden;height:calc(100vh - 52px)}
+.detail-sidebar{width:220px;min-width:220px;background:var(--beige4);border-right:0.5px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
+.detail-sidebar-header{padding:16px;border-bottom:0.5px solid var(--border)}
+.detail-sidebar-title{font-family:var(--font);font-size:14px;color:var(--text-dark);margin-bottom:2px}
+.detail-sidebar-sub{font-size:11px;color:var(--text-soft)}
+.detail-tabs{display:flex;border-bottom:0.5px solid var(--border);flex-shrink:0}
+.detail-tab{flex:1;padding:10px;font-size:11px;font-weight:500;cursor:pointer;text-align:center;color:var(--text-soft);transition:all .15s;border-bottom:2px solid transparent}
+.detail-tab.active{color:var(--navy);border-bottom-color:var(--navy);background:var(--beige2)}
+.detail-content{flex:1;overflow-y:auto;display:flex;flex-direction:column}
+
+/* GALERIA TAB */
+.gallery-tab{padding:14px;flex:1}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
 .icard{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .15s}
-.icard:hover{border-color:var(--border2);transform:translateY(-1px)}
-.icard.sel{border-color:var(--navy);border-width:1.5px}
-.ithumb{width:100%;height:120px;background:var(--beige2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.icard:hover{border-color:var(--navy);transform:translateY(-1px);box-shadow:0 4px 12px rgba(30,45,74,0.1)}
+.ithumb{width:100%;height:110px;background:var(--beige2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .ithumb img{width:100%;height:100%;object-fit:cover}
 .ithumb-ph{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--text-beige)}
-.ithumb-ph i{font-size:28px}
-.ithumb-ph span{font-size:9px}
+.ithumb-ph i{font-size:24px}
 .ibadge{position:absolute;top:6px;left:6px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px}
 .b-pat{background:var(--danger-bg);color:var(--danger)}
 .b-norm{background:var(--success-bg);color:var(--success)}
 .b-var{background:var(--warning-bg);color:var(--warning)}
-.iinfo{padding:9px 10px}
-.i-reg{font-size:9px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
-.i-str{font-size:12px;font-weight:500;color:var(--text-dark);line-height:1.3;margin-bottom:3px}
-.i-les{font-size:10px;color:var(--text-mid);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.lrow{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius);padding:9px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .12s}
-.lrow:hover{border-color:var(--border2);background:var(--beige2)}
-.lrow.sel{border-color:var(--navy)}
-.lthumb{width:56px;height:40px;border-radius:4px;background:var(--beige2);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--border)}
-.lthumb img{width:100%;height:100%;object-fit:cover}
-.lthumb i{font-size:18px;color:var(--text-soft)}
-.linfo{flex:1;min-width:0}
-.l-title{font-size:12px;font-weight:500;color:var(--text-dark);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.l-sub{font-size:10px;color:var(--text-soft)}
-.lbadge{font-size:9px;font-weight:600;padding:2px 7px;border-radius:3px;flex-shrink:0}
+.iinfo{padding:8px 10px}
+.i-les{font-size:11px;font-weight:500;color:var(--text-dark);line-height:1.3;margin-bottom:2px}
+.i-date{font-size:10px;color:var(--text-soft)}
+.empty-g{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:40px 20px;color:var(--text-beige);text-align:center}
+.empty-g i{font-size:40px}
+.empty-g p{font-size:12px;color:var(--text-soft);max-width:200px;line-height:1.5}
+
+/* WIKI TAB */
+.wiki-tab{padding:16px;flex:1;display:flex;flex-direction:column;gap:14px}
+.wiki-section{display:flex;flex-direction:column;gap:6px}
+.wiki-label{font-size:10px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-soft)}
+.wiki-textarea{background:var(--beige2);border:0.5px solid var(--border);border-radius:var(--radius);padding:10px 12px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui);width:100%;resize:vertical;min-height:100px;line-height:1.7;transition:border-color .15s}
+.wiki-textarea:focus{border-color:var(--accent2);background:#fff}
+.wiki-save-btn{background:var(--navy);border:none;border-radius:var(--radius);padding:8px 16px;font-size:12px;color:var(--beige);cursor:pointer;font-family:var(--ui);font-weight:500;align-self:flex-end;transition:all .15s}
+.wiki-save-btn:hover{background:var(--navy3)}
+.wiki-refs{font-size:11px;color:var(--text-soft);line-height:1.6;background:var(--beige2);border-radius:var(--radius);padding:10px 12px;border:0.5px solid var(--border)}
+
 /* VIEW MODAL */
-.view-modal-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.92);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
-.view-modal{background:var(--beige4);border-radius:14px;width:100%;max-width:900px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
-.view-modal-top{background:var(--navy);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.view-modal-title{font-family:var(--font);font-size:16px;color:var(--beige);font-weight:400}
-.view-modal-actions{display:flex;gap:8px;align-items:center}
-.view-modal-body{display:flex;flex:1;overflow:hidden}
-.view-img-panel{flex:1;background:#0a0f1a;display:flex;align-items:center;justify-content:center;min-height:300px;position:relative}
-.view-img-panel img{max-width:100%;max-height:100%;object-fit:contain}
-.view-img-ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,0.2)}
-.view-img-ph i{font-size:56px}
-.view-info-panel{width:320px;min-width:320px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;display:flex;flex-direction:column}
-.view-info-body{padding:18px;flex:1}
-.view-reg{font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
-.view-title{font-family:var(--font);font-size:18px;color:var(--text-dark);margin-bottom:4px;line-height:1.3}
-.view-lesion{font-size:13px;color:var(--text-mid);margin-bottom:12px}
-.view-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.pill{font-size:10px;padding:3px 9px;border-radius:3px;font-weight:500}
+.view-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.92);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
+.view-modal{background:var(--beige4);border-radius:14px;width:100%;max-width:860px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column}
+.view-top{background:var(--navy);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.view-top-title{font-family:var(--font);font-size:15px;color:var(--beige);font-weight:400}
+.view-body{display:flex;flex:1;overflow:hidden;min-height:0}
+.view-img{flex:1;background:#0a0f1a;display:flex;align-items:center;justify-content:center}
+.view-img img{max-width:100%;max-height:100%;object-fit:contain}
+.view-img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.15)}
+.view-img-ph i{font-size:52px}
+.view-info{width:300px;min-width:300px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px}
+.view-reg{font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent)}
+.view-str{font-family:var(--font);font-size:17px;color:var(--text-dark);line-height:1.3}
+.view-les{font-size:12px;color:var(--text-mid)}
+.view-pills{display:flex;gap:5px;flex-wrap:wrap}
+.pill{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:500}
 .pill-navy{background:var(--navy);color:var(--beige)}
 .pill-beige{background:var(--beige);color:var(--text-mid);border:0.5px solid var(--border)}
-.view-section{margin-bottom:14px}
-.view-section-lbl{font-size:9px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px}
-.view-section-content{font-size:12px;color:var(--text-mid);line-height:1.7;background:var(--beige4);border-radius:var(--radius);padding:10px 12px;border:0.5px solid var(--border)}
-.view-info-footer{padding:12px 18px;border-top:0.5px solid var(--border);display:flex;gap:7px;background:var(--beige4);flex-shrink:0}
-/* EDIT/ADD MODAL */
+.view-desc-lbl{font-size:9px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-soft)}
+.view-desc{font-size:12px;color:var(--text-mid);line-height:1.7;background:var(--beige4);border-radius:var(--radius);padding:10px 12px;border:0.5px solid var(--border)}
+.view-date{font-size:10px;color:var(--text-beige)}
+.view-footer{padding:10px 14px;border-top:0.5px solid var(--border);display:flex;gap:7px;background:var(--beige4);flex-shrink:0}
+
+/* ADD/EDIT MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(20,30,50,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
-.modal{background:var(--beige4);border:0.5px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
-.modal-hd{background:var(--navy);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:sticky;top:0}
-.modal-hd-title{font-family:var(--font);font-size:15px;font-weight:400;color:var(--beige)}
-.modal-x{background:none;border:none;color:rgba(237,232,220,0.6);cursor:pointer;font-size:18px;display:flex;align-items:center;padding:2px}
+.modal{background:var(--beige4);border-radius:var(--radius-lg);width:100%;max-width:520px;max-height:90vh;overflow-y:auto}
+.modal-hd{background:var(--navy);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:sticky;top:0}
+.modal-hd-title{font-family:var(--font);font-size:14px;font-weight:400;color:var(--beige)}
+.modal-x{background:none;border:none;color:rgba(237,232,220,0.6);cursor:pointer;font-size:18px;display:flex;align-items:center}
 .modal-x:hover{color:var(--beige)}
-.modal-bd{padding:18px;display:flex;flex-direction:column;gap:12px}
+.modal-bd{padding:16px;display:flex;flex-direction:column;gap:11px}
 .fg{display:flex;flex-direction:column;gap:4px}
 .fl{font-size:10px;font-weight:600;letter-spacing:0.4px;color:var(--text-mid);text-transform:uppercase}
-.fi,.fs,.ft{background:var(--beige2);border:0.5px solid var(--border);border-radius:var(--radius);padding:8px 10px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui);width:100%;transition:border-color .15s}
+.fi,.fs,.ft{background:var(--beige2);border:0.5px solid var(--border);border-radius:var(--radius);padding:7px 10px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui);width:100%;transition:border-color .15s}
 .fi:focus,.fs:focus,.ft:focus{border-color:var(--accent2);background:#fff}
 .fs option{background:#fff}
-.ft{resize:vertical;min-height:85px;line-height:1.6}
+.ft{resize:vertical;min-height:80px;line-height:1.6}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.upload-z{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:22px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige2)}
-.upload-z:hover{border-color:var(--navy-light);background:var(--beige)}
-.upload-z i{font-size:28px;color:var(--text-beige);display:block;margin-bottom:7px}
+.upload-z{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:20px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige2)}
+.upload-z:hover{border-color:var(--navy);background:var(--beige)}
+.upload-z i{font-size:26px;color:var(--text-beige);display:block;margin-bottom:6px}
 .upload-z p{font-size:11px;color:var(--text-soft);line-height:1.5}
-.upload-prev{width:100%;height:140px;object-fit:cover;border-radius:var(--radius);border:0.5px solid var(--border)}
-.modal-ft{padding:12px 18px;border-top:0.5px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:var(--beige2);border-radius:0 0 var(--radius-lg) var(--radius-lg);position:sticky;bottom:0}
-.btn{padding:8px 18px;border-radius:var(--radius);font-size:12px;cursor:pointer;border:0.5px solid var(--border);font-family:var(--ui);transition:all .12s}
+.upload-prev{width:100%;height:130px;object-fit:cover;border-radius:var(--radius);border:0.5px solid var(--border)}
+.modal-ft{padding:11px 16px;border-top:0.5px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:var(--beige2);border-radius:0 0 var(--radius-lg) var(--radius-lg);position:sticky;bottom:0}
+.btn{padding:7px 16px;border-radius:var(--radius);font-size:12px;cursor:pointer;border:0.5px solid var(--border);font-family:var(--ui);transition:all .12s}
 .btn-ghost{background:#fff;color:var(--text-mid)}
-.btn-ghost:hover{background:var(--beige);color:var(--text-dark)}
+.btn-ghost:hover{background:var(--beige)}
 .btn-primary{background:var(--navy);border-color:var(--navy);color:var(--beige);font-weight:500}
 .btn-primary:hover{background:var(--navy3)}
 .btn-danger{background:var(--danger-bg);border-color:#fca5a5;color:var(--danger)}
-.btn-danger:hover{background:#fee2e2}
 .act-btn{flex:1;padding:7px;border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .12s;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui)}
 .act-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
 .act-btn.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#fca5a5}
-.empty-g{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 20px;color:var(--text-beige);text-align:center}
-.empty-g i{font-size:48px}
-.empty-g h3{font-size:14px;font-weight:500;color:var(--text-soft)}
-.empty-g p{font-size:12px;line-height:1.6;max-width:280px;color:var(--text-soft)}
+
+/* HINT MODAL */
+.hint-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.7);z-index:160;display:flex;align-items:center;justify-content:center}
+.hint-box{background:var(--navy2);border:0.5px solid rgba(255,255,255,0.15);border-radius:14px;padding:32px;text-align:center;max-width:360px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.hint-key{background:var(--beige);color:var(--navy);font-size:22px;font-weight:700;border-radius:8px;padding:10px 20px;font-family:var(--font);letter-spacing:1px}
+.hint-text{font-size:13px;color:rgba(237,232,220,0.7);line-height:1.6}
+
 .toast{position:fixed;bottom:20px;right:20px;background:var(--navy);border:0.5px solid var(--navy-light);border-radius:var(--radius);padding:10px 16px;font-size:12px;color:var(--beige);display:flex;align-items:center;gap:8px;z-index:300;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.ok i{color:#6ee7b7}
 .toast.err i{color:#fca5a5}
-.saving-badge{display:none;align-items:center;gap:5px;font-size:10px;color:rgba(237,232,220,0.5)}
-.saving-badge.show{display:flex}
-/* CAPTURE PREVIEW */
-.capture-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.95);z-index:160;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
-.capture-preview{max-width:80vw;max-height:60vh;border-radius:8px;border:2px solid var(--accent2);object-fit:contain}
-.capture-actions{display:flex;gap:10px}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
-<body><div class="login-screen" id="login-screen">
+<body><!-- LOGIN -->
+<div class="login-screen" id="login-screen">
   <div class="login-logo">
     <svg width="80" height="80" viewBox="0 0 80 80">
       <rect width="80" height="80" rx="18" fill="#ede8dc"/>
@@ -184,88 +224,94 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   <div class="login-status" id="login-status">Clínica Senhor dos Passos</div>
 </div>
 
-<div class="sv" id="app" style="display:none">
+<!-- APP -->
+<div id="app" style="display:none;height:100vh;display:none;flex-direction:column">
+
+  <!-- TOPBAR -->
   <div class="topbar">
-    <div class="logo-wrap">
-      <svg width="34" height="34" viewBox="0 0 80 80"><rect width="80" height="80" rx="18" fill="#ede8dc"/><rect x="5" y="5" width="70" height="70" rx="14" fill="none" stroke="#1e2d4a" stroke-width="2"/><rect x="32" y="8" width="16" height="20" rx="4" fill="#1e2d4a"/><rect x="29" y="27" width="22" height="4" rx="2" fill="#1e2d4a" opacity="0.5"/><rect x="24" y="30" width="32" height="18" rx="5" fill="#1e2d4a"/><path d="M24 44 Q40 60 56 44" fill="#1e2d4a"/><path d="M19 60 Q40 78 61 60" fill="none" stroke="#1e2d4a" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/><path d="M14 70 Q40 92 66 70" fill="none" stroke="#1e2d4a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3"/></svg>
+    <div class="logo-wrap" onclick="goHome()">
+      <svg width="32" height="32" viewBox="0 0 80 80"><rect width="80" height="80" rx="18" fill="#ede8dc"/><rect x="5" y="5" width="70" height="70" rx="14" fill="none" stroke="#1e2d4a" stroke-width="2"/><rect x="32" y="8" width="16" height="20" rx="4" fill="#1e2d4a"/><rect x="29" y="27" width="22" height="4" rx="2" fill="#1e2d4a" opacity="0.5"/><rect x="24" y="30" width="32" height="18" rx="5" fill="#1e2d4a"/><path d="M24 44 Q40 60 56 44" fill="#1e2d4a"/><path d="M19 60 Q40 78 61 60" fill="none" stroke="#1e2d4a" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/><path d="M14 70 Q40 92 66 70" fill="none" stroke="#1e2d4a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3"/></svg>
       <div class="logo-name">Sono<b>Vault</b></div>
     </div>
-    <div class="saving-badge" id="saving-badge"><i class="ti ti-cloud-upload" style="font-size:12px"></i> Salvando...</div>
+    <div class="breadcrumb" id="breadcrumb"></div>
+    <div class="saving-badge" id="saving-badge"><i class="ti ti-cloud-upload" style="font-size:11px"></i> Salvando...</div>
     <div class="top-sep"></div>
-    <span class="top-stat" id="top-stat">0 imagens</span>
-    <div class="user-pill"><div class="user-avatar" id="user-initials">R</div><span class="user-name" id="user-name-top">...</span></div>
-    <button class="top-btn capture" onclick="captureScreen()"><i class="ti ti-screenshot" style="font-size:12px"></i> Capturar tela</button>
-    <button class="top-btn" onclick="exportData()"><i class="ti ti-download" style="font-size:12px"></i> Exportar</button>
-    <button class="top-btn cta" onclick="openModal()"><i class="ti ti-plus" style="font-size:12px"></i> Nova imagem</button>
-    <button class="top-btn logout" onclick="signOut()" title="Sair"><i class="ti ti-logout" style="font-size:13px"></i></button>
+    <span id="top-stat" style="font-size:11px;color:var(--text-beige);background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:3px 10px"></span>
+    <div class="user-pill"><div class="user-avatar" id="user-initials">R</div><span class="user-name-top" id="user-name-top">...</span></div>
+    <button class="top-btn hint" onclick="showHint()"><i class="ti ti-keyboard" style="font-size:11px"></i> Win+Shift+S</button>
+    <button class="top-btn cta" onclick="openAddModal()" id="add-btn" style="display:none"><i class="ti ti-plus" style="font-size:11px"></i> Nova imagem</button>
+    <button class="top-btn" onclick="exportPDF()" id="pdf-btn" style="display:none"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button>
+    <button class="top-btn logout" onclick="signOut()" title="Sair"><i class="ti ti-logout" style="font-size:12px"></i></button>
   </div>
-  <div class="body-row">
-    <div class="sidebar">
-      <div class="sb-section">
-        <div class="sb-label">Visualizar</div>
-        <div class="sb-item active" onclick="filterBy('all',this)"><i class="ti ti-layout-grid"></i>Todas<span class="n" id="cn-all">0</span></div>
-        <div class="sb-item" onclick="filterBy('patologia',this)"><i class="ti ti-alert-circle"></i>Patologia<span class="n" id="cn-pat">0</span></div>
-        <div class="sb-item" onclick="filterBy('normal',this)"><i class="ti ti-circle-check"></i>Normal<span class="n" id="cn-norm">0</span></div>
-        <div class="sb-item" onclick="filterBy('variante',this)"><i class="ti ti-git-branch"></i>Variante<span class="n" id="cn-var">0</span></div>
+
+  <!-- BODY -->
+  <div class="app-body" id="app-body">
+
+    <!-- HOME VIEW -->
+    <div id="home-view" class="home-view">
+      <div class="home-header">
+        <h1>Atlas Ultrassonográfico</h1>
+        <p>Selecione um sistema para explorar estruturas e achados</p>
+        <div class="drive-badge" id="drive-badge"><i class="ti ti-cloud-check" style="font-size:11px"></i> Google Drive conectado</div>
       </div>
-      <div class="sb-div"></div>
-      <div class="sb-section"><div class="sb-label">Regiões</div><div id="sb-regions"></div></div>
-      <div class="drive-status ok" id="drive-status"><i class="ti ti-cloud-check"></i> Google Drive conectado</div>
+      <div class="systems-grid" id="systems-grid"></div>
     </div>
-    <div class="main-col">
-      <div class="toolbar">
-        <div class="search-box"><i class="ti ti-search"></i><input type="text" id="q" placeholder="Buscar estrutura, achado, descrição..." oninput="renderGallery()"></div>
-        <div class="vbtn on" id="vg" onclick="setView('grid')"><i class="ti ti-layout-grid"></i></div>
-        <div class="vbtn" id="vl" onclick="setView('list')"><i class="ti ti-list"></i></div>
+
+    <!-- STRUCTURES VIEW -->
+    <div id="structures-view" class="structures-view" style="display:none">
+      <div class="back-btn" onclick="goHome()"><i class="ti ti-arrow-left"></i> Voltar</div>
+      <div class="section-title" id="sys-title"></div>
+      <div class="section-sub" id="sys-sub"></div>
+      <div class="structures-grid" id="structures-grid"></div>
+    </div>
+
+    <!-- DETAIL VIEW -->
+    <div id="detail-view" class="detail-view" style="display:none">
+      <div class="detail-sidebar">
+        <div class="detail-sidebar-header">
+          <div class="back-btn" style="margin-bottom:8px" onclick="goStructures()"><i class="ti ti-arrow-left"></i> Voltar</div>
+          <div class="detail-sidebar-title" id="detail-sys"></div>
+          <div class="detail-sidebar-sub" id="detail-str"></div>
+        </div>
+        <div class="detail-tabs">
+          <div class="detail-tab active" id="tab-gallery" onclick="switchTab('gallery')"><i class="ti ti-photo" style="font-size:13px"></i> Imagens</div>
+          <div class="detail-tab" id="tab-wiki" onclick="switchTab('wiki')"><i class="ti ti-book" style="font-size:13px"></i> Atlas</div>
+        </div>
+        <div class="detail-content" id="detail-content"></div>
       </div>
-      <div class="gallery" id="gallery"></div>
     </div>
+
   </div>
 </div>
 
 <!-- VIEW MODAL -->
-<div id="view-modal-overlay" class="view-modal-overlay" style="display:none">
+<div id="view-overlay" class="view-overlay" style="display:none">
   <div class="view-modal">
-    <div class="view-modal-top">
-      <span class="view-modal-title" id="vm-title">Detalhes</span>
-      <div class="view-modal-actions">
-        <button class="btn btn-ghost" style="font-size:11px;padding:5px 12px" onclick="editFromView()"><i class="ti ti-edit" style="font-size:12px"></i> Editar</button>
-        <button class="btn btn-danger" style="font-size:11px;padding:5px 12px" onclick="deleteFromView()"><i class="ti ti-trash" style="font-size:12px"></i> Excluir</button>
-        <button class="modal-x" onclick="closeViewModal()" style="margin-left:4px"><i class="ti ti-x"></i></button>
+    <div class="view-top">
+      <span class="view-top-title" id="vt-title">Detalhe</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn btn-ghost" style="font-size:11px;padding:5px 11px" onclick="editFromView()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button>
+        <button class="btn btn-danger" style="font-size:11px;padding:5px 11px" onclick="deleteFromView()"><i class="ti ti-trash" style="font-size:11px"></i> Excluir</button>
+        <button class="modal-x" onclick="closeView()"><i class="ti ti-x"></i></button>
       </div>
     </div>
-    <div class="view-modal-body">
-      <div class="view-img-panel" id="vm-img"></div>
-      <div class="view-info-panel">
-        <div class="view-info-body">
-          <div class="view-reg" id="vm-reg"></div>
-          <div class="view-title" id="vm-str"></div>
-          <div class="view-lesion" id="vm-les"></div>
-          <div class="view-pills" id="vm-pills"></div>
-          <div class="view-section" id="vm-desc-sec" style="display:none">
-            <div class="view-section-lbl">Descrição do achado</div>
-            <div class="view-section-content" id="vm-desc"></div>
-          </div>
-          <div class="view-section" id="vm-date-sec">
-            <div class="view-section-lbl">Data</div>
-            <div class="view-section-content" id="vm-date"></div>
-          </div>
+    <div class="view-body">
+      <div class="view-img" id="v-img"></div>
+      <div class="view-info">
+        <div class="view-reg" id="v-reg"></div>
+        <div class="view-str" id="v-str"></div>
+        <div class="view-les" id="v-les"></div>
+        <div class="view-pills" id="v-pills"></div>
+        <div id="v-desc-wrap" style="display:none">
+          <div class="view-desc-lbl">Descrição do achado</div>
+          <div class="view-desc" id="v-desc"></div>
         </div>
+        <div class="view-date" id="v-date"></div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- CAPTURE PREVIEW -->
-<div id="capture-overlay" class="capture-overlay" style="display:none">
-  <div style="text-align:center;color:var(--beige);margin-bottom:8px">
-    <div style="font-family:var(--font);font-size:18px;margin-bottom:4px">Prévia da captura</div>
-    <div style="font-size:12px;color:rgba(237,232,220,0.5)">Confirme para salvar no banco</div>
-  </div>
-  <img id="capture-preview-img" class="capture-preview" src="" alt="">
-  <div class="capture-actions">
-    <button class="btn btn-ghost" onclick="discardCapture()"><i class="ti ti-x" style="font-size:12px"></i> Descartar</button>
-    <button class="btn btn-primary" onclick="confirmCapture()"><i class="ti ti-check" style="font-size:12px"></i> Usar esta imagem</button>
+    <div class="view-footer">
+      <button class="act-btn" onclick="exportSinglePDF()"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> Exportar card</button>
+    </div>
   </div>
 </div>
 
@@ -277,17 +323,27 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
       <div class="upload-z" id="upload-z" onclick="document.getElementById('fi').click()"><i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p></div>
       <input type="file" id="fi" accept="image/*" style="display:none" onchange="handleFile(this)">
       <div class="frow">
-        <div class="fg"><label class="fl">Região</label><select class="fs" id="i-reg" onchange="fillStructures()"><option value="">Selecionar...</option><option>Ombro</option><option>Joelho</option><option>Tornozelo</option><option>Cotovelo</option><option>Mão</option><option>Punho</option><option>Quadril</option><option>Abdômen</option><option>Tireoide</option><option>Mama</option><option>Pélvico</option><option>Vascular</option><option>Outra</option></select></div>
-        <div class="fg"><label class="fl">Estrutura</label><input class="fi" id="i-str" placeholder="Ex: Tendão supraespinhal" list="str-dl"><datalist id="str-dl"></datalist></div>
+        <div class="fg"><label class="fl">Região</label><select class="fs" id="i-reg"><option value="">Selecionar...</option></select></div>
+        <div class="fg"><label class="fl">Estrutura</label><input class="fi" id="i-str" placeholder="Ex: Cisto de Baker" list="str-dl"><datalist id="str-dl"></datalist></div>
       </div>
-      <div class="fg"><label class="fl">Achado / tipo de lesão</label><input class="fi" id="i-les" placeholder="Ex: Rotura parcial, Tendinopatia..."></div>
+      <div class="fg"><label class="fl">Achado / tipo de lesão</label><input class="fi" id="i-les" placeholder="Ex: Cisto poplíteo com derrame"></div>
       <div class="frow">
         <div class="fg"><label class="fl">Categoria</label><select class="fs" id="i-cat"><option value="patologia">Patologia</option><option value="normal">Normal</option><option value="variante">Variante anatômica</option></select></div>
         <div class="fg"><label class="fl">Grau / nível (opcional)</label><input class="fi" id="i-lvl" placeholder="Ex: Grau II"></div>
       </div>
       <div class="fg"><label class="fl">Descrição do achado</label><textarea class="ft" id="i-desc" placeholder="Descrição no estilo do laudo..."></textarea></div>
     </div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" id="save-btn" onclick="saveImg()"><i class="ti ti-check" style="font-size:12px"></i> Salvar imagem</button></div>
+    <div class="modal-ft"><button class="btn btn-ghost" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" id="save-btn" onclick="saveImg()"><i class="ti ti-check" style="font-size:11px"></i> Salvar</button></div>
+  </div>
+</div>
+
+<!-- HINT MODAL -->
+<div id="hint-overlay" class="hint-overlay" style="display:none" onclick="closeHint()">
+  <div class="hint-box" onclick="event.stopPropagation()">
+    <div style="font-size:13px;color:rgba(237,232,220,0.5);letter-spacing:0.5px">ATALHO DE CAPTURA</div>
+    <div class="hint-key">⊞ + Shift + S</div>
+    <div class="hint-text">Pressione este atalho no Windows para abrir a ferramenta de recorte. Selecione apenas a área da imagem ultrassonográfica, salve e faça upload aqui.</div>
+    <button class="btn btn-ghost" onclick="closeHint()" style="font-size:12px">Entendi</button>
   </div>
 </div>
 
@@ -295,93 +351,118 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 const CLIENT_ID='155144252138-es5iuh573njhfvu1mtiih5qg5eok5r1b.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive.file';
 const DB_FILENAME='sonovault-db.json';
+const WIKI_FILENAME='sonovault-wiki.json';
 const FOLDER_NAME='SonoVault';
-let imgs=[],filter='all',region=null,view='grid',selId=null,editId=null,dataURL=null,viewingId=null,capturedDataURL=null;
-let tokenClient,accessToken=null,driveDbFileId=null,driveFolderId=null,saveTimeout=null;
-const STRUCTS={Ombro:['Tendão supraespinhal','Tendão infraespinhal','Tendão subescapular','Cabo longo do bíceps','Articulação AC','Bursa subacromial'],Joelho:['Tendão patelar','Tendão quadricipital','Ligamento colateral medial','Ligamento colateral lateral','Menisco medial','Menisco lateral','Cisto poplíteo','Pata de ganso','Trato iliotibial'],Tornozelo:['Tendão calcâneo','Tendão tibial posterior','Tendões fibulares','Ligamento LTFA','Fáscia plantar','Sindesmose tibioperoneal','Seio do tarso'],Cotovelo:['Origem dos extensores','Origem dos flexores','Tendão do bíceps distal','Tendão do tríceps','Nervo ulnar','Bursa olecraniana'],Mão:['Polia A1','Polia A2','Ligamento colateral ulnar','Placa volar','Tendões flexores','Tendões extensores'],Punho:['Nervo mediano','Nervo ulnar','Tendões extensores','Tendões flexores','Canal de Guyon'],Quadril:['Tendão glúteo médio','Tendão glúteo mínimo','Tendão iliopsoas','Bursa trocantérica'],Abdômen:['Fígado','Vesícula biliar','Pâncreas','Baço','Rim direito','Rim esquerdo'],Tireoide:['Lobo direito','Lobo esquerdo','Istmo','Linfonodos cervicais'],Mama:['Quadrante superolateral','Quadrante superomedial','Quadrante inferolateral','Região retroareolar'],Vascular:['Veia safena magna','Veia safena parva','Sistema venoso profundo','Artéria carótida']};
 
-function initGoogleAuth(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async(resp)=>{if(resp.error){toast('Erro no login: '+resp.error,'err');return}accessToken=resp.access_token;await loadUserInfo();await initDrive();showApp()}})}
+const SYSTEMS={
+  Ombro:{icon:'ti-user',structs:['Tendão supraespinhal','Tendão infraespinhal','Tendão subescapular','Cabo longo do bíceps','Articulação AC','Bursa subacromial','Manguito rotador']},
+  Joelho:{icon:'ti-run',structs:['Cisto de Baker','Tendão patelar','Tendão quadricipital','Ligamento colateral medial','Ligamento colateral lateral','Menisco medial','Menisco lateral','Trato iliotibial','Pata de ganso','Cartilagem troclear']},
+  Tornozelo:{icon:'ti-run',structs:['Tendão calcâneo','Tendão tibial posterior','Tendões fibulares','Ligamento LTFA','Fáscia plantar','Sindesmose tibioperoneal','Seio do tarso']},
+  Cotovelo:{icon:'ti-user',structs:['Origem dos extensores','Origem dos flexores','Tendão do bíceps distal','Tendão do tríceps','Nervo ulnar','Bursa olecraniana']},
+  Mão:{icon:'ti-hand-stop',structs:['Polia A1','Polia A2','Ligamento colateral ulnar','Placa volar','Tendões flexores','Tendões extensores','Aponeurose palmar']},
+  Punho:{icon:'ti-wrist-watch',structs:['Nervo mediano','Nervo ulnar','Tendões extensores','Tendões flexores','Canal de Guyon']},
+  Quadril:{icon:'ti-user',structs:['Tendão glúteo médio','Tendão glúteo mínimo','Tendão iliopsoas','Bursa trocantérica','Nervo ciático']},
+  Abdômen:{icon:'ti-ripple',structs:['Fígado','Vesícula biliar','Pâncreas','Baço','Rim direito','Rim esquerdo','Aorta abdominal']},
+  Tireoide:{icon:'ti-ripple',structs:['Lobo direito','Lobo esquerdo','Istmo','Linfonodos cervicais']},
+  Mama:{icon:'ti-ripple',structs:['Quadrante superolateral','Quadrante superomedial','Quadrante inferolateral','Região retroareolar']},
+  Vascular:{icon:'ti-waves',structs:['Veia safena magna','Veia safena parva','Sistema venoso profundo','Artéria carótida','Artéria femoral']},
+  Pélvico:{icon:'ti-ripple',structs:['Útero','Ovário direito','Ovário esquerdo','Bexiga','Próstata']}
+};
+
+let imgs=[],wiki={},filter='all',currentSystem=null,currentStruct=null,currentTab='gallery';
+let viewingId=null,editId=null,dataURL=null;
+let tokenClient,accessToken=null,driveDbFileId=null,driveFolderId=null,driveWikiFileId=null,saveTimeout=null,saveWikiTimeout=null;
+
+// AUTH
+function initGoogleAuth(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async(resp)=>{if(resp.error){toast('Erro: '+resp.error,'err');return}accessToken=resp.access_token;await loadUserInfo();await initDrive();showApp()}})}
 function signIn(){document.getElementById('login-status').textContent='Conectando...';tokenClient.requestAccessToken({prompt:'consent'})}
-function signOut(){if(accessToken)google.accounts.oauth2.revoke(accessToken);accessToken=null;imgs=[];driveDbFileId=null;driveFolderId=null;document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex';document.getElementById('login-status').textContent='Clínica Senhor dos Passos'}
+function signOut(){if(accessToken)google.accounts.oauth2.revoke(accessToken);accessToken=null;document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex'}
 async function loadUserInfo(){try{const r=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+accessToken}});const u=await r.json();const name=u.given_name||u.name||'Usuário';document.getElementById('user-name-top').textContent=name;document.getElementById('user-initials').textContent=name.charAt(0).toUpperCase()}catch(e){}}
-function showApp(){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='flex'}
-async function driveReq(url,opts={}){const resp=await fetch(url,{...opts,headers:{Authorization:'Bearer '+accessToken,...(opts.headers||{})}});if(!resp.ok)throw new Error('Drive error '+resp.status);return resp}
-async function getOrCreateFolder(){const q=encodeURIComponent(`name='${FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false`);const r=await driveReq(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name)`);const data=await r.json();if(data.files&&data.files.length>0)return data.files[0].id;const cr=await driveReq('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:FOLDER_NAME,mimeType:'application/vnd.google-apps.folder'})});const folder=await cr.json();return folder.id}
-async function getDbFileId(folderId){const q=encodeURIComponent(`name='${DB_FILENAME}' and '${folderId}' in parents and trashed=false`);const r=await driveReq(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name)`);const data=await r.json();return data.files&&data.files.length>0?data.files[0].id:null}
-async function initDrive(){try{driveFolderId=await getOrCreateFolder();driveDbFileId=await getDbFileId(driveFolderId);if(driveDbFileId){const r=await driveReq(`https://www.googleapis.com/drive/v3/files/${driveDbFileId}?alt=media`);const data=await r.json();imgs=Array.isArray(data)?data:[]}else{imgs=[]}document.getElementById('drive-status').className='drive-status ok';document.getElementById('drive-status').innerHTML='<i class="ti ti-cloud-check"></i> Google Drive conectado';renderAll()}catch(e){document.getElementById('drive-status').className='drive-status';document.getElementById('drive-status').innerHTML='<i class="ti ti-cloud-off"></i> Erro no Drive';toast('Erro ao conectar Drive','err')}}
-async function saveToDrive(){if(!accessToken||!driveFolderId)return;document.getElementById('saving-badge').classList.add('show');try{const blob=new Blob([JSON.stringify(imgs)],{type:'application/json'});if(driveDbFileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveDbFileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body:blob})}else{const meta={name:DB_FILENAME,parents:[driveFolderId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+accessToken},body:form});const f=await r.json();driveDbFileId=f.id}}catch(e){toast('Erro ao salvar no Drive','err')}finally{document.getElementById('saving-badge').classList.remove('show')}}
-function scheduleSave(){clearTimeout(saveTimeout);saveTimeout=setTimeout(saveToDrive,1500)}
+function showApp(){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='flex';renderHome()}
 
-// CAPTURA DE TELA
-async function captureScreen(){
-  try{
-    const stream=await navigator.mediaDevices.getDisplayMedia({video:{cursor:'never'},audio:false});
-    const video=document.createElement('video');
-    video.srcObject=stream;
-    await video.play();
-    const canvas=document.createElement('canvas');
-    canvas.width=video.videoWidth;
-    canvas.height=video.videoHeight;
-    canvas.getContext('2d').drawImage(video,0,0);
-    stream.getTracks().forEach(t=>t.stop());
-    capturedDataURL=canvas.toDataURL('image/png');
-    document.getElementById('capture-preview-img').src=capturedDataURL;
-    document.getElementById('capture-overlay').style.display='flex';
-  }catch(e){
-    if(e.name!=='NotAllowedError')toast('Erro na captura de tela','err');
-  }
-}
-function discardCapture(){capturedDataURL=null;document.getElementById('capture-overlay').style.display='none'}
-function confirmCapture(){
-  document.getElementById('capture-overlay').style.display='none';
-  dataURL=capturedDataURL;
-  capturedDataURL=null;
-  openModal();
-  setTimeout(()=>{
-    const z=document.getElementById('upload-z');
-    z.innerHTML=`<img src="${dataURL}" class="upload-prev">`;
-  },100);
-}
+// DRIVE
+async function driveReq(url,opts={}){const r=await fetch(url,{...opts,headers:{Authorization:'Bearer '+accessToken,...(opts.headers||{})}});if(!r.ok)throw new Error('Drive '+r.status);return r}
+async function getOrCreateFolder(){const q=encodeURIComponent(`name='${FOLDER_NAME}' and mimeType='application/vnd.google-apps.folder' and trashed=false`);const r=await driveReq(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();if(d.files&&d.files.length)return d.files[0].id;const cr=await driveReq('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:FOLDER_NAME,mimeType:'application/vnd.google-apps.folder'})});return(await cr.json()).id}
+async function getFileId(folderId,name){const q=encodeURIComponent(`name='${name}' and '${folderId}' in parents and trashed=false`);const r=await driveReq(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();return d.files&&d.files.length?d.files[0].id:null}
+async function saveFile(fileId,folderId,name,data){const blob=new Blob([JSON.stringify(data)],{type:'application/json'});if(fileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body:blob});return fileId}else{const meta={name,parents:[folderId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+accessToken},body:form});return(await r.json()).id}}
+async function initDrive(){try{driveFolderId=await getOrCreateFolder();driveDbFileId=await getFileId(driveFolderId,DB_FILENAME);driveWikiFileId=await getFileId(driveFolderId,WIKI_FILENAME);if(driveDbFileId){const r=await driveReq(`https://www.googleapis.com/drive/v3/files/${driveDbFileId}?alt=media`);const d=await r.json();imgs=Array.isArray(d)?d:[]}if(driveWikiFileId){const r=await driveReq(`https://www.googleapis.com/drive/v3/files/${driveWikiFileId}?alt=media`);const d=await r.json();wiki=d&&typeof d==='object'?d:{}}document.getElementById('drive-badge').innerHTML='<i class="ti ti-cloud-check" style="font-size:11px"></i> Google Drive conectado';updateStats()}catch(e){toast('Erro ao conectar Drive','err')}}
+function scheduleSave(){clearTimeout(saveTimeout);document.getElementById('saving-badge').classList.add('show');saveTimeout=setTimeout(async()=>{driveDbFileId=await saveFile(driveDbFileId,driveFolderId,DB_FILENAME,imgs);document.getElementById('saving-badge').classList.remove('show')},1500)}
+function scheduleWikiSave(){clearTimeout(saveWikiTimeout);saveWikiTimeout=setTimeout(async()=>{driveWikiFileId=await saveFile(driveWikiFileId,driveFolderId,WIKI_FILENAME,wiki)},1500)}
 
-// MODAL VIEW
-function openViewModal(id){
-  viewingId=id;
-  const img=imgs.find(i=>i.id===id);
-  if(!img)return;
-  document.getElementById('vm-title').textContent=img.structure+' — '+img.lesion;
-  document.getElementById('vm-reg').textContent=img.region;
-  document.getElementById('vm-str').textContent=img.structure;
-  document.getElementById('vm-les').textContent=img.lesion+(img.level?' — '+img.level:'');
-  const bc=bCls(img.category),bl=bLbl(img.category);
-  document.getElementById('vm-pills').innerHTML=`<span class="pill ${bc==='b-pat'?'pill-navy':'pill-beige'}">${bl}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}`;
-  const descSec=document.getElementById('vm-desc-sec');
-  if(img.description){descSec.style.display='block';document.getElementById('vm-desc').textContent=img.description}else{descSec.style.display='none'}
-  document.getElementById('vm-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'—';
-  const imgPanel=document.getElementById('vm-img');
-  imgPanel.innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="${img.lesion}">`:'<div class="view-img-ph"><i class="ti ti-photo"></i></div>';
-  document.getElementById('view-modal-overlay').style.display='flex';
-}
-function closeViewModal(){document.getElementById('view-modal-overlay').style.display='none';viewingId=null}
-function editFromView(){const id=viewingId;closeViewModal();openModal(id)}
-function deleteFromView(){const id=viewingId;closeViewModal();delImg(id)}
+// NAVIGATION
+function goHome(){currentSystem=null;currentStruct=null;document.getElementById('home-view').style.display='block';document.getElementById('structures-view').style.display='none';document.getElementById('detail-view').style.display='none';document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';document.getElementById('breadcrumb').innerHTML='';renderHome()}
+function goStructures(){currentStruct=null;document.getElementById('home-view').style.display='none';document.getElementById('structures-view').style.display='block';document.getElementById('detail-view').style.display='none';document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';renderStructures()}
+function goDetail(sys,str){currentSystem=sys;currentStruct=str;document.getElementById('home-view').style.display='none';document.getElementById('structures-view').style.display='none';document.getElementById('detail-view').style.display='flex';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';document.getElementById('detail-sys').textContent=sys;document.getElementById('detail-str').textContent=str;document.getElementById('breadcrumb').innerHTML=`<span onclick="goHome()">${sys}</span><i class="ti ti-chevron-right"></i><span class="active">${str}</span>`;switchTab('gallery')}
 
-function fillStructures(){const r=document.getElementById('i-reg').value,dl=document.getElementById('str-dl');dl.innerHTML='';(STRUCTS[r]||[]).forEach(s=>{const o=document.createElement('option');o.value=s;dl.appendChild(o)})}
+// HOME
+function renderHome(){const g=document.getElementById('systems-grid');g.innerHTML=Object.entries(SYSTEMS).map(([sys,data])=>{const cnt=imgs.filter(i=>i.region===sys).length;return`<div class="system-card" onclick="selectSystem('${sys}')"><div class="system-card-icon"><i class="ti ${data.icon}"></i></div><div class="system-card-name">${sys}</div><div class="system-card-count">${cnt} imagem${cnt!==1?'ns':''} · ${data.structs.length} estruturas</div><div class="system-card-bar"></div></div>`}).join('');updateStats()}
+function selectSystem(sys){currentSystem=sys;document.getElementById('home-view').style.display='none';document.getElementById('structures-view').style.display='block';document.getElementById('sys-title').textContent=sys;document.getElementById('sys-sub').textContent=`${SYSTEMS[sys].structs.length} estruturas · ${imgs.filter(i=>i.region===sys).length} imagens cadastradas`;renderStructures()}
+function renderStructures(){const g=document.getElementById('structures-grid');const structs=SYSTEMS[currentSystem]?.structs||[];g.innerHTML=structs.map(str=>{const cnt=imgs.filter(i=>i.region===currentSystem&&i.structure===str).length;const wikiKey=`${currentSystem}::${str}`;const hasWiki=wiki[wikiKey]&&(wiki[wikiKey].anatomy||wiki[wikiKey].physio||wiki[wikiKey].findings);return`<div class="struct-card" onclick="goDetail('${currentSystem}','${str}')"><div class="struct-card-name">${str}</div><div class="struct-card-meta"><span class="struct-count">${cnt} img</span>${hasWiki?'<span class="struct-has-wiki"><i class="ti ti-book" style="font-size:9px"></i>Atlas</span>':''}</div></div>`}).join('')}
+
+// TABS
+function switchTab(tab){currentTab=tab;document.getElementById('tab-gallery').className='detail-tab'+(tab==='gallery'?' active':'');document.getElementById('tab-wiki').className='detail-tab'+(tab==='wiki'?' active':'');renderDetailContent()}
+function renderDetailContent(){const c=document.getElementById('detail-content');if(currentTab==='gallery'){const filtered=imgs.filter(i=>i.region===currentSystem&&i.structure===currentStruct);c.innerHTML=`<div class="gallery-tab">${filtered.length?`<div class="g-grid">${filtered.map(img=>{const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i></div>';return`<div class="icard" onclick="openView('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div><div class="i-date">${img.date?new Date(img.date).toLocaleDateString('pt-BR'):''}</div></div></div>`}).join('')}</div>`:'<div class="empty-g"><i class="ti ti-photo-off"></i><p>Nenhuma imagem ainda. Adicione com o botão "Nova imagem".</p></div>'}</div>`}else{const key=`${currentSystem}::${currentStruct}`;const w=wiki[key]||{};c.innerHTML=`<div class="wiki-tab">
+<div class="wiki-section"><div class="wiki-label">História / Quem descobriu</div><textarea class="wiki-textarea" id="w-history" placeholder="Ex: Descrito por William Morrant Baker em 1877...">${w.history||''}</textarea></div>
+<div class="wiki-section"><div class="wiki-label">Anatomia</div><textarea class="wiki-textarea" id="w-anatomy" placeholder="Descreva a anatomia da estrutura...">${w.anatomy||''}</textarea></div>
+<div class="wiki-section"><div class="wiki-label">Fisiopatologia</div><textarea class="wiki-textarea" id="w-physio" placeholder="Mecanismos fisiopatológicos...">${w.physio||''}</textarea></div>
+<div class="wiki-section"><div class="wiki-label">Achados no ultrassom</div><textarea class="wiki-textarea" id="w-findings" placeholder="Como aparece no ultrassom...">${w.findings||''}</textarea></div>
+<div class="wiki-section"><div class="wiki-label">Referências</div><textarea class="wiki-textarea" id="w-refs" placeholder="StatPearls, NCBI, referências bibliográficas..." style="min-height:60px">${w.refs||''}</textarea></div>
+<button class="wiki-save-btn" onclick="saveWiki()"><i class="ti ti-check" style="font-size:11px"></i> Salvar conteúdo</button>
+</div>`}}
+function saveWiki(){const key=`${currentSystem}::${currentStruct}`;wiki[key]={history:document.getElementById('w-history').value,anatomy:document.getElementById('w-anatomy').value,physio:document.getElementById('w-physio').value,findings:document.getElementById('w-findings').value,refs:document.getElementById('w-refs').value};scheduleWikiSave();toast('Conteúdo salvo','ok');renderStructures()}
+
+// VIEW MODAL
+function openView(id){viewingId=id;const img=imgs.find(i=>i.id===id);if(!img)return;document.getElementById('vt-title').textContent=img.lesion;document.getElementById('v-reg').textContent=img.region;document.getElementById('v-str').textContent=img.structure;document.getElementById('v-les').textContent=img.lesion+(img.level?' — '+img.level:'');document.getElementById('v-pills').innerHTML=`<span class="pill ${bCls(img.category)==='b-pat'?'pill-navy':'pill-beige'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}`;const dw=document.getElementById('v-desc-wrap');if(img.description){dw.style.display='block';document.getElementById('v-desc').textContent=img.description}else{dw.style.display='none'}document.getElementById('v-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'';document.getElementById('v-img').innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="view-img-ph"><i class="ti ti-photo"></i></div>';document.getElementById('view-overlay').style.display='flex'}
+function closeView(){document.getElementById('view-overlay').style.display='none';viewingId=null}
+function editFromView(){const id=viewingId;closeView();openEditModal(id)}
+function deleteFromView(){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==viewingId);scheduleSave();closeView();renderDetailContent();updateStats();toast('Imagem removida','ok')}
+
+// ADD/EDIT MODAL
+function openAddModal(){editId=null;dataURL=null;document.getElementById('modal-ttl').textContent='Nova imagem';document.getElementById('modal-overlay').style.display='flex';const regSel=document.getElementById('i-reg');regSel.innerHTML='<option value="">Selecionar...</option>'+Object.keys(SYSTEMS).map(s=>`<option${s===currentSystem?' selected':''}>${s}</option>`).join('');updateStrDl();['i-les','i-lvl','i-desc'].forEach(x=>{document.getElementById(x).value=''});document.getElementById('i-str').value=currentStruct||'';document.getElementById('i-cat').value='patologia';document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}
+function openEditModal(id){editId=id;const img=imgs.find(i=>i.id===id);if(!img)return;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('modal-overlay').style.display='flex';const regSel=document.getElementById('i-reg');regSel.innerHTML='<option value="">Selecionar...</option>'+Object.keys(SYSTEMS).map(s=>`<option${s===img.region?' selected':''}>${s}</option>`).join('');updateStrDl();document.getElementById('i-str').value=img.structure||'';document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-cat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';dataURL=img.dataURL||null;document.getElementById('upload-z').innerHTML=img.dataURL?`<img src="${img.dataURL}" class="upload-prev">`:'<i class="ti ti-photo-up"></i><p>Clique para trocar imagem</p>'}
+function updateStrDl(){const r=document.getElementById('i-reg').value,dl=document.getElementById('str-dl');dl.innerHTML=(SYSTEMS[r]?.structs||[]).map(s=>`<option value="${s}">`).join('')}
+function closeModal(){document.getElementById('modal-overlay').style.display='none';editId=null;dataURL=null;document.getElementById('fi').value=''}
 function handleFile(inp){const f=inp.files[0];if(!f)return;if(f.size>8*1024*1024){toast('Imagem muito grande','err');return}const rd=new FileReader();rd.onload=e=>{dataURL=e.target.result;document.getElementById('upload-z').innerHTML=`<img src="${dataURL}" class="upload-prev">`};rd.readAsDataURL(f)}
-function openModal(id=null){editId=id;if(!id){}; document.getElementById('modal-overlay').style.display='flex';if(id){const img=imgs.find(i=>i.id===id);if(!img)return;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('i-reg').value=img.region||'';fillStructures();document.getElementById('i-str').value=img.structure||'';document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-cat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';if(img.dataURL){document.getElementById('upload-z').innerHTML=`<img src="${img.dataURL}" class="upload-prev">`;if(!dataURL)dataURL=img.dataURL}else{document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem</p>'}}else{document.getElementById('modal-ttl').textContent='Nova imagem';['i-str','i-les','i-lvl','i-desc'].forEach(x=>{const e=document.getElementById(x);if(e)e.value=''});document.getElementById('i-reg').value='';document.getElementById('i-cat').value='patologia';if(!dataURL)document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}}
-function closeModal(){document.getElementById('modal-overlay').style.display='none';document.getElementById('fi').value='';editId=null;dataURL=null}
-async function saveImg(){const reg=document.getElementById('i-reg').value.trim(),str=document.getElementById('i-str').value.trim(),les=document.getElementById('i-les').value.trim();if(!reg||!str||!les){toast('Preencha região, estrutura e achado','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),region:reg,structure:str,lesion:les,category:document.getElementById('i-cat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);scheduleSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:12px"></i> Salvar imagem';renderAll();toast(editId?'Imagem atualizada':'Imagem salva','ok')}
-async function delImg(id){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==id);scheduleSave();renderAll();toast('Imagem removida','ok')}
-function filterBy(v,el){filter=v;region=null;document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));el.classList.add('active');renderGallery()}
-function filterReg(r,el){region=r;filter=null;document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));el.classList.add('active');renderGallery()}
-function setView(v){view=v;document.getElementById('vg').classList.toggle('on',v==='grid');document.getElementById('vl').classList.toggle('on',v==='list');renderGallery()}
-function getFiltered(){const q=document.getElementById('q').value.toLowerCase();return imgs.filter(img=>{if(filter&&filter!=='all'&&img.category!==filter)return false;if(region&&img.region!==region)return false;if(q){const h=[img.region,img.structure,img.lesion,img.description,img.level].join(' ').toLowerCase();if(!h.includes(q))return false}return true})}
+async function saveImg(){const reg=document.getElementById('i-reg').value.trim(),str=document.getElementById('i-str').value.trim(),les=document.getElementById('i-les').value.trim();if(!reg||!str||!les){toast('Preencha região, estrutura e achado','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),region:reg,structure:str,lesion:les,category:document.getElementById('i-cat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);scheduleSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar';renderDetailContent();updateStats();renderHome();toast(editId?'Imagem atualizada':'Imagem salva','ok')}
+
+// PDF
+async function exportSinglePDF(){const img=imgs.find(i=>i.id===viewingId);if(!img)return;generatePDF([img])}
+async function exportPDF(){const filtered=imgs.filter(i=>i.region===currentSystem&&i.structure===currentStruct);if(!filtered.length){toast('Nenhuma imagem para exportar','err');return}generatePDF(filtered)}
+async function generatePDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;list.forEach((img,idx)=>{if(idx>0)doc.addPage();
+// fundo navy
+doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');
+// borda beige
+doc.setDrawColor(237,232,220);doc.setLineWidth(0.8);doc.rect(6,6,W-12,H-12,'S');
+// header
+doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');
+// logo texto
+doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('Sono',18,20);doc.setFont('helvetica','bold');doc.text('Vault',34,20);
+// região badge
+doc.setFillColor(37,99,168);doc.roundedRect(W-55,10,42,10,2,2,'F');doc.setTextColor(237,232,220);doc.setFontSize(8);doc.setFont('helvetica','bold');doc.text(img.region.toUpperCase(),W-34,16.5,{align:'center'});
+// imagem
+if(img.dataURL){try{doc.addImage(img.dataURL,'PNG',10,34,W-20,110,'','MEDIUM')}catch(e){}}
+// info box
+doc.setFillColor(37,53,85);doc.rect(6,148,W-12,100,'F');
+// categoria badge
+const catColor=img.category==='normal'?[45,122,79]:img.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...catColor);doc.roundedRect(12,153,30,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(img.category).toUpperCase(),27,158.5,{align:'center'});
+// estrutura
+doc.setTextColor(237,232,220);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text(img.structure,12,168);
+// achado
+doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(img.lesion+(img.level?' — '+img.level:''),12,177,{maxWidth:W-24});
+// descrição
+if(img.description){doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(200,194,182);const lines=doc.splitTextToSize(img.description,W-24);doc.text(lines.slice(0,8),12,187)}
+// rodapé
+doc.setTextColor(150,140,120);doc.setFontSize(7);doc.setFont('helvetica','normal');doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-10,{align:'center'});doc.text(img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',W-12,H-10,{align:'right'})});
+doc.save(`sonovault-${currentStruct||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro ao gerar PDF','err');console.error(e)}}
+
+// UTILS
 function bCls(c){return c==='normal'?'b-norm':c==='variante'?'b-var':'b-pat'}
 function bLbl(c){return c==='normal'?'Normal':c==='variante'?'Variante':'Patologia'}
-function renderGallery(){const f=getFiltered(),g=document.getElementById('gallery');if(!f.length){g.innerHTML='<div class="empty-g"><i class="ti ti-photo-off"></i><h3>Nenhuma imagem encontrada</h3><p>Adicione imagens ou ajuste os filtros.</p></div>';return}if(view==='grid'){g.innerHTML=`<div class="g-grid">${f.map(img=>{const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i><span>Sem imagem</span></div>';return`<div class="icard" onclick="openViewModal('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-reg">${img.region}</div><div class="i-str">${img.structure}</div><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div></div></div>`}).join('')}</div>`}else{g.innerHTML=`<div class="g-list">${f.map(img=>{const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>';return`<div class="lrow" onclick="openViewModal('${img.id}')"><div class="lthumb">${th}</div><div class="linfo"><div class="l-title">${img.structure} — ${img.lesion}</div><div class="l-sub">${img.region}${img.level?' · '+img.level:''}</div></div><span class="lbadge ${bCls(img.category)}">${bLbl(img.category)}</span></div>`}).join('')}</div>`}}
-function renderSidebar(){const regs=[...new Set(imgs.map(i=>i.region))].filter(Boolean).sort();document.getElementById('sb-regions').innerHTML=regs.map(r=>{const c=imgs.filter(i=>i.region===r).length,icons={Ombro:'user',Joelho:'run',Tornozelo:'run',Cotovelo:'user',Mão:'hand-stop',Punho:'wrist-watch',Quadril:'user',Abdômen:'ripple',Tireoide:'ripple',Mama:'ripple',Vascular:'waves',Pélvico:'ripple'};return`<div class="sb-item" onclick="filterReg('${r}',this)"><i class="ti ti-${icons[r]||'circle'}"></i>${r}<span class="n">${c}</span></div>`}).join('');const ct={all:imgs.length,patologia:0,normal:0,variante:0};imgs.forEach(i=>{if(ct[i.category]!==undefined)ct[i.category]++});document.getElementById('cn-all').textContent=ct.all;document.getElementById('cn-pat').textContent=ct.patologia;document.getElementById('cn-norm').textContent=ct.normal;document.getElementById('cn-var').textContent=ct.variante;document.getElementById('top-stat').textContent=`${imgs.length} imagem${imgs.length!==1?'ns':''}`}
-function renderAll(){renderSidebar();renderGallery()}
+function updateStats(){const t=imgs.length;document.getElementById('top-stat').textContent=t+' imagem'+(t!==1?'ns':'')}
+function showHint(){document.getElementById('hint-overlay').style.display='flex'}
+function closeHint(){document.getElementById('hint-overlay').style.display='none'}
 function toast(msg,type='ok'){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.className=`toast show ${type}`;t.querySelector('i').className=type==='ok'?'ti ti-check':'ti ti-alert-circle';setTimeout(()=>{t.className='toast'},2800)}
-function exportData(){if(!imgs.length){toast('Nenhuma imagem para exportar','err');return}const b=new Blob([JSON.stringify(imgs,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=`sonovault-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(u);toast('Backup exportado','ok')}
+
 window.onload=()=>{initGoogleAuth()}
 </script>
 </body>
