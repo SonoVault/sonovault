@@ -21,7 +21,7 @@
   --radius:8px;--radius-lg:12px;
   --font:'Georgia','Times New Roman',serif;
   --ui:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --sidebar-w:260px;
+  --sidebar-w:268px;
 }
 html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(--text-dark);overflow:hidden}
 
@@ -30,23 +30,23 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .login-logo{display:flex;flex-direction:column;align-items:center;gap:14px}
 .login-title{font-family:var(--font);font-size:34px;font-weight:400;color:var(--beige);letter-spacing:1px}
 .login-title b{font-weight:700}
-.login-subtitle{font-size:13px;color:rgba(237,232,220,0.45);letter-spacing:0.5px}
+.login-subtitle{font-size:13px;color:rgba(237,232,220,0.45)}
 .login-btn{display:flex;align-items:center;gap:10px;background:var(--beige);border:none;border-radius:8px;padding:13px 28px;font-size:14px;font-weight:600;color:var(--navy);cursor:pointer;font-family:var(--ui);transition:all .15s}
 .login-btn:hover{background:#e8e3d8;transform:translateY(-1px)}
 .login-btn svg{width:20px;height:20px}
 .login-status{font-size:12px;color:rgba(237,232,220,0.35);margin-top:-12px}
 
-/* LAYOUT */
+/* APP */
 .app{display:flex;height:100vh;flex-direction:column}
 .topbar{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0;z-index:40}
 .logo-wrap{display:flex;align-items:center;gap:9px;cursor:pointer}
-.logo-name{font-family:var(--font);font-size:16px;font-weight:400;color:var(--beige);letter-spacing:0.3px}
+.logo-name{font-family:var(--font);font-size:16px;font-weight:400;color:var(--beige)}
 .logo-name b{font-weight:700}
 .top-sep{flex:1}
-.top-breadcrumb{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(237,232,220,0.45)}
-.top-breadcrumb .crumb{cursor:pointer;transition:color .12s}
-.top-breadcrumb .crumb:hover{color:var(--beige)}
-.top-breadcrumb .crumb.active{color:rgba(237,232,220,0.8)}
+.top-bc{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(237,232,220,0.45)}
+.top-bc .crumb{cursor:pointer;transition:color .12s}
+.top-bc .crumb:hover{color:var(--beige)}
+.top-bc .crumb.active{color:rgba(237,232,220,0.85)}
 .user-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:3px 9px 3px 3px}
 .user-av{width:22px;height:22px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)}
 .user-nm{font-size:11px;color:rgba(237,232,220,0.65)}
@@ -58,40 +58,62 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .tbtn.logout{border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.35)}
 .saving{display:none;align-items:center;gap:4px;font-size:10px;color:rgba(237,232,220,0.4)}
 .saving.on{display:flex}
-
 .main-layout{display:flex;flex:1;overflow:hidden}
 
-/* SIDEBAR */
+/* SIDEBAR — 3 níveis */
 .sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--navy2);display:flex;flex-direction:column;overflow:hidden;border-right:0.5px solid rgba(255,255,255,0.06)}
 .sb-top{padding:12px 12px 8px;flex-shrink:0}
 .sb-search{background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--beige);outline:none;width:100%;font-family:var(--ui)}
 .sb-search::placeholder{color:rgba(237,232,220,0.3)}
 .sb-scroll{flex:1;overflow-y:auto;padding:4px 0 8px}
-.sb-section{margin-bottom:2px}
-.sb-cat-header{display:flex;align-items:center;padding:6px 10px 6px 12px;cursor:pointer;user-select:none;gap:6px}
-.sb-cat-header:hover{background:rgba(255,255,255,0.04)}
-.sb-cat-arrow{font-size:11px;color:rgba(237,232,220,0.3);transition:transform .15s;flex-shrink:0}
-.sb-cat-arrow.open{transform:rotate(90deg)}
-.sb-cat-name{font-size:11px;font-weight:600;color:rgba(237,232,220,0.55);letter-spacing:0.4px;text-transform:uppercase;flex:1}
-.sb-cat-cnt{font-size:9px;color:rgba(237,232,220,0.25);background:rgba(255,255,255,0.06);border-radius:10px;padding:1px 5px}
-.sb-cat-del{font-size:12px;color:rgba(237,232,220,0.2);cursor:pointer;padding:2px;opacity:0;transition:opacity .12s}
-.sb-cat-header:hover .sb-cat-del{opacity:1}
+
+/* nível 1 — categoria */
+.sb-cat{margin-bottom:1px}
+.sb-cat-hd{display:flex;align-items:center;padding:7px 10px 7px 12px;cursor:pointer;gap:6px;user-select:none}
+.sb-cat-hd:hover{background:rgba(255,255,255,0.04)}
+.sb-cat-arr{font-size:10px;color:rgba(237,232,220,0.3);transition:transform .15s;flex-shrink:0}
+.sb-cat-arr.open{transform:rotate(90deg)}
+.sb-cat-name{font-size:10px;font-weight:700;color:rgba(237,232,220,0.5);letter-spacing:0.6px;text-transform:uppercase;flex:1}
+.sb-cat-cnt{font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:10px;padding:1px 5px}
+.sb-cat-del{font-size:12px;color:rgba(237,232,220,0.15);cursor:pointer;opacity:0;transition:opacity .12s;padding:2px}
+.sb-cat-hd:hover .sb-cat-del{opacity:1}
 .sb-cat-del:hover{color:#fca5a5}
-.sb-structs{display:none;padding:0 8px 4px 20px}
-.sb-structs.open{display:block}
-.sb-struct{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:12px;color:rgba(237,232,220,0.55);transition:all .12s;position:relative}
-.sb-struct:hover{background:rgba(255,255,255,0.06);color:var(--beige)}
-.sb-struct.active{background:rgba(237,232,220,0.1);color:var(--beige);font-weight:500}
-.sb-struct-dot{width:5px;height:5px;border-radius:50%;background:rgba(237,232,220,0.2);flex-shrink:0}
-.sb-struct.active .sb-struct-dot{background:var(--beige)}
-.sb-struct-cnt{margin-left:auto;font-size:9px;color:rgba(237,232,220,0.25);background:rgba(255,255,255,0.06);border-radius:10px;padding:1px 5px}
-.sb-struct.active .sb-struct-cnt{color:rgba(237,232,220,0.5)}
-.sb-struct-del{font-size:11px;color:rgba(237,232,220,0.15);cursor:pointer;opacity:0;transition:opacity .12s;padding:1px 3px}
-.sb-struct:hover .sb-struct-del{opacity:1}
-.sb-struct-del:hover{color:#fca5a5}
-.sb-add-struct{display:flex;align-items:center;gap:5px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.3);transition:all .12s;margin-top:2px}
-.sb-add-struct:hover{background:rgba(255,255,255,0.04);color:rgba(237,232,220,0.6)}
-.sb-add-cat{display:flex;align-items:center;gap:6px;padding:8px 14px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.35);transition:all .12s;border-top:0.5px solid rgba(255,255,255,0.06);margin-top:4px}
+.sb-cat-body{display:none;padding:0 0 2px 0}
+.sb-cat-body.open{display:block}
+
+/* nível 2 — sistema */
+.sb-sys{margin-bottom:1px}
+.sb-sys-hd{display:flex;align-items:center;padding:5px 10px 5px 22px;cursor:pointer;gap:5px;user-select:none}
+.sb-sys-hd:hover{background:rgba(255,255,255,0.04)}
+.sb-sys-arr{font-size:10px;color:rgba(237,232,220,0.25);transition:transform .15s;flex-shrink:0}
+.sb-sys-arr.open{transform:rotate(90deg)}
+.sb-sys-name{font-size:12px;font-weight:500;color:rgba(237,232,220,0.6);flex:1}
+.sb-sys-cnt{font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:10px;padding:1px 5px}
+.sb-sys-del{font-size:11px;color:rgba(237,232,220,0.12);cursor:pointer;opacity:0;transition:opacity .12s;padding:1px}
+.sb-sys-hd:hover .sb-sys-del{opacity:1}
+.sb-sys-del:hover{color:#fca5a5}
+.sb-sys-body{display:none;padding:0 0 2px 0}
+.sb-sys-body.open{display:block}
+
+/* nível 3 — estrutura */
+.sb-str{display:flex;align-items:center;gap:5px;padding:5px 10px 5px 34px;cursor:pointer;font-size:12px;color:rgba(237,232,220,0.5);transition:all .12s}
+.sb-str:hover{background:rgba(255,255,255,0.05);color:var(--beige)}
+.sb-str.active{background:rgba(237,232,220,0.1);color:var(--beige);font-weight:500}
+.sb-str-dot{width:4px;height:4px;border-radius:50%;background:rgba(237,232,220,0.2);flex-shrink:0}
+.sb-str.active .sb-str-dot{background:var(--beige2)}
+.sb-str-cnt{margin-left:auto;font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:10px;padding:1px 5px}
+.sb-str.active .sb-str-cnt{color:rgba(237,232,220,0.45)}
+.sb-str-del{font-size:10px;color:rgba(237,232,220,0.1);cursor:pointer;opacity:0;padding:1px 2px}
+.sb-str:hover .sb-str-del{opacity:1}
+.sb-str-del:hover{color:#fca5a5}
+.sb-wiki-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2);opacity:0.6;flex-shrink:0}
+
+/* add buttons */
+.sb-add{display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.28);transition:all .12s}
+.sb-add:hover{color:rgba(237,232,220,0.6);background:rgba(255,255,255,0.03)}
+.sb-add.add-sys{padding:4px 10px 4px 22px}
+.sb-add.add-str{padding:4px 10px 4px 34px}
+.sb-add-cat{display:flex;align-items:center;gap:6px;padding:8px 14px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.32);transition:all .12s;border-top:0.5px solid rgba(255,255,255,0.06);margin-top:4px}
 .sb-add-cat:hover{background:rgba(255,255,255,0.04);color:rgba(237,232,220,0.6)}
 .sb-bottom{padding:10px 12px;border-top:0.5px solid rgba(255,255,255,0.06);flex-shrink:0}
 .drive-ok{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(110,231,183,0.6)}
@@ -112,12 +134,14 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .home-empty h3{font-size:15px;font-weight:400;font-family:var(--font);color:var(--text-mid)}
 .home-empty p{font-size:12px;color:var(--text-soft);max-width:280px;line-height:1.6}
 
-/* STRUCTURE PAGE */
+/* STRUCT PAGE */
 .struct-page{flex:1;display:flex;flex-direction:column;overflow:hidden;height:100%}
 .struct-header{padding:18px 24px 0;flex-shrink:0}
-.struct-header-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
-.struct-illus{width:72px;height:72px;border-radius:12px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-.struct-illus svg{width:56px;height:56px}
+.struct-header-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.struct-illus{width:68px;height:68px;border-radius:12px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;cursor:pointer;position:relative}
+.struct-illus:hover::after{content:'✎';position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;border-radius:12px}
+.struct-illus svg{width:54px;height:54px}
+.struct-illus img{width:100%;height:100%;object-fit:cover}
 .struct-header-info{flex:1}
 .struct-cat-tag{font-size:10px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
 .struct-title{font-family:var(--font);font-size:20px;color:var(--text-dark);margin-bottom:3px}
@@ -157,44 +181,50 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .gallery-empty i{font-size:40px}
 .gallery-empty p{font-size:12px;color:var(--text-soft);max-width:220px;line-height:1.5}
 
-/* ATLAS EDIT MODE */
-.atlas-edit-pane{padding:20px 24px;display:flex;flex-direction:column;gap:16px;max-width:760px}
+/* ATLAS EDIT */
+.atlas-edit-pane{padding:20px 24px;display:flex;flex-direction:column;gap:14px;max-width:780px}
 .atlas-edit-section{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-.atlas-edit-hd{padding:12px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--beige2)}
+.atlas-edit-hd{padding:11px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--beige2)}
 .atlas-edit-icon{width:26px;height:26px;border-radius:6px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .atlas-edit-icon i{font-size:13px;color:var(--beige)}
 .atlas-edit-title{font-size:13px;font-weight:600;color:var(--text-dark)}
 .atlas-edit-body{padding:14px 16px}
-.atlas-textarea{width:100%;background:var(--beige3);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px 14px;font-size:13px;color:var(--text-dark);outline:none;font-family:var(--ui);resize:vertical;min-height:130px;line-height:1.8;transition:border-color .15s}
+.atlas-textarea{width:100%;background:var(--beige3);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px 14px;font-size:13px;color:var(--text-dark);outline:none;font-family:var(--ui);resize:vertical;min-height:120px;line-height:1.8;transition:border-color .15s}
 .atlas-textarea:focus{border-color:var(--accent2);background:#fff}
 .atlas-textarea::placeholder{color:var(--text-soft);font-style:italic}
-.atlas-edit-footer{padding:0 24px 20px;display:flex;justify-content:flex-end;gap:8px;max-width:760px}
+.illus-upload-zone{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:20px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige3);display:flex;flex-direction:column;align-items:center;gap:8px}
+.illus-upload-zone:hover{border-color:var(--navy);background:var(--beige2)}
+.illus-upload-zone i{font-size:28px;color:var(--text-beige)}
+.illus-upload-zone p{font-size:12px;color:var(--text-soft);line-height:1.5}
+.illus-preview{width:100%;height:160px;object-fit:contain;border-radius:var(--radius);border:0.5px solid var(--border);background:var(--beige3)}
+.atlas-edit-footer{padding:0 24px 20px;display:flex;justify-content:flex-end;gap:8px;max-width:780px}
 
-/* ATLAS READ MODE */
-.atlas-read-pane{padding:0;flex:1;display:flex;flex-direction:column;overflow:hidden}
-.atlas-read-header{padding:18px 24px 14px;border-bottom:0.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;background:var(--beige4)}
-.atlas-read-title{font-family:var(--font);font-size:20px;color:var(--text-dark)}
+/* ATLAS READ */
+.atlas-read-pane{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.atlas-read-header{padding:16px 24px 14px;border-bottom:0.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;background:var(--beige4)}
+.atlas-read-title{font-family:var(--font);font-size:19px;color:var(--text-dark)}
 .atlas-read-sub{font-size:12px;color:var(--text-soft);margin-top:2px}
 .atlas-read-actions{display:flex;gap:8px}
-.atlas-read-body{flex:1;overflow-y:auto;display:flex;gap:0}
+.atlas-read-body{flex:1;overflow:hidden;display:flex}
 .atlas-read-left{flex:1;padding:24px;overflow-y:auto;border-right:0.5px solid var(--border)}
-.atlas-read-right{width:320px;min-width:320px;padding:20px;background:var(--beige2);display:flex;flex-direction:column;gap:16px;overflow-y:auto}
-.atlas-section-block{margin-bottom:28px}
-.atlas-section-label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.atlas-section-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
-.atlas-section-text{font-size:13px;color:var(--text-mid);line-height:1.9;white-space:pre-wrap}
-.atlas-illus-box{background:var(--navy);border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.atlas-read-right{width:300px;min-width:300px;padding:18px;background:var(--beige2);display:flex;flex-direction:column;gap:14px;overflow-y:auto}
+.atlas-sec-block{margin-bottom:26px}
+.atlas-sec-lbl{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.atlas-sec-lbl::after{content:'';flex:1;height:0.5px;background:var(--border)}
+.atlas-sec-txt{font-size:13px;color:var(--text-mid);line-height:1.9;white-space:pre-wrap}
+.atlas-refs-txt{font-size:11px;color:var(--text-soft);line-height:1.8;white-space:pre-wrap}
+.atlas-right-lbl{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);margin-bottom:8px}
+.atlas-illus-box{border-radius:var(--radius-lg);overflow:hidden;background:var(--navy);display:flex;align-items:center;justify-content:center;min-height:160px}
 .atlas-illus-box svg{width:80%;height:80%}
-.atlas-imgs-label{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);margin-bottom:8px}
+.atlas-illus-box img{width:100%;height:100%;object-fit:contain}
 .atlas-imgs-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .atlas-img-mini{aspect-ratio:1;border-radius:6px;overflow:hidden;cursor:pointer;border:0.5px solid var(--border);background:var(--beige3);display:flex;align-items:center;justify-content:center;transition:all .12s}
 .atlas-img-mini:hover{border-color:var(--navy);transform:scale(1.02)}
 .atlas-img-mini img{width:100%;height:100%;object-fit:cover}
 .atlas-img-mini i{font-size:20px;color:var(--text-beige)}
-.atlas-empty-right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:30px 10px;text-align:center;color:var(--text-beige)}
-.atlas-empty-right i{font-size:32px}
+.atlas-empty-right{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 10px;text-align:center}
+.atlas-empty-right i{font-size:28px;color:var(--text-beige)}
 .atlas-empty-right p{font-size:11px;color:var(--text-soft);line-height:1.5}
-.atlas-refs{font-size:11px;color:var(--text-soft);line-height:1.8;white-space:pre-wrap}
 
 /* VIEW MODAL */
 .view-overlay{position:fixed;inset:0;background:rgba(8,14,28,0.88);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
@@ -202,11 +232,11 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .view-top{background:var(--navy);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .view-top-title{font-family:var(--font);font-size:15px;color:var(--beige);font-weight:400}
 .view-body{display:flex;flex:1;overflow:hidden;min-height:0}
-.view-img-panel{flex:1;background:#06090f;display:flex;align-items:center;justify-content:center;min-height:280px}
+.view-img-panel{flex:1;background:#06090f;display:flex;align-items:center;justify-content:center}
 .view-img-panel img{max-width:100%;max-height:100%;object-fit:contain}
 .view-img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.12)}
 .view-img-ph i{font-size:56px}
-.view-info-panel{width:300px;min-width:300px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px}
+.view-info{width:300px;min-width:300px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:11px}
 .vi-reg{font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent)}
 .vi-str{font-family:var(--font);font-size:17px;color:var(--text-dark);line-height:1.3}
 .vi-les{font-size:12px;color:var(--text-mid)}
@@ -251,12 +281,9 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .act-btn{flex:1;padding:7px;border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .12s;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui)}
 .act-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
 .act-btn.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#fca5a5}
-
-/* HINT */
 .hint-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.7);z-index:160;display:flex;align-items:center;justify-content:center}
 .hint-box{background:var(--navy2);border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:32px;text-align:center;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:14px}
-.hint-key{background:var(--beige);color:var(--navy);font-size:20px;font-weight:700;border-radius:8px;padding:10px 22px;font-family:var(--font);letter-spacing:1px}
-
+.hint-key{background:var(--beige);color:var(--navy);font-size:20px;font-weight:700;border-radius:8px;padding:10px 22px;font-family:var(--font)}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--navy);border:0.5px solid rgba(255,255,255,0.15);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--beige);display:flex;align-items:center;gap:7px;z-index:300;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.ok i{color:#6ee7b7}
@@ -294,7 +321,7 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
       <svg width="30" height="30" viewBox="0 0 80 80"><rect width="80" height="80" rx="18" fill="#ede8dc"/><rect x="5" y="5" width="70" height="70" rx="14" fill="none" stroke="#1e2d4a" stroke-width="2"/><rect x="32" y="8" width="16" height="20" rx="4" fill="#1e2d4a"/><rect x="29" y="27" width="22" height="4" rx="2" fill="#1e2d4a" opacity="0.5"/><rect x="24" y="30" width="32" height="18" rx="5" fill="#1e2d4a"/><path d="M24 44 Q40 60 56 44" fill="#1e2d4a"/><path d="M19 60 Q40 78 61 60" fill="none" stroke="#1e2d4a" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/><path d="M14 70 Q40 92 66 70" fill="none" stroke="#1e2d4a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3"/></svg>
       <div class="logo-name">Sono<b>Vault</b></div>
     </div>
-    <div class="top-breadcrumb" id="breadcrumb"></div>
+    <div class="top-bc" id="breadcrumb"></div>
     <div class="saving" id="saving-badge"><i class="ti ti-cloud-upload" style="font-size:11px"></i> Salvando...</div>
     <div class="top-sep"></div>
     <span id="top-stat" style="font-size:11px;color:rgba(237,232,220,0.4);background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:20px;padding:3px 9px"></span>
@@ -308,11 +335,11 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   <div class="main-layout">
     <div class="sidebar">
       <div class="sb-top">
-        <input type="text" class="sb-search" id="sb-search" placeholder="Buscar estrutura..." oninput="filterSidebar()">
+        <input type="text" class="sb-search" id="sb-search" placeholder="Buscar..." oninput="renderSidebar()">
       </div>
       <div class="sb-scroll" id="sb-scroll"></div>
       <div class="sb-add-cat" onclick="openNewCat()">
-        <i class="ti ti-plus" style="font-size:13px"></i> Nova categoria
+        <i class="ti ti-plus" style="font-size:12px"></i> Nova categoria
       </div>
       <div class="sb-bottom">
         <div class="drive-ok" id="drive-ok"><i class="ti ti-cloud-check" style="font-size:11px"></i> Google Drive conectado</div>
@@ -335,7 +362,7 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
     </div>
     <div class="view-body">
       <div class="view-img-panel" id="v-img"></div>
-      <div class="view-info-panel">
+      <div class="view-info">
         <div class="vi-reg" id="v-reg"></div>
         <div class="vi-str" id="v-str"></div>
         <div class="vi-les" id="v-les"></div>
@@ -363,10 +390,9 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
     <div class="modal-bd">
       <div class="upload-z" id="upload-z" onclick="document.getElementById('fi').click()"><i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p></div>
       <input type="file" id="fi" accept="image/*" style="display:none" onchange="handleFile(this)">
-      <div class="frow">
-        <div class="fg"><label class="fl">Categoria</label><select class="fs" id="i-cat-sel" onchange="updateStructSel()"><option value="">Selecionar...</option></select></div>
-        <div class="fg"><label class="fl">Estrutura</label><select class="fs" id="i-str-sel"><option value="">Selecionar...</option></select></div>
-      </div>
+      <div class="fg"><label class="fl">Categoria</label><select class="fs" id="i-cat-sel" onchange="updateSysSel()"><option value="">Selecionar...</option></select></div>
+      <div class="fg"><label class="fl">Sistema</label><select class="fs" id="i-sys-sel" onchange="updateStrSel()"><option value="">Selecionar...</option></select></div>
+      <div class="fg"><label class="fl">Estrutura</label><select class="fs" id="i-str-sel"><option value="">Selecionar...</option></select></div>
       <div class="fg"><label class="fl">Achado / tipo de lesão</label><input class="fi" id="i-les" placeholder="Ex: Rotura parcial, Tendinopatia..."></div>
       <div class="frow">
         <div class="fg"><label class="fl">Categoria da imagem</label><select class="fs" id="i-imgcat"><option value="patologia">Patologia</option><option value="normal">Normal</option><option value="variante">Variante anatômica</option></select></div>
@@ -378,43 +404,59 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   </div>
 </div>
 
-<!-- NEW CAT MODAL -->
+<!-- NEW CAT -->
 <div id="newcat-overlay" class="modal-overlay" style="display:none">
   <div class="modal" style="max-width:400px">
-    <div class="modal-hd"><span class="modal-hd-title">Nova categoria</span><button class="modal-x" onclick="closeNewCat()"><i class="ti ti-x"></i></button></div>
-    <div class="modal-bd"><div class="fg"><label class="fl">Nome da categoria</label><input class="fi" id="newcat-name" placeholder="Ex: Musculoesquelético, Vascular..."></div></div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="closeNewCat()">Cancelar</button><button class="btn btn-primary" onclick="saveCat()">Criar</button></div>
+    <div class="modal-hd"><span class="modal-hd-title">Nova categoria</span><button class="modal-x" onclick="document.getElementById('newcat-overlay').style.display='none'"><i class="ti ti-x"></i></button></div>
+    <div class="modal-bd"><div class="fg"><label class="fl">Nome</label><input class="fi" id="newcat-name" placeholder="Ex: Musculoesquelético"></div></div>
+    <div class="modal-ft"><button class="btn btn-ghost" onclick="document.getElementById('newcat-overlay').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="saveCat()">Criar</button></div>
   </div>
 </div>
 
-<!-- NEW STRUCT MODAL -->
-<div id="newstruct-overlay" class="modal-overlay" style="display:none">
+<!-- NEW SYS -->
+<div id="newsys-overlay" class="modal-overlay" style="display:none">
   <div class="modal" style="max-width:400px">
-    <div class="modal-hd"><span class="modal-hd-title">Nova estrutura</span><button class="modal-x" onclick="closeNewStruct()"><i class="ti ti-x"></i></button></div>
-    <div class="modal-bd"><div class="fg"><label class="fl">Nome da estrutura</label><input class="fi" id="newstruct-name" placeholder="Ex: Cisto de Baker, Tendão supraespinhal..."></div></div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="closeNewStruct()">Cancelar</button><button class="btn btn-primary" onclick="saveStruct()">Criar</button></div>
+    <div class="modal-hd"><span class="modal-hd-title">Novo sistema</span><button class="modal-x" onclick="document.getElementById('newsys-overlay').style.display='none'"><i class="ti ti-x"></i></button></div>
+    <div class="modal-bd"><div class="fg"><label class="fl">Nome do sistema</label><input class="fi" id="newsys-name" placeholder="Ex: Joelho, Ombro, Tireoide..."></div></div>
+    <div class="modal-ft"><button class="btn btn-ghost" onclick="document.getElementById('newsys-overlay').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="saveSys()">Criar</button></div>
+  </div>
+</div>
+
+<!-- NEW STR -->
+<div id="newstr-overlay" class="modal-overlay" style="display:none">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-hd"><span class="modal-hd-title">Nova estrutura</span><button class="modal-x" onclick="document.getElementById('newstr-overlay').style.display='none'"><i class="ti ti-x"></i></button></div>
+    <div class="modal-bd"><div class="fg"><label class="fl">Nome da estrutura</label><input class="fi" id="newstr-name" placeholder="Ex: Trato iliotibial, Cisto de Baker..."></div></div>
+    <div class="modal-ft"><button class="btn btn-ghost" onclick="document.getElementById('newstr-overlay').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="saveStr()">Criar</button></div>
   </div>
 </div>
 
 <!-- HINT -->
 <div id="hint-overlay" class="hint-overlay" style="display:none" onclick="closeHint()">
   <div class="hint-box" onclick="event.stopPropagation()">
-    <div style="font-size:11px;color:rgba(237,232,220,0.4);letter-spacing:0.5px;text-transform:uppercase">Atalho de captura</div>
+    <div style="font-size:11px;color:rgba(237,232,220,0.4);text-transform:uppercase;letter-spacing:0.5px">Atalho de captura</div>
     <div class="hint-key">⊞ + Shift + S</div>
-    <div style="font-size:12px;color:rgba(237,232,220,0.6);line-height:1.6;text-align:center">Pressione este atalho para abrir a ferramenta de recorte do Windows. Selecione a área da imagem e depois faça upload aqui.</div>
-    <button class="btn btn-ghost" onclick="closeHint()" style="font-size:12px;margin-top:4px">Entendi</button>
+    <div style="font-size:12px;color:rgba(237,232,220,0.6);line-height:1.6;text-align:center">Pressione para abrir a ferramenta de recorte do Windows. Selecione a área da imagem e faça upload aqui.</div>
+    <button class="btn btn-ghost" onclick="closeHint()" style="font-size:12px">Entendi</button>
   </div>
 </div>
+
+<!-- ILLUS UPLOAD INPUT -->
+<input type="file" id="illus-fi" accept="image/*" style="display:none" onchange="handleIllusFile(this)">
 
 <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-msg"></span></div><script>
 const CLIENT_ID='155144252138-es5iuh573njhfvu1mtiih5qg5eok5r1b.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive.file';
 const FOLDER='SonoVault';
 
+// STATE
+// cats = [{id, name, systems:[{id, name, structs:[{id, name}]}]}]
 let imgs=[],wiki={},cats=[];
-let curCat=null,curStr=null,curTab='gallery',curAtlasMode='read',gFilter='all';
-let viewId=null,editId=null,dataURL=null,newStructCat=null;
-let tokenClient,token=null,folderId=null,dbId=null,wikiId=null,catsId=null,saveT=null,saveWT=null,saveCT=null;
+let curCat=null,curSys=null,curStr=null,curTab='gallery',curAtlasMode='read',gFilter='all';
+let viewId=null,editId=null,dataURL=null;
+let newCatPending=null,newSysPending=null,newStrPending=null;
+let tokenClient,token=null,folderId=null,dbId=null,wikiId=null,catsId=null;
+let saveT=null,saveWT=null,saveCT=null;
 
 // AUTH
 function initGoogleAuth(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async r=>{if(r.error){toast('Erro: '+r.error,'err');return}token=r.access_token;await loadUser();await initDrive();showApp()}})}
@@ -429,88 +471,130 @@ async function getOrMkFolder(){const q=encodeURIComponent(`name='${FOLDER}' and 
 async function getFileId(name){const q=encodeURIComponent(`name='${name}' and '${folderId}' in parents and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();return d.files?.length?d.files[0].id:null}
 async function saveFile(fileId,name,data){const blob=new Blob([JSON.stringify(data)],{type:'application/json'});if(fileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:blob});return fileId}const meta={name,parents:[folderId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+token},body:form});return(await r.json()).id}
 async function initDrive(){try{folderId=await getOrMkFolder();dbId=await getFileId('sonovault-db.json');wikiId=await getFileId('sonovault-wiki.json');catsId=await getFileId('sonovault-cats.json');if(dbId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${dbId}?alt=media`);const d=await r.json();imgs=Array.isArray(d)?d:[]}if(wikiId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${wikiId}?alt=media`);const d=await r.json();wiki=d&&typeof d==='object'?d:{}}if(catsId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${catsId}?alt=media`);const d=await r.json();cats=Array.isArray(d)?d:[]}if(!cats.length)cats=defaultCats();updateStats();renderSidebar()}catch(e){toast('Erro no Drive','err')}}
-function defaultCats(){return[{id:'msk',name:'Musculoesquelético',structs:[{id:'ombro',name:'Ombro'},{id:'joelho',name:'Joelho'},{id:'tornozelo',name:'Tornozelo'},{id:'cotovelo',name:'Cotovelo'},{id:'mao',name:'Mão'},{id:'punho',name:'Punho'},{id:'quadril',name:'Quadril'}]},{id:'pp',name:'Pequenas Partes',structs:[{id:'tireoide',name:'Tireoide'},{id:'mama',name:'Mama'},{id:'testicular',name:'Testicular'}]},{id:'abd',name:'Abdômen',structs:[{id:'figado',name:'Fígado'},{id:'vesicula',name:'Vesícula biliar'},{id:'pancreas',name:'Pâncreas'},{id:'baco',name:'Baço'},{id:'rins',name:'Rins'}]},{id:'vasc',name:'Vascular',structs:[{id:'safena',name:'Veia safena magna'},{id:'safena_p',name:'Veia safena parva'},{id:'carotida',name:'Artéria carótida'},{id:'femoral',name:'Artéria femoral'}]},{id:'pelv',name:'Pélvico',structs:[{id:'utero',name:'Útero'},{id:'ovarios',name:'Ovários'},{id:'bexiga',name:'Bexiga'},{id:'prostata',name:'Próstata'}]}]}
+function defaultCats(){return[{id:'msk',name:'Musculoesquelético',systems:[{id:'joelho',name:'Joelho',structs:[{id:'cisto_baker',name:'Cisto de Baker'},{id:'trato_ilio',name:'Trato iliotibial'},{id:'menisco_med',name:'Menisco medial'},{id:'tend_patelar',name:'Tendão patelar'}]},{id:'ombro',name:'Ombro',structs:[{id:'supraespinhal',name:'Tendão supraespinhal'},{id:'ac_joint',name:'Articulação AC'},{id:'biceps_longo',name:'Cabo longo do bíceps'},{id:'bursa_sub',name:'Bursa subacromial'}]},{id:'tornozelo',name:'Tornozelo',structs:[{id:'tend_calc',name:'Tendão calcâneo'},{id:'tend_tibpost',name:'Tendão tibial posterior'},{id:'ligamento_ltfa',name:'Ligamento LTFA'},{id:'fascia_plantar',name:'Fáscia plantar'}]},{id:'cotovelo',name:'Cotovelo',structs:[{id:'epicondilo_lat',name:'Epicôndilo lateral'},{id:'nervo_ulnar',name:'Nervo ulnar'},{id:'biceps_dist',name:'Bíceps distal'}]},{id:'mao',name:'Mão',structs:[{id:'polia_a1',name:'Polia A1'},{id:'lig_colateral',name:'Ligamento colateral ulnar'}]},{id:'punho',name:'Punho',structs:[{id:'nervo_mediano',name:'Nervo mediano'},{id:'tend_ext',name:'Tendões extensores'}]},{id:'quadril',name:'Quadril',structs:[{id:'gluteo_medio',name:'Tendão glúteo médio'},{id:'bursa_troc',name:'Bursa trocantérica'}]}]},{id:'pp',name:'Pequenas Partes',systems:[{id:'tireoide_sys',name:'Tireoide',structs:[{id:'lobodireito',name:'Lobo direito'},{id:'loboesquerdo',name:'Lobo esquerdo'},{id:'nodulo_tire',name:'Nódulo tireoidiano'}]},{id:'mama_sys',name:'Mama',structs:[{id:'cisto_mama',name:'Cisto mamário'},{id:'nodulo_mama',name:'Nódulo sólido'}]},{id:'testicular_sys',name:'Testicular',structs:[{id:'testiculo',name:'Testículo'},{id:'epididimo',name:'Epidídimo'}]}]},{id:'abd',name:'Abdômen',systems:[{id:'figado_sys',name:'Fígado',structs:[{id:'figado_str',name:'Parênquima hepático'},{id:'esteatose',name:'Esteatose hepática'},{id:'cisto_hepatico',name:'Cisto hepático'}]},{id:'vesicula_sys',name:'Vesícula biliar',structs:[{id:'vesicula_str',name:'Vesícula biliar'},{id:'colelitíase_str',name:'Colecistolitíase'}]},{id:'rins_sys',name:'Rins',structs:[{id:'rim_dir',name:'Rim direito'},{id:'rim_esq',name:'Rim esquerdo'},{id:'cisto_renal',name:'Cisto renal'}]}]},{id:'vasc',name:'Vascular',systems:[{id:'mmii_venoso',name:'MMII Venoso',structs:[{id:'safena_magna',name:'Veia safena magna'},{id:'safena_parva',name:'Veia safena parva'},{id:'sistema_prof',name:'Sistema profundo'}]},{id:'carotidas_sys',name:'Carótidas',structs:[{id:'carotida_com',name:'Artéria carótida comum'},{id:'carotida_int',name:'Artéria carótida interna'}]}]},{id:'pelv',name:'Pélvico',systems:[{id:'gineco_sys',name:'Ginecológico',structs:[{id:'utero_str',name:'Útero'},{id:'ovario_dir',name:'Ovário direito'},{id:'ovario_esq',name:'Ovário esquerdo'}]},{id:'urinario_sys',name:'Urinário',structs:[{id:'bexiga_str',name:'Bexiga'},{id:'prostata_str',name:'Próstata'}]}]}]}
 function sb(on){const el=document.getElementById('saving-badge');el.className=on?'saving on':'saving'}
 function schedSave(){clearTimeout(saveT);sb(true);saveT=setTimeout(async()=>{dbId=await saveFile(dbId,'sonovault-db.json',imgs);sb(false)},1500)}
 function schedWiki(){clearTimeout(saveWT);saveWT=setTimeout(async()=>{wikiId=await saveFile(wikiId,'sonovault-wiki.json',wiki)},1500)}
 function schedCats(){clearTimeout(saveCT);saveCT=setTimeout(async()=>{catsId=await saveFile(catsId,'sonovault-cats.json',cats)},1500)}
 
-// SIDEBAR
-function renderSidebar(){const el=document.getElementById('sb-scroll');const q=(document.getElementById('sb-search')?.value||'').toLowerCase();el.innerHTML=cats.map(cat=>{const structs=cat.structs.filter(s=>!q||s.name.toLowerCase().includes(q)||cat.name.toLowerCase().includes(q));if(q&&!structs.length)return'';const isOpen=!q||structs.length;return`<div class="sb-section"><div class="sb-cat-header" onclick="toggleCat('${cat.id}')"><i class="ti ti-chevron-right sb-cat-arrow ${isOpen?'open':''}" id="arr-${cat.id}"></i><span class="sb-cat-name">${cat.name}</span><span class="sb-cat-cnt">${cat.structs.length}</span><i class="ti ti-x sb-cat-del" onclick="event.stopPropagation();deleteCat('${cat.id}')"></i></div><div class="sb-structs ${isOpen?'open':''}" id="structs-${cat.id}">${structs.map(s=>{const cnt=imgs.filter(i=>i.catId===cat.id&&i.strId===s.id).length;const wKey=cat.id+'::'+s.id;const hasWiki=wiki[wKey]&&Object.values(wiki[wKey]).some(v=>v);const active=curCat===cat.id&&curStr===s.id;return`<div class="sb-struct ${active?'active':''}" onclick="selectStruct('${cat.id}','${s.id}')"><span class="sb-struct-dot"></span>${s.name}${hasWiki?'<i class="ti ti-book" style="font-size:9px;color:rgba(237,232,220,0.3);margin-left:3px"></i>':''}<span class="sb-struct-cnt">${cnt||''}</span><i class="ti ti-x sb-struct-del" onclick="event.stopPropagation();deleteStruct('${cat.id}','${s.id}')"></i></div>`}).join('')}<div class="sb-add-struct" onclick="openNewStruct('${cat.id}')"><i class="ti ti-plus" style="font-size:11px"></i> Adicionar estrutura</div></div></div>`}).join('')}
-function filterSidebar(){renderSidebar()}
-function toggleCat(id){const el=document.getElementById('structs-'+id);const arr=document.getElementById('arr-'+id);el.classList.toggle('open');arr.classList.toggle('open')}
+// HELPERS
+function getCat(cId){return cats.find(c=>c.id===cId)}
+function getSys(cId,sId){return getCat(cId)?.systems.find(s=>s.id===sId)}
+function getStr(cId,sId,stId){return getSys(cId,sId)?.structs.find(s=>s.id===stId)}
+function wKey(){return curCat+'::'+curSys+'::'+curStr}
+function imgCount(cId,sId,stId){return imgs.filter(i=>i.catId===cId&&i.sysId===sId&&i.strId===stId).length}
 
-// NAVIGATION
-function selectStruct(catId,strId){curCat=catId;curStr=strId;curTab='gallery';curAtlasMode='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=cats.find(c=>c.id===catId);const str=cat?.structs.find(s=>s.id===strId);document.getElementById('breadcrumb').innerHTML=`<span class="crumb" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:10px"></i><span class="crumb active">${str?.name||''}</span>`;renderSidebar();renderStructPage()}
-function goHome(){curCat=null;curStr=null;document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';document.getElementById('breadcrumb').innerHTML='';renderSidebar();renderHome()}
+// SIDEBAR
+function renderSidebar(){
+  const q=(document.getElementById('sb-search')?.value||'').toLowerCase();
+  const el=document.getElementById('sb-scroll');
+  el.innerHTML=cats.map(cat=>{
+    const sysHtml=cat.systems.map(sys=>{
+      const structs=sys.structs.filter(s=>!q||s.name.toLowerCase().includes(q)||sys.name.toLowerCase().includes(q)||cat.name.toLowerCase().includes(q));
+      if(q&&!structs.length)return'';
+      const sysOpen=!q||structs.length>0;
+      const strHtml=structs.map(str=>{
+        const cnt=imgCount(cat.id,sys.id,str.id);
+        const wk=cat.id+'::'+sys.id+'::'+str.id;
+        const hasW=wiki[wk]&&Object.values(wiki[wk]).some(v=>v&&v!='');
+        const active=curCat===cat.id&&curSys===sys.id&&curStr===str.id;
+        return`<div class="sb-str ${active?'active':''}" onclick="selectStr('${cat.id}','${sys.id}','${str.id}')"><span class="sb-str-dot"></span>${str.name}${hasW?'<span class="sb-wiki-dot"></span>':''}<span class="sb-str-cnt">${cnt||''}</span><i class="ti ti-x sb-str-del" onclick="event.stopPropagation();deleteStr('${cat.id}','${sys.id}','${str.id}')"></i></div>`;
+      }).join('');
+      return`<div class="sb-sys"><div class="sb-sys-hd" onclick="toggleSys('${cat.id}','${sys.id}')"><i class="ti ti-chevron-right sb-sys-arr ${sysOpen?'open':''}" id="sarr-${sys.id}"></i><span class="sb-sys-name">${sys.name}</span><span class="sb-sys-cnt">${sys.structs.length}</span><i class="ti ti-x sb-sys-del" onclick="event.stopPropagation();deleteSys('${cat.id}','${sys.id}')"></i></div><div class="sb-sys-body ${sysOpen?'open':''}" id="sbody-${sys.id}">${strHtml}<div class="sb-add add-str" onclick="openNewStr('${cat.id}','${sys.id}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar estrutura</div></div></div>`;
+    }).join('');
+    const catOpen=!q||sysHtml.replace(/<!--.*?-->/g,'').trim().length>0;
+    return`<div class="sb-cat"><div class="sb-cat-hd" onclick="toggleCat('${cat.id}')"><i class="ti ti-chevron-right sb-cat-arr ${catOpen?'open':''}" id="carr-${cat.id}"></i><span class="sb-cat-name">${cat.name}</span><span class="sb-cat-cnt">${cat.systems.length}</span><i class="ti ti-x sb-cat-del" onclick="event.stopPropagation();deleteCat('${cat.id}')"></i></div><div class="sb-cat-body ${catOpen?'open':''}" id="cbody-${cat.id}">${sysHtml}<div class="sb-add add-sys" onclick="openNewSys('${cat.id}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar sistema</div></div></div>`;
+  }).join('');
+}
+function toggleCat(id){const b=document.getElementById('cbody-'+id);const a=document.getElementById('carr-'+id);b?.classList.toggle('open');a?.classList.toggle('open')}
+function toggleSys(cId,sId){const b=document.getElementById('sbody-'+sId);const a=document.getElementById('sarr-'+sId);b?.classList.toggle('open');a?.classList.toggle('open')}
+
+// NAV
+function selectStr(cId,sId,stId){curCat=cId;curSys=sId;curStr=stId;curTab='gallery';curAtlasMode='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=getCat(cId);const sys=getSys(cId,sId);const str=getStr(cId,sId,stId);document.getElementById('breadcrumb').innerHTML=`<span class="crumb" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb active">${str?.name||''}</span>`;renderSidebar();renderStructPage()}
+function goHome(){curCat=null;curSys=null;curStr=null;document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';document.getElementById('breadcrumb').innerHTML='';renderSidebar();renderHome()}
 
 // HOME
 function renderHome(){const el=document.getElementById('content');const recent=imgs.slice(0,24);el.innerHTML=`<div class="home-view"><div class="home-welcome"><h1>SonoVault</h1><p>Banco de imagens ultrassonográficas · Clínica Senhor dos Passos</p></div>${recent.length?`<div class="home-recent-label">Imagens recentes</div><div class="recent-grid">${recent.map(img=>imgCard(img)).join('')}</div>`:`<div class="home-empty"><i class="ti ti-ripple"></i><h3>Bem-vindo ao SonoVault</h3><p>Selecione uma estrutura na barra lateral e adicione sua primeira imagem.</p></div>`}</div>`}
 
 // STRUCT PAGE
-function renderStructPage(){const cat=cats.find(c=>c.id===curCat);const str=cat?.structs.find(s=>s.id===curStr);const wKey=curCat+'::'+curStr;const w=wiki[wKey]||{};const hasWiki=Object.values(w).some(v=>v);const el=document.getElementById('content');const illus=getIllus(str?.name||'');el.innerHTML=`<div class="struct-page"><div class="struct-header"><div class="struct-header-top"><div class="struct-illus">${illus}</div><div class="struct-header-info"><div class="struct-cat-tag">${cat?.name||''}</div><div class="struct-title">${str?.name||''}</div><div class="struct-meta">${imgs.filter(i=>i.catId===curCat&&i.strId===curStr).length} imagens · ${hasWiki?'<span style="color:var(--accent)">Atlas disponível</span>':'Sem atlas ainda'}</div></div></div><div class="struct-tabs"><div class="struct-tab ${curTab==='gallery'?'active':''}" onclick="switchTab('gallery')"><i class="ti ti-photo" style="font-size:12px"></i> Imagens</div><div class="struct-tab ${curTab==='atlas'?'active':''}" onclick="switchTab('atlas')"><i class="ti ti-book" style="font-size:12px"></i> Atlas${hasWiki?' <span style=\'background:var(--accent);color:white;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:2px\'>✓</span>':''}</div></div></div><div class="struct-body" id="struct-body"></div></div>`;renderTabContent()}
-function switchTab(tab){curTab=tab;renderStructPage()}
+function renderStructPage(){
+  const cat=getCat(curCat);const sys=getSys(curCat,curSys);const str=getStr(curCat,curSys,curStr);
+  const wk=wKey();const w=wiki[wk]||{};const hasW=Object.values(w).some(v=>v&&v!='');
+  const illusHtml=w.illus?`<img src="${w.illus}" alt="">`:(getIllus(str?.name||''));
+  const el=document.getElementById('content');
+  el.innerHTML=`<div class="struct-page"><div class="struct-header"><div class="struct-header-top"><div class="struct-illus" onclick="document.getElementById('illus-fi').click()" title="Clique para trocar ilustração">${illusHtml}</div><div class="struct-header-info"><div class="struct-cat-tag">${cat?.name||''} › ${sys?.name||''}</div><div class="struct-title">${str?.name||''}</div><div class="struct-meta">${imgCount(curCat,curSys,curStr)} imagens · ${hasW?'<span style="color:var(--accent)">Atlas disponível</span>':'Sem atlas ainda'}</div></div></div><div class="struct-tabs"><div class="struct-tab ${curTab==='gallery'?'active':''}" onclick="switchTab('gallery')"><i class="ti ti-photo" style="font-size:12px"></i> Imagens</div><div class="struct-tab ${curTab==='atlas'?'active':''}" onclick="switchTab('atlas')"><i class="ti ti-book" style="font-size:12px"></i> Atlas${hasW?' <span style="background:var(--accent);color:white;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:3px">✓</span>':''}</div></div></div><div class="struct-body" id="struct-body"></div></div>`;
+  renderTabContent();
+}
+function switchTab(t){curTab=t;renderStructPage()}
 function renderTabContent(){const el=document.getElementById('struct-body');if(!el)return;curTab==='gallery'?renderGalleryTab(el):renderAtlasTab(el)}
 
 // GALLERY
-function renderGalleryTab(el){const all=imgs.filter(i=>i.catId===curCat&&i.strId===curStr);const filtered=gFilter==='all'?all:all.filter(i=>i.category===gFilter);el.innerHTML=`<div class="gallery-pane"><div class="gallery-toolbar"><div class="gallery-search"><i class="ti ti-search"></i><input type="text" id="gsearch" placeholder="Buscar achado..." oninput="filterGallery()"></div><div class="gfilter"><button class="gf-btn ${gFilter==='all'?'on':''}" onclick="setGFilter('all')">Todos</button><button class="gf-btn ${gFilter==='patologia'?'on':''}" onclick="setGFilter('patologia')">Patologia</button><button class="gf-btn ${gFilter==='normal'?'on':''}" onclick="setGFilter('normal')">Normal</button><button class="gf-btn ${gFilter==='variante'?'on':''}" onclick="setGFilter('variante')">Variante</button></div></div>${filtered.length?`<div class="img-grid">${filtered.map(img=>imgCard(img)).join('')}</div>`:`<div class="gallery-empty"><i class="ti ti-photo-off"></i><p>Nenhuma imagem. Use "Nova imagem" para adicionar.</p></div>`}</div>`}
+function renderGalleryTab(el){const all=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr);const filtered=gFilter==='all'?all:all.filter(i=>i.category===gFilter);el.innerHTML=`<div class="gallery-pane"><div class="gallery-toolbar"><div class="gallery-search"><i class="ti ti-search"></i><input type="text" id="gsearch" placeholder="Buscar achado..." oninput="filterGallery()"></div><div class="gfilter"><button class="gf-btn ${gFilter==='all'?'on':''}" onclick="setGFilter('all')">Todos</button><button class="gf-btn ${gFilter==='patologia'?'on':''}" onclick="setGFilter('patologia')">Patologia</button><button class="gf-btn ${gFilter==='normal'?'on':''}" onclick="setGFilter('normal')">Normal</button><button class="gf-btn ${gFilter==='variante'?'on':''}" onclick="setGFilter('variante')">Variante</button></div></div>${filtered.length?`<div class="img-grid">${filtered.map(img=>imgCard(img)).join('')}</div>`:`<div class="gallery-empty"><i class="ti ti-photo-off"></i><p>Nenhuma imagem. Use "Nova imagem" para adicionar.</p></div>`}</div>`}
 function setGFilter(f){gFilter=f;renderTabContent()}
-function filterGallery(){const q=(document.getElementById('gsearch')?.value||'').toLowerCase();const all=imgs.filter(i=>i.catId===curCat&&i.strId===curStr&&(gFilter==='all'||i.category===gFilter));const filtered=q?all.filter(i=>[i.lesion,i.description,i.level].join(' ').toLowerCase().includes(q)):all;const g=document.querySelector('.img-grid');if(g)g.innerHTML=filtered.map(img=>imgCard(img)).join('')}
+function filterGallery(){const q=(document.getElementById('gsearch')?.value||'').toLowerCase();const all=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr&&(gFilter==='all'||i.category===gFilter));const filtered=q?all.filter(i=>[i.lesion,i.description,i.level].join(' ').toLowerCase().includes(q)):all;const g=document.querySelector('.img-grid');if(g)g.innerHTML=filtered.map(img=>imgCard(img)).join('')}
 function imgCard(img){const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i></div>';return`<div class="icard" onclick="openView('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div><div class="i-date">${img.date?new Date(img.date).toLocaleDateString('pt-BR'):''}</div></div></div>`}
 
 // ATLAS
-function renderAtlasTab(el){const wKey=curCat+'::'+curStr;const w=wiki[wKey]||{};const hasContent=Object.values(w).some(v=>v);if(curAtlasMode==='read'&&hasContent){renderAtlasRead(el,w)}else{renderAtlasEdit(el,w)}}
+function renderAtlasTab(el){const wk=wKey();const w=wiki[wk]||{};const hasContent=Object.values(w).some(v=>v&&v!='');if(curAtlasMode==='read'&&hasContent){renderAtlasRead(el,w)}else{renderAtlasEdit(el,w)}}
 
-function renderAtlasRead(el,w){const cat=cats.find(c=>c.id===curCat);const str=cats.find(c=>c.id===curCat)?.structs.find(s=>s.id===curStr);const illus=getIllus(str?.name||'');const structImgs=imgs.filter(i=>i.catId===curCat&&i.strId===curStr).slice(0,6);const secs=[{id:'history',label:'História / Quem descobriu'},{id:'anatomy',label:'Anatomia'},{id:'physio',label:'Fisiopatologia'},{id:'findings',label:'Achados no ultrassom'},{id:'treatment',label:'Tratamento / Conduta'},{id:'refs',label:'Referências',isRef:true}];el.innerHTML=`<div class="atlas-read-pane"><div class="atlas-read-header"><div><div class="atlas-read-title">${str?.name||''}</div><div class="atlas-read-sub">${cat?.name||''} · Atlas Ultrassonográfico</div></div><div class="atlas-read-actions"><button class="btn btn-ghost" style="font-size:11px" onclick="curAtlasMode='edit';renderTabContent()"><i class="ti ti-edit" style="font-size:11px"></i> Editar atlas</button><button class="btn btn-primary" style="font-size:11px" onclick="exportAtlasPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button></div></div><div class="atlas-read-body"><div class="atlas-read-left">${secs.map(s=>w[s.id]?`<div class="atlas-section-block"><div class="atlas-section-label">${s.label}</div>${s.isRef?`<div class="atlas-refs">${w[s.id]}</div>`:`<div class="atlas-section-text">${w[s.id]}</div>`}</div>`:'').join('')}</div><div class="atlas-read-right"><div class="atlas-illus-box">${illus}</div>${structImgs.length?`<div><div class="atlas-imgs-label">Imagens do banco</div><div class="atlas-imgs-mini">${structImgs.map(img=>`<div class="atlas-img-mini" onclick="openView('${img.id}')">${img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>'}</div>`).join('')}</div></div>`:`<div class="atlas-empty-right"><i class="ti ti-photo-off"></i><p>Adicione imagens na aba Imagens para vê-las aqui</p></div>`}</div></div></div>`}
+function renderAtlasRead(el,w){
+  const cat=getCat(curCat);const sys=getSys(curCat,curSys);const str=getStr(curCat,curSys,curStr);
+  const illusHtml=w.illus?`<img src="${w.illus}" alt="">`:(getIllus(str?.name||''));
+  const structImgs=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr).slice(0,6);
+  const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS',isRef:true}];
+  el.innerHTML=`<div class="atlas-read-pane"><div class="atlas-read-header"><div><div class="atlas-read-title">${str?.name||''}</div><div class="atlas-read-sub">${cat?.name||''} › ${sys?.name||''} · Atlas Ultrassonográfico</div></div><div class="atlas-read-actions"><button class="btn btn-ghost" style="font-size:11px" onclick="curAtlasMode='edit';renderTabContent()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button><button class="btn btn-primary" style="font-size:11px" onclick="exportAtlasPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button></div></div><div class="atlas-read-body"><div class="atlas-read-left">${secs.map(s=>w[s.id]?`<div class="atlas-sec-block"><div class="atlas-sec-lbl">${s.label}</div>${s.isRef?`<div class="atlas-refs-txt">${w[s.id]}</div>`:`<div class="atlas-sec-txt">${w[s.id]}</div>`}</div>`:'').join('')}</div><div class="atlas-read-right"><div><div class="atlas-right-lbl">Ilustração anatômica</div><div class="atlas-illus-box">${illusHtml}</div><div style="font-size:10px;color:var(--text-soft);text-align:center;margin-top:5px;cursor:pointer" onclick="document.getElementById('illus-fi').click()"><i class="ti ti-edit" style="font-size:10px"></i> Trocar ilustração</div></div>${structImgs.length?`<div><div class="atlas-right-lbl">Imagens do banco</div><div class="atlas-imgs-mini">${structImgs.map(img=>`<div class="atlas-img-mini" onclick="openView('${img.id}')">${img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>'}</div>`).join('')}</div></div>`:`<div class="atlas-empty-right"><i class="ti ti-photo-off"></i><p>Adicione imagens na aba Imagens para vê-las aqui</p></div>`}</div></div></div>`
+}
 
-function renderAtlasEdit(el,w){const secs=[{id:'history',icon:'ti-clock',title:'História / Quem descobriu',ph:'Ex: Descrito por William Morrant Baker em 1877...'},{id:'anatomy',icon:'ti-bone',title:'Anatomia',ph:'Descreva a anatomia detalhada da estrutura...'},{id:'physio',icon:'ti-heart-rate-monitor',title:'Fisiopatologia',ph:'Mecanismos fisiopatológicos, causas...'},{id:'findings',icon:'ti-ripple',title:'Achados no ultrassom',ph:'Como a estrutura e suas patologias aparecem no ultrassom...'},{id:'treatment',icon:'ti-stethoscope',title:'Tratamento / Conduta',ph:'Abordagem terapêutica, indicações...'},{id:'refs',icon:'ti-books',title:'Referências',ph:'StatPearls, NCBI, Skeletal Radiology, AJR, RadioGraphics...'}];el.innerHTML=`<div class="atlas-edit-pane">${secs.map(s=>`<div class="atlas-edit-section"><div class="atlas-edit-hd"><div class="atlas-edit-icon"><i class="ti ${s.icon}"></i></div><div class="atlas-edit-title">${s.title}</div></div><div class="atlas-edit-body"><textarea class="atlas-textarea" id="w-${s.id}" placeholder="${s.ph}">${w[s.id]||''}</textarea></div></div>`).join('')}</div><div class="atlas-edit-footer"><button class="btn btn-ghost" onclick="curAtlasMode='read';renderTabContent()"><i class="ti ti-arrow-left" style="font-size:11px"></i> Cancelar</button><button class="atlas-save-btn btn btn-primary" onclick="saveAtlas()"><i class="ti ti-check" style="font-size:11px"></i> Salvar e visualizar</button></div>`}
+function renderAtlasEdit(el,w){
+  const secs=[{id:'history',icon:'ti-clock',title:'História / Quem descobriu',ph:'Ex: Descrito por William Morrant Baker em 1877...',h:120},{id:'anatomy',icon:'ti-bone',title:'Anatomia',ph:'Descreva a anatomia detalhada da estrutura...',h:150},{id:'physio',icon:'ti-heart-rate-monitor',title:'Fisiopatologia',ph:'Mecanismos fisiopatológicos, causas, fatores de risco...',h:150},{id:'findings',icon:'ti-ripple',title:'Achados no ultrassom',ph:'Como a estrutura e suas patologias aparecem no ultrassom...',h:150},{id:'treatment',icon:'ti-stethoscope',title:'Tratamento / Conduta',ph:'Conservador, injetáveis (corticosteroide, PRP, hidrodissecção), cirurgia...',h:150},{id:'refs',icon:'ti-books',title:'Referências',ph:'StatPearls NCBI · Skeletal Radiology · AJR · RadioGraphics · Journal of Ultrasound...',h:100}];
+  el.innerHTML=`<div class="atlas-edit-pane">
+<div class="atlas-edit-section"><div class="atlas-edit-hd"><div class="atlas-edit-icon"><i class="ti ti-photo"></i></div><div class="atlas-edit-title">Ilustração anatômica</div></div><div class="atlas-edit-body"><div class="illus-upload-zone" id="illus-zone" onclick="document.getElementById('illus-fi').click()">${w.illus?`<img src="${w.illus}" class="illus-preview" alt="Ilustração">`:`<i class="ti ti-photo-up"></i><p>Clique para fazer upload de ilustração<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — imagem anatômica, esquema, figura</span>`}</div></div></div>
+${secs.map(s=>`<div class="atlas-edit-section"><div class="atlas-edit-hd"><div class="atlas-edit-icon"><i class="ti ${s.icon}"></i></div><div class="atlas-edit-title">${s.title}</div></div><div class="atlas-edit-body"><textarea class="atlas-textarea" id="w-${s.id}" placeholder="${s.ph}" style="min-height:${s.h}px">${w[s.id]||''}</textarea></div></div>`).join('')}
+</div><div class="atlas-edit-footer"><button class="btn btn-ghost" onclick="curAtlasMode='read';renderTabContent()"><i class="ti ti-arrow-left" style="font-size:11px"></i> Cancelar</button><button class="btn btn-primary" onclick="saveAtlas()"><i class="ti ti-check" style="font-size:11px"></i> Salvar e visualizar</button></div>`
+}
 
-function saveAtlas(){const wKey=curCat+'::'+curStr;wiki[wKey]={history:v('w-history'),anatomy:v('w-anatomy'),physio:v('w-physio'),findings:v('w-findings'),treatment:v('w-treatment'),refs:v('w-refs')};schedWiki();curAtlasMode='read';renderStructPage();toast('Atlas salvo','ok')}
+function saveAtlas(){const wk=wKey();const prev=wiki[wk]||{};wiki[wk]={illus:prev.illus||'',history:v('w-history'),anatomy:v('w-anatomy'),physio:v('w-physio'),findings:v('w-findings'),treatment:v('w-treatment'),refs:v('w-refs')};schedWiki();curAtlasMode='read';renderStructPage();toast('Atlas salvo','ok')}
 function v(id){return document.getElementById(id)?.value||''}
 
+// ILLUS UPLOAD
+function handleIllusFile(inp){const f=inp.files[0];if(!f)return;if(f.size>5*1024*1024){toast('Imagem muito grande (máx 5MB)','err');return}const rd=new FileReader();rd.onload=e=>{const wk=wKey();if(!wiki[wk])wiki[wk]={};wiki[wk].illus=e.target.result;schedWiki();renderStructPage();toast('Ilustração atualizada','ok')};rd.readAsDataURL(f)}
+
 // VIEW MODAL
-function openView(id){viewId=id;const img=imgs.find(i=>i.id===id);if(!img)return;const cat=cats.find(c=>c.id===img.catId);const str=cat?.structs.find(s=>s.id===img.strId);const wKey=img.catId+'::'+img.strId;const hasWiki=wiki[wKey]&&Object.values(wiki[wKey]).some(v=>v);document.getElementById('vt-title').textContent=img.lesion;document.getElementById('v-reg').textContent=(cat?.name||'')+(str?' › '+str.name:'');document.getElementById('v-str').textContent=str?.name||'';document.getElementById('v-les').textContent=img.lesion+(img.level?' — '+img.level:'');document.getElementById('v-pills').innerHTML=`<span class="pill ${bCls(img.category)==='b-pat'?'pill-navy':'pill-beige'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}`;const dw=document.getElementById('v-desc-wrap');if(img.description){dw.style.display='flex';document.getElementById('v-desc').textContent=img.description}else dw.style.display='none';document.getElementById('v-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'';document.getElementById('v-img').innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="view-img-ph"><i class="ti ti-photo"></i></div>';const atlasBtn=document.getElementById('v-atlas-btn');atlasBtn.innerHTML=hasWiki?'<i class="ti ti-book" style="font-size:14px"></i> Ver Atlas — '+str?.name:'<i class="ti ti-book-off" style="font-size:14px"></i> Atlas ainda não criado';atlasBtn.style.opacity=hasWiki?'1':'0.5';document.getElementById('view-overlay').style.display='flex'}
+function openView(id){viewId=id;const img=imgs.find(i=>i.id===id);if(!img)return;const cat=getCat(img.catId);const sys=getSys(img.catId,img.sysId);const str=getStr(img.catId,img.sysId,img.strId);const wk=img.catId+'::'+img.sysId+'::'+img.strId;const hasW=wiki[wk]&&Object.values(wiki[wk]).some(v=>v&&v!='');document.getElementById('vt-title').textContent=img.lesion;document.getElementById('v-reg').textContent=(cat?.name||'')+(sys?' › '+sys.name:'')+(str?' › '+str.name:'');document.getElementById('v-str').textContent=str?.name||'';document.getElementById('v-les').textContent=img.lesion+(img.level?' — '+img.level:'');document.getElementById('v-pills').innerHTML=`<span class="pill ${bCls(img.category)==='b-pat'?'pill-navy':'pill-beige'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}`;const dw=document.getElementById('v-desc-wrap');if(img.description){dw.style.display='flex';document.getElementById('v-desc').textContent=img.description}else dw.style.display='none';document.getElementById('v-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'';document.getElementById('v-img').innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="view-img-ph"><i class="ti ti-photo"></i></div>';const ab=document.getElementById('v-atlas-btn');ab.innerHTML=`<i class="ti ti-book" style="font-size:14px"></i> ${hasW?'Ver Atlas — '+str?.name:'Atlas ainda não criado para '+str?.name}`;ab.style.opacity=hasW?'1':'0.7';document.getElementById('view-overlay').style.display='flex'}
 function closeView(){document.getElementById('view-overlay').style.display='none';viewId=null}
 function editFromView(){const id=viewId;closeView();openEditModal(id)}
 function deleteFromView(){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==viewId);schedSave();closeView();renderTabContent();updateStats();renderSidebar();toast('Imagem removida','ok')}
-function openAtlasFromView(){const img=imgs.find(i=>i.id===viewId);if(!img)return;closeView();curCat=img.catId;curStr=img.strId;curTab='atlas';curAtlasMode='read';const cat=cats.find(c=>c.id===img.catId);const str=cat?.structs.find(s=>s.id===img.strId);document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';document.getElementById('breadcrumb').innerHTML=`<span class="crumb" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:10px"></i><span class="crumb active">${str?.name||''}</span>`;renderSidebar();renderStructPage()}
+function openAtlasFromView(){const img=imgs.find(i=>i.id===viewId);if(!img)return;closeView();curCat=img.catId;curSys=img.sysId;curStr=img.strId;curTab='atlas';curAtlasMode='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=getCat(img.catId);const sys=getSys(img.catId,img.sysId);const str=getStr(img.catId,img.sysId,img.strId);document.getElementById('breadcrumb').innerHTML=`<span class="crumb" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb active">${str?.name||''}</span>`;renderSidebar();renderStructPage()}
 
 // ADD/EDIT MODAL
-function openAddModal(){editId=null;dataURL=null;document.getElementById('modal-ttl').textContent='Nova imagem';document.getElementById('modal-overlay').style.display='flex';const cs=document.getElementById('i-cat-sel');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===curCat?' selected':''}>${c.name}</option>`).join('');updateStructSel();document.getElementById('i-str-sel').value=curStr||'';['i-les','i-lvl','i-desc'].forEach(x=>document.getElementById(x).value='');document.getElementById('i-imgcat').value='patologia';document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}
-function openEditModal(id){editId=id;const img=imgs.find(i=>i.id===id);if(!img)return;dataURL=img.dataURL||null;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('modal-overlay').style.display='flex';const cs=document.getElementById('i-cat-sel');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===img.catId?' selected':''}>${c.name}</option>`).join('');updateStructSel(img.strId);document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-imgcat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';document.getElementById('upload-z').innerHTML=img.dataURL?`<img src="${img.dataURL}" class="upload-prev">`:'<i class="ti ti-photo-up"></i><p>Clique para trocar imagem</p>'}
-function updateStructSel(selId){const catId=document.getElementById('i-cat-sel').value;const cat=cats.find(c=>c.id===catId);const ss=document.getElementById('i-str-sel');ss.innerHTML='<option value="">Selecionar...</option>'+(cat?.structs||[]).map(s=>`<option value="${s.id}"${s.id===selId?' selected':''}>${s.name}</option>`).join('')}
+function openAddModal(){editId=null;dataURL=null;document.getElementById('modal-ttl').textContent='Nova imagem';document.getElementById('modal-overlay').style.display='flex';const cs=document.getElementById('i-cat-sel');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===curCat?' selected':''}>${c.name}</option>`).join('');updateSysSel();['i-les','i-lvl','i-desc'].forEach(x=>document.getElementById(x).value='');document.getElementById('i-imgcat').value='patologia';document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}
+function openEditModal(id){editId=id;const img=imgs.find(i=>i.id===id);if(!img)return;dataURL=img.dataURL||null;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('modal-overlay').style.display='flex';const cs=document.getElementById('i-cat-sel');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===img.catId?' selected':''}>${c.name}</option>`).join('');updateSysSel(img.sysId,img.strId);document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-imgcat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';document.getElementById('upload-z').innerHTML=img.dataURL?`<img src="${img.dataURL}" class="upload-prev">`:'<i class="ti ti-photo-up"></i><p>Clique para trocar imagem</p>'}
+function updateSysSel(selSys,selStr){const cId=document.getElementById('i-cat-sel').value;const cat=getCat(cId);const ss=document.getElementById('i-sys-sel');ss.innerHTML='<option value="">Selecionar...</option>'+(cat?.systems||[]).map(s=>`<option value="${s.id}"${s.id===selSys?' selected':''}>${s.name}</option>`).join('');if(selSys)updateStrSel(selStr);else document.getElementById('i-str-sel').innerHTML='<option value="">Selecionar...</option>'}
+function updateStrSel(selStr){const cId=document.getElementById('i-cat-sel').value;const sId=document.getElementById('i-sys-sel').value;const sys=getSys(cId,sId);const ss=document.getElementById('i-str-sel');ss.innerHTML='<option value="">Selecionar...</option>'+(sys?.structs||[]).map(s=>`<option value="${s.id}"${s.id===selStr?' selected':''}>${s.name}</option>`).join('')}
 function closeModal(){document.getElementById('modal-overlay').style.display='none';editId=null;dataURL=null;document.getElementById('fi').value=''}
 function handleFile(inp){const f=inp.files[0];if(!f)return;if(f.size>8*1024*1024){toast('Imagem muito grande','err');return}const rd=new FileReader();rd.onload=e=>{dataURL=e.target.result;document.getElementById('upload-z').innerHTML=`<img src="${dataURL}" class="upload-prev">`};rd.readAsDataURL(f)}
-async function saveImg(){const catId=document.getElementById('i-cat-sel').value,strId=document.getElementById('i-str-sel').value,les=document.getElementById('i-les').value.trim();if(!catId||!strId||!les){toast('Preencha categoria, estrutura e achado','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),catId,strId,lesion:les,category:document.getElementById('i-imgcat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);schedSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar';updateStats();renderSidebar();if(curCat&&curStr)renderTabContent();else renderHome();toast(editId?'Imagem atualizada':'Imagem salva','ok')}
+async function saveImg(){const catId=document.getElementById('i-cat-sel').value,sysId=document.getElementById('i-sys-sel').value,strId=document.getElementById('i-str-sel').value,les=document.getElementById('i-les').value.trim();if(!catId||!sysId||!strId||!les){toast('Preencha todos os campos','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),catId,sysId,strId,lesion:les,category:document.getElementById('i-imgcat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);schedSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar';updateStats();renderSidebar();if(curCat&&curSys&&curStr)renderTabContent();else renderHome();toast(editId?'Imagem atualizada':'Imagem salva','ok')}
 
-// CATS/STRUCTS
+// CATS/SYS/STRUCTS
 function openNewCat(){document.getElementById('newcat-name').value='';document.getElementById('newcat-overlay').style.display='flex';setTimeout(()=>document.getElementById('newcat-name').focus(),100)}
-function closeNewCat(){document.getElementById('newcat-overlay').style.display='none'}
-function saveCat(){const name=document.getElementById('newcat-name').value.trim();if(!name)return;cats.push({id:'cat_'+Date.now(),name,structs:[]});schedCats();renderSidebar();closeNewCat();toast('Categoria criada','ok')}
-function deleteCat(id){if(!confirm('Remover esta categoria?'))return;cats=cats.filter(c=>c.id!==id);if(curCat===id){curCat=null;curStr=null;goHome()}schedCats();renderSidebar();toast('Categoria removida','ok')}
-function openNewStruct(catId){newStructCat=catId;document.getElementById('newstruct-name').value='';document.getElementById('newstruct-overlay').style.display='flex';setTimeout(()=>document.getElementById('newstruct-name').focus(),100)}
-function closeNewStruct(){document.getElementById('newstruct-overlay').style.display='none'}
-function saveStruct(){const name=document.getElementById('newstruct-name').value.trim();if(!name)return;const cat=cats.find(c=>c.id===newStructCat);if(!cat)return;cat.structs.push({id:'str_'+Date.now(),name});schedCats();renderSidebar();closeNewStruct();toast('Estrutura criada','ok')}
-function deleteStruct(catId,strId){if(!confirm('Remover esta estrutura?'))return;const cat=cats.find(c=>c.id===catId);if(!cat)return;cat.structs=cat.structs.filter(s=>s.id!==strId);if(curCat===catId&&curStr===strId){curCat=null;curStr=null;goHome()}schedCats();renderSidebar();toast('Estrutura removida','ok')}
+function saveCat(){const name=document.getElementById('newcat-name').value.trim();if(!name)return;cats.push({id:'cat_'+Date.now(),name,systems:[]});schedCats();renderSidebar();document.getElementById('newcat-overlay').style.display='none';toast('Categoria criada','ok')}
+function deleteCat(id){if(!confirm('Remover esta categoria?'))return;cats=cats.filter(c=>c.id!==id);if(curCat===id){curCat=null;curSys=null;curStr=null;goHome()}schedCats();renderSidebar()}
+function openNewSys(catId){newSysPending=catId;document.getElementById('newsys-name').value='';document.getElementById('newsys-overlay').style.display='flex';setTimeout(()=>document.getElementById('newsys-name').focus(),100)}
+function saveSys(){const name=document.getElementById('newsys-name').value.trim();if(!name)return;const cat=getCat(newSysPending);if(!cat)return;cat.systems.push({id:'sys_'+Date.now(),name,structs:[]});schedCats();renderSidebar();document.getElementById('newsys-overlay').style.display='none';toast('Sistema criado','ok')}
+function deleteSys(cId,sId){if(!confirm('Remover este sistema?'))return;const cat=getCat(cId);if(!cat)return;cat.systems=cat.systems.filter(s=>s.id!==sId);if(curCat===cId&&curSys===sId){curSys=null;curStr=null;goHome()}schedCats();renderSidebar()}
+function openNewStr(catId,sysId){newStrPending={catId,sysId};document.getElementById('newstr-name').value='';document.getElementById('newstr-overlay').style.display='flex';setTimeout(()=>document.getElementById('newstr-name').focus(),100)}
+function saveStr(){const name=document.getElementById('newstr-name').value.trim();if(!name)return;const sys=getSys(newStrPending.catId,newStrPending.sysId);if(!sys)return;sys.structs.push({id:'str_'+Date.now(),name});schedCats();renderSidebar();document.getElementById('newstr-overlay').style.display='none';toast('Estrutura criada','ok')}
+function deleteStr(cId,sId,stId){if(!confirm('Remover esta estrutura?'))return;const sys=getSys(cId,sId);if(!sys)return;sys.structs=sys.structs.filter(s=>s.id!==stId);if(curCat===cId&&curSys===sId&&curStr===stId){curStr=null;goHome()}schedCats();renderSidebar()}
 
 // PDF
 async function exportSinglePDF(){const img=imgs.find(i=>i.id===viewId);if(!img)return;await generateImgPDF([img])}
-async function exportPDF(){const list=imgs.filter(i=>i.catId===curCat&&i.strId===curStr);if(!list.length){toast('Nenhuma imagem para exportar','err');return}await generateImgPDF(list)}
-async function generateImgPDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;list.forEach((img,idx)=>{if(idx>0)doc.addPage();const cat=cats.find(c=>c.id===img.catId);const str=cat?.structs.find(s=>s.id===img.strId);doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setDrawColor(237,232,220);doc.setLineWidth(0.8);doc.rect(6,6,W-12,H-12,'S');doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('Sono',18,20);doc.text('Vault',34,20);doc.setFillColor(37,99,168);doc.roundedRect(W-60,10,48,10,2,2,'F');doc.setTextColor(237,232,220);doc.setFontSize(8);doc.text((cat?.name||'').toUpperCase(),W-36,16.5,{align:'center'});if(img.dataURL){try{doc.addImage(img.dataURL,'PNG',10,34,W-20,110,'','MEDIUM')}catch(e){}}doc.setFillColor(37,53,85);doc.rect(6,148,W-12,105,'F');const catColor=img.category==='normal'?[45,122,79]:img.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...catColor);doc.roundedRect(12,153,32,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(img.category).toUpperCase(),28,158.5,{align:'center'});doc.setTextColor(237,232,220);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text(str?.name||'',12,168);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(img.lesion+(img.level?' — '+img.level:''),12,178,{maxWidth:W-24});if(img.description){doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(200,194,182);doc.text(doc.splitTextToSize(img.description,W-24).slice(0,8),12,188)}doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-10,{align:'center'});doc.text(img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',W-12,H-10,{align:'right'})});const str=cats.find(c=>c.id===curCat)?.structs.find(s=>s.id===curStr);doc.save(`sonovault-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro ao gerar PDF','err')}}
+async function exportPDF(){const list=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr);if(!list.length){toast('Nenhuma imagem','err');return}await generateImgPDF(list)}
+async function generateImgPDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;list.forEach((img,idx)=>{if(idx>0)doc.addPage();const cat=getCat(img.catId);const sys=getSys(img.catId,img.sysId);const str=getStr(img.catId,img.sysId,img.strId);doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setDrawColor(237,232,220);doc.setLineWidth(0.8);doc.rect(6,6,W-12,H-12,'S');doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('SonoVault',18,20);doc.setFillColor(37,99,168);doc.roundedRect(W-70,10,58,10,2,2,'F');doc.setTextColor(237,232,220);doc.setFontSize(8);doc.text(((sys?.name||'')+(str?' › '+str.name:'')).toUpperCase(),W-41,16.5,{align:'center'});if(img.dataURL){try{doc.addImage(img.dataURL,'PNG',10,34,W-20,110,'','MEDIUM')}catch(e){}}doc.setFillColor(37,53,85);doc.rect(6,148,W-12,105,'F');const cc=img.category==='normal'?[45,122,79]:img.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...cc);doc.roundedRect(12,153,32,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(img.category).toUpperCase(),28,158.5,{align:'center'});doc.setTextColor(237,232,220);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text(str?.name||'',12,168);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(img.lesion+(img.level?' — '+img.level:''),12,178,{maxWidth:W-24});if(img.description){doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(200,194,182);doc.text(doc.splitTextToSize(img.description,W-24).slice(0,8),12,188)}doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-10,{align:'center'});doc.text(img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',W-12,H-10,{align:'right'})});const str=getStr(curCat,curSys,curStr);doc.save(`sonovault-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro ao gerar PDF','err')}}
 
-async function exportAtlasPDF(){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;const cat=cats.find(c=>c.id===curCat);const str=cat?.structs.find(s=>s.id===curStr);const wKey=curCat+'::'+curStr;const w=wiki[wKey]||{};const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS'}];doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setFillColor(237,232,220);doc.rect(0,0,W,28,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('Sono',14,19);doc.setFont('helvetica','bold');doc.text('Vault',30,19);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Atlas Ultrassonográfico',55,15);doc.text((cat?.name||'').toUpperCase(),55,21);doc.setFontSize(14);doc.setFont('helvetica','bold');doc.setTextColor(237,232,220);doc.text(str?.name||'',14,42);let y=52;secs.forEach(s=>{if(!w[s.id])return;if(y>H-20){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20}doc.setFillColor(37,99,168);doc.roundedRect(10,y-4,W-20,7,1,1,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text(s.label,14,y+0.5);y+=9;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9);const lines=doc.splitTextToSize(w[s.id],W-24);lines.forEach(line=>{if(y>H-15){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9)}doc.text(line,12,y);y+=5.5});y+=6});doc.setTextColor(150,140,120);doc.setFontSize(7);const pageCount=doc.internal.getNumberOfPages();for(let i=1;i<=pageCount;i++){doc.setPage(i);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-8,{align:'center'});doc.text(`${i}/${pageCount}`,W-12,H-8,{align:'right'})}doc.save(`sonovault-atlas-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('Atlas PDF exportado!','ok')}catch(e){toast('Erro ao exportar Atlas PDF','err');console.error(e)}}
+async function exportAtlasPDF(){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;const cat=getCat(curCat);const sys=getSys(curCat,curSys);const str=getStr(curCat,curSys,curStr);const wk=wKey();const w=wiki[wk]||{};const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS'}];doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setFillColor(237,232,220);doc.rect(0,0,W,30,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('SonoVault',14,20);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Atlas Ultrassonográfico',60,14);doc.text((cat?.name||'')+(sys?' › '+sys.name:''),60,21);doc.setFontSize(15);doc.setFont('helvetica','bold');doc.setTextColor(237,232,220);doc.text(str?.name||'',14,44);let y=54;secs.forEach(s=>{if(!w[s.id])return;if(y>H-20){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20}doc.setFillColor(37,99,168);doc.roundedRect(10,y-4,W-20,7,1,1,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text(s.label,14,y+0.5);y+=9;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9);const lines=doc.splitTextToSize(w[s.id],W-24);lines.forEach(line=>{if(y>H-15){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9)}doc.text(line,12,y);y+=5.5});y+=6});const pc=doc.internal.getNumberOfPages();for(let i=1;i<=pc;i++){doc.setPage(i);doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-8,{align:'center'});doc.text(`${i}/${pc}`,W-12,H-8,{align:'right'})}doc.save(`sonovault-atlas-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('Atlas PDF exportado!','ok')}catch(e){toast('Erro ao exportar Atlas PDF','err')}}
 
 // ILLUSTRATIONS
-function getIllus(name){const n=(name||'').toLowerCase();if(n.includes('supraespinhal')||n.includes('manguito'))return ilustTendon();if(n.includes('cisto')||n.includes('baker')||n.includes('poplíteo'))return ilustCyst();if(n.includes('acromioclavicular')||n.includes(' ac')||n.includes('ac '))return ilustACJoint();if(n.includes('calcâneo')||n.includes('aquiles'))return ilustCalcaneo();if(n.includes('safena')||n.includes('veia'))return ilustVein();if(n.includes('tireoide'))return ilustThyroid();if(n.includes('menisco'))return ilustMenisco();if(n.includes('iliotibial')||n.includes('trato'))return ilustITB();return ilustDefault()}
-function ilustTendon(){return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="32" cy="38" rx="18" ry="10" fill="#ede8dc" opacity="0.15"/><path d="M14 28 Q32 18 50 28" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/><path d="M16 32 Q32 22 48 32" stroke="#ede8dc" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.3"/><path d="M18 36 Q32 26 46 36" stroke="#ede8dc" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5"/><circle cx="32" cy="46" r="8" fill="#ede8dc" opacity="0.1" stroke="#ede8dc" stroke-width="1" opacity="0.3"/></svg>`}
-function ilustCyst(){return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="32" cy="38" rx="14" ry="18" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1.5" opacity="0.4"/><ellipse cx="32" cy="38" rx="8" ry="12" fill="#ede8dc" opacity="0.12"/><path d="M22 20 Q32 14 42 20" stroke="#ede8dc" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/><path d="M20 24 Q32 18 44 24" stroke="#ede8dc" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.25"/><circle cx="27" cy="32" r="2" fill="#ede8dc" opacity="0.3"/></svg>`}
-function ilustACJoint(){return`<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="28" width="22" height="8" rx="3" fill="#ede8dc" opacity="0.3"/><rect x="34" y="28" width="22" height="8" rx="3" fill="#ede8dc" opacity="0.3"/><rect x="28" y="24" width="8" height="16" rx="2" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1" opacity="0.4"/><path d="M10 22 L30 22" stroke="#ede8dc" stroke-width="2" stroke-linecap="round" opacity="0.4"/><path d="M34 22 L54 22" stroke="#ede8dc" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg>`}
-function ilustCalcaneo(){return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="24" cy="44" rx="14" ry="10" fill="#ede8dc" opacity="0.2"/><path d="M16 36 Q20 20 36 16 L44 20 Q50 28 46 38 L38 42" stroke="#ede8dc" stroke-width="2" fill="none" opacity="0.4"/><path d="M38 20 Q50 22 52 34" stroke="#ede8dc" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/></svg>`}
-function ilustVein(){return`<svg viewBox="0 0 64 64" fill="none"><path d="M32 8 Q38 16 32 24 Q26 32 32 40 Q38 48 32 56" stroke="#ede8dc" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/><path d="M32 8 Q26 16 32 24 Q38 32 32 40 Q26 48 32 56" stroke="#ede8dc" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.25"/><circle cx="32" cy="24" r="3" fill="#ede8dc" opacity="0.3"/><circle cx="32" cy="40" r="3" fill="#ede8dc" opacity="0.3"/></svg>`}
-function ilustThyroid(){return`<svg viewBox="0 0 64 64" fill="none"><path d="M20 24 Q18 36 22 44 Q26 50 32 50 Q38 50 42 44 Q46 36 44 24" stroke="#ede8dc" stroke-width="2" fill="none" opacity="0.5"/><ellipse cx="24" cy="28" rx="8" ry="10" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" opacity="0.4"/><ellipse cx="40" cy="28" rx="8" ry="10" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" opacity="0.4"/><path d="M28 28 L36 28" stroke="#ede8dc" stroke-width="2" opacity="0.3"/></svg>`}
-function ilustMenisco(){return`<svg viewBox="0 0 64 64" fill="none"><rect x="12" y="24" width="40" height="8" rx="2" fill="#ede8dc" opacity="0.2"/><rect x="12" y="34" width="40" height="8" rx="2" fill="#ede8dc" opacity="0.2"/><path d="M14 32 Q32 26 50 32" stroke="#ede8dc" stroke-width="3" fill="#ede8dc" opacity="0.4"/><path d="M14 32 Q32 38 50 32" stroke="#ede8dc" stroke-width="3" fill="#ede8dc" opacity="0.4"/></svg>`}
-function ilustITB(){return`<svg viewBox="0 0 64 64" fill="none"><rect x="22" y="8" width="20" height="30" rx="4" fill="#ede8dc" opacity="0.1" stroke="#ede8dc" stroke-width="1" opacity="0.3"/><path d="M26 8 L26 38" stroke="#ede8dc" stroke-width="2" opacity="0.5"/><path d="M32 8 L32 38" stroke="#ede8dc" stroke-width="2" opacity="0.3"/><path d="M38 8 L38 38" stroke="#ede8dc" stroke-width="2" opacity="0.5"/><ellipse cx="32" cy="42" rx="12" ry="8" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" opacity="0.4"/><path d="M20 38 Q32 48 44 38" fill="none" stroke="#ede8dc" stroke-width="1.5" opacity="0.4"/></svg>`}
-function ilustDefault(){return`<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" opacity="0.3" fill="#ede8dc" fill-opacity="0.05"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/><circle cx="32" cy="32" r="3" fill="#ede8dc" opacity="0.4"/></svg>`}
+function getIllus(name){const n=(name||'').toLowerCase();if(n.includes('supraespinhal')||n.includes('manguito'))return`<svg viewBox="0 0 64 64" fill="none"><path d="M14 28 Q32 18 50 28" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/><path d="M16 32 Q32 22 48 32" stroke="#ede8dc" stroke-width="5" stroke-linecap="round" opacity="0.3"/><path d="M18 36 Q32 26 46 36" stroke="#ede8dc" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="32" cy="46" r="8" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1" opacity="0.3"/></svg>`;if(n.includes('cisto')||n.includes('baker')||n.includes('poplíteo'))return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="32" cy="38" rx="14" ry="18" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/><ellipse cx="32" cy="38" rx="8" ry="12" fill="#ede8dc" opacity="0.12"/><path d="M22 20 Q32 14 42 20" stroke="#ede8dc" stroke-width="2" stroke-linecap="round" opacity="0.4"/><path d="M20 24 Q32 18 44 24" stroke="#ede8dc" stroke-width="3" stroke-linecap="round" opacity="0.25"/></svg>`;if(n.includes('iliotibial')||n.includes('trato'))return`<svg viewBox="0 0 64 64" fill="none"><rect x="22" y="8" width="20" height="30" rx="4" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1" stroke-opacity="0.3"/><path d="M26 8 L26 38" stroke="#ede8dc" stroke-width="2" opacity="0.5"/><path d="M32 8 L32 38" stroke="#ede8dc" stroke-width="2" opacity="0.3"/><path d="M38 8 L38 38" stroke="#ede8dc" stroke-width="2" opacity="0.5"/><ellipse cx="32" cy="44" rx="12" ry="7" fill="#ede8dc" opacity="0.12" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/></svg>`;if(n.includes('acromioclavicular')||n.includes(' ac'))return`<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="28" width="22" height="8" rx="3" fill="#ede8dc" opacity="0.3"/><rect x="34" y="28" width="22" height="8" rx="3" fill="#ede8dc" opacity="0.3"/><rect x="28" y="24" width="8" height="16" rx="2" fill="#ede8dc" opacity="0.12" stroke="#ede8dc" stroke-width="1" stroke-opacity="0.4"/></svg>`;if(n.includes('calcâneo'))return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="24" cy="44" rx="14" ry="10" fill="#ede8dc" opacity="0.2"/><path d="M38 20 Q50 22 52 34" stroke="#ede8dc" stroke-width="4" stroke-linecap="round" opacity="0.5"/></svg>`;if(n.includes('safena')||n.includes('veia'))return`<svg viewBox="0 0 64 64" fill="none"><path d="M32 8 Q38 16 32 24 Q26 32 32 40 Q38 48 32 56" stroke="#ede8dc" stroke-width="4" stroke-linecap="round" opacity="0.5"/><circle cx="32" cy="24" r="3" fill="#ede8dc" opacity="0.3"/><circle cx="32" cy="40" r="3" fill="#ede8dc" opacity="0.3"/></svg>`;if(n.includes('tireoide'))return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="24" cy="28" rx="8" ry="10" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/><ellipse cx="40" cy="28" rx="8" ry="10" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/><path d="M28 28 L36 28" stroke="#ede8dc" stroke-width="2" opacity="0.3"/></svg>`;if(n.includes('menisco'))return`<svg viewBox="0 0 64 64" fill="none"><rect x="12" y="24" width="40" height="8" rx="2" fill="#ede8dc" opacity="0.2"/><rect x="12" y="34" width="40" height="8" rx="2" fill="#ede8dc" opacity="0.2"/><path d="M14 32 Q32 26 50 32" stroke="#ede8dc" stroke-width="3" opacity="0.4"/><path d="M14 32 Q32 38 50 32" stroke="#ede8dc" stroke-width="3" opacity="0.4"/></svg>`;return`<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3" fill="#ede8dc" fill-opacity="0.05"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>`}
 
 // UTILS
 function bCls(c){return c==='normal'?'b-norm':c==='variante'?'b-var':'b-pat'}
