@@ -21,7 +21,7 @@
   --radius:8px;--radius-lg:12px;
   --font:'Georgia','Times New Roman',serif;
   --ui:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --sidebar-w:268px;
+  --sw:264px;
 }
 html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(--text-dark);overflow:hidden}
 
@@ -38,18 +38,20 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 
 /* APP */
 .app{display:flex;height:100vh;flex-direction:column}
-.topbar{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0;z-index:40}
+
+/* TOPBAR */
+.topbar{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
 .logo-wrap{display:flex;align-items:center;gap:9px;cursor:pointer}
 .logo-name{font-family:var(--font);font-size:16px;font-weight:400;color:var(--beige)}
 .logo-name b{font-weight:700}
 .top-sep{flex:1}
-.top-bc{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(237,232,220,0.45)}
-.top-bc .crumb{cursor:pointer;transition:color .12s}
-.top-bc .crumb:hover{color:var(--beige)}
-.top-bc .crumb.active{color:rgba(237,232,220,0.85)}
+.breadcrumb{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(237,232,220,0.45);flex-wrap:wrap}
+.bc{cursor:pointer;transition:color .12s}
+.bc:hover{color:var(--beige)}
+.bc.active{color:rgba(237,232,220,0.85)}
 .user-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:3px 9px 3px 3px}
-.user-av{width:22px;height:22px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)}
-.user-nm{font-size:11px;color:rgba(237,232,220,0.65)}
+.uav{width:22px;height:22px;border-radius:50%;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--navy)}
+.unm{font-size:11px;color:rgba(237,232,220,0.65)}
 .tbtn{background:transparent;border:0.5px solid rgba(255,255,255,0.2);border-radius:6px;padding:4px 10px;color:rgba(255,255,255,0.75);font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:var(--ui);transition:all .12s;white-space:nowrap}
 .tbtn:hover{background:rgba(255,255,255,0.08);color:#fff}
 .tbtn.cta{background:var(--beige);border-color:var(--beige);color:var(--navy);font-weight:500}
@@ -58,233 +60,241 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .tbtn.logout{border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.35)}
 .saving{display:none;align-items:center;gap:4px;font-size:10px;color:rgba(237,232,220,0.4)}
 .saving.on{display:flex}
+
+/* LAYOUT */
 .main-layout{display:flex;flex:1;overflow:hidden}
 
-/* SIDEBAR — 3 níveis */
-.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--navy2);display:flex;flex-direction:column;overflow:hidden;border-right:0.5px solid rgba(255,255,255,0.06)}
-.sb-top{padding:12px 12px 8px;flex-shrink:0}
+/* SIDEBAR */
+.sidebar{width:var(--sw);min-width:var(--sw);background:var(--navy2);display:flex;flex-direction:column;border-right:0.5px solid rgba(255,255,255,0.06)}
+.sb-top{padding:11px 11px 7px;flex-shrink:0}
 .sb-search{background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--beige);outline:none;width:100%;font-family:var(--ui)}
-.sb-search::placeholder{color:rgba(237,232,220,0.3)}
-.sb-scroll{flex:1;overflow-y:auto;padding:4px 0 8px}
+.sb-search::placeholder{color:rgba(237,232,220,0.28)}
+.sb-list{flex:1;overflow-y:auto;padding:2px 0 6px}
 
-/* nível 1 — categoria */
-.sb-cat{margin-bottom:1px}
-.sb-cat-hd{display:flex;align-items:center;padding:7px 10px 7px 12px;cursor:pointer;gap:6px;user-select:none}
-.sb-cat-hd:hover{background:rgba(255,255,255,0.04)}
-.sb-cat-arr{font-size:10px;color:rgba(237,232,220,0.3);transition:transform .15s;flex-shrink:0}
-.sb-cat-arr.open{transform:rotate(90deg)}
-.sb-cat-name{font-size:10px;font-weight:700;color:rgba(237,232,220,0.5);letter-spacing:0.6px;text-transform:uppercase;flex:1}
-.sb-cat-cnt{font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:10px;padding:1px 5px}
-.sb-cat-del{font-size:12px;color:rgba(237,232,220,0.15);cursor:pointer;opacity:0;transition:opacity .12s;padding:2px}
-.sb-cat-hd:hover .sb-cat-del{opacity:1}
-.sb-cat-del:hover{color:#fca5a5}
-.sb-cat-body{display:none;padding:0 0 2px 0}
-.sb-cat-body.open{display:block}
+/* L1 categoria */
+.l1{user-select:none}
+.l1-hd{display:flex;align-items:center;padding:6px 10px 6px 11px;cursor:pointer;gap:5px}
+.l1-hd:hover{background:rgba(255,255,255,0.04)}
+.l1-arr{font-size:10px;color:rgba(237,232,220,0.28);transition:transform .14s;flex-shrink:0}
+.l1-arr.o{transform:rotate(90deg)}
+.l1-name{font-size:10px;font-weight:700;color:rgba(237,232,220,0.45);letter-spacing:0.7px;text-transform:uppercase;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l1-cnt{font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:8px;padding:1px 5px;flex-shrink:0}
+.l1-del{font-size:11px;color:rgba(237,232,220,0.12);cursor:pointer;opacity:0;padding:2px;flex-shrink:0}
+.l1-hd:hover .l1-del{opacity:1}
+.l1-del:hover{color:#fca5a5}
+.l1-body{display:none;padding-bottom:2px}
+.l1-body.o{display:block}
 
-/* nível 2 — sistema */
-.sb-sys{margin-bottom:1px}
-.sb-sys-hd{display:flex;align-items:center;padding:5px 10px 5px 22px;cursor:pointer;gap:5px;user-select:none}
-.sb-sys-hd:hover{background:rgba(255,255,255,0.04)}
-.sb-sys-arr{font-size:10px;color:rgba(237,232,220,0.25);transition:transform .15s;flex-shrink:0}
-.sb-sys-arr.open{transform:rotate(90deg)}
-.sb-sys-name{font-size:12px;font-weight:500;color:rgba(237,232,220,0.6);flex:1}
-.sb-sys-cnt{font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:10px;padding:1px 5px}
-.sb-sys-del{font-size:11px;color:rgba(237,232,220,0.12);cursor:pointer;opacity:0;transition:opacity .12s;padding:1px}
-.sb-sys-hd:hover .sb-sys-del{opacity:1}
-.sb-sys-del:hover{color:#fca5a5}
-.sb-sys-body{display:none;padding:0 0 2px 0}
-.sb-sys-body.open{display:block}
+/* L2 sistema */
+.l2{user-select:none}
+.l2-hd{display:flex;align-items:center;padding:5px 10px 5px 20px;cursor:pointer;gap:5px}
+.l2-hd:hover{background:rgba(255,255,255,0.04)}
+.l2-arr{font-size:10px;color:rgba(237,232,220,0.22);transition:transform .14s;flex-shrink:0}
+.l2-arr.o{transform:rotate(90deg)}
+.l2-name{font-size:12px;font-weight:500;color:rgba(237,232,220,0.55);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l2-cnt{font-size:9px;color:rgba(237,232,220,0.18);background:rgba(255,255,255,0.05);border-radius:8px;padding:1px 5px;flex-shrink:0}
+.l2-del{font-size:11px;color:rgba(237,232,220,0.1);cursor:pointer;opacity:0;padding:1px;flex-shrink:0}
+.l2-hd:hover .l2-del{opacity:1}
+.l2-del:hover{color:#fca5a5}
+.l2-body{display:none;padding-bottom:2px}
+.l2-body.o{display:block}
 
-/* nível 3 — estrutura */
-.sb-str{display:flex;align-items:center;gap:5px;padding:5px 10px 5px 34px;cursor:pointer;font-size:12px;color:rgba(237,232,220,0.5);transition:all .12s}
-.sb-str:hover{background:rgba(255,255,255,0.05);color:var(--beige)}
-.sb-str.active{background:rgba(237,232,220,0.1);color:var(--beige);font-weight:500}
-.sb-str-dot{width:4px;height:4px;border-radius:50%;background:rgba(237,232,220,0.2);flex-shrink:0}
-.sb-str.active .sb-str-dot{background:var(--beige2)}
-.sb-str-cnt{margin-left:auto;font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:10px;padding:1px 5px}
-.sb-str.active .sb-str-cnt{color:rgba(237,232,220,0.45)}
-.sb-str-del{font-size:10px;color:rgba(237,232,220,0.1);cursor:pointer;opacity:0;padding:1px 2px}
-.sb-str:hover .sb-str-del{opacity:1}
-.sb-str-del:hover{color:#fca5a5}
-.sb-wiki-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2);opacity:0.6;flex-shrink:0}
+/* L3 estrutura */
+.l3{display:flex;align-items:center;gap:5px;padding:5px 10px 5px 30px;cursor:pointer;font-size:12px;color:rgba(237,232,220,0.48);transition:all .12s}
+.l3:hover{background:rgba(255,255,255,0.05);color:rgba(237,232,220,0.8)}
+.l3.active{background:rgba(237,232,220,0.1);color:var(--beige);font-weight:500}
+.l3-dot{width:4px;height:4px;border-radius:50%;background:rgba(237,232,220,0.18);flex-shrink:0}
+.l3.active .l3-dot{background:var(--beige2)}
+.l3-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l3-wiki{width:5px;height:5px;border-radius:50%;background:var(--accent2);opacity:0.7;flex-shrink:0}
+.l3-cnt{font-size:9px;color:rgba(237,232,220,0.18);background:rgba(255,255,255,0.05);border-radius:8px;padding:1px 5px;flex-shrink:0}
+.l3.active .l3-cnt{color:rgba(237,232,220,0.4)}
+.l3-del{font-size:10px;color:rgba(237,232,220,0.1);cursor:pointer;opacity:0;padding:1px 2px;flex-shrink:0}
+.l3:hover .l3-del{opacity:1}
+.l3-del:hover{color:#fca5a5}
 
 /* add buttons */
-.sb-add{display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.28);transition:all .12s}
+.sb-add{display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.26);transition:all .12s;border-radius:4px}
 .sb-add:hover{color:rgba(237,232,220,0.6);background:rgba(255,255,255,0.03)}
-.sb-add.add-sys{padding:4px 10px 4px 22px}
-.sb-add.add-str{padding:4px 10px 4px 34px}
-.sb-add-cat{display:flex;align-items:center;gap:6px;padding:8px 14px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.32);transition:all .12s;border-top:0.5px solid rgba(255,255,255,0.06);margin-top:4px}
+.sb-add.a2{padding:4px 10px 4px 20px}
+.sb-add.a3{padding:4px 10px 4px 30px}
+.sb-add-cat{display:flex;align-items:center;gap:6px;padding:8px 13px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.3);transition:all .12s;border-top:0.5px solid rgba(255,255,255,0.06);margin-top:4px;flex-shrink:0}
 .sb-add-cat:hover{background:rgba(255,255,255,0.04);color:rgba(237,232,220,0.6)}
-.sb-bottom{padding:10px 12px;border-top:0.5px solid rgba(255,255,255,0.06);flex-shrink:0}
-.drive-ok{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(110,231,183,0.6)}
+.sb-footer{padding:9px 11px;border-top:0.5px solid rgba(255,255,255,0.06);flex-shrink:0}
+.drive-ok{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(110,231,183,0.55)}
 
 /* CONTENT */
 .content{flex:1;overflow-y:auto;display:flex;flex-direction:column}
 
 /* HOME */
-.home-view{padding:24px;flex:1}
-.home-welcome{margin-bottom:28px}
-.home-welcome h1{font-family:var(--font);font-size:24px;font-weight:400;color:var(--text-dark);margin-bottom:5px}
-.home-welcome p{font-size:13px;color:var(--text-soft);line-height:1.6}
-.home-recent-label{font-size:11px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-soft);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.home-recent-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
-.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
-.home-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 20px;color:var(--text-beige);text-align:center}
-.home-empty i{font-size:52px}
+.home{padding:24px}
+.home h1{font-family:var(--font);font-size:22px;font-weight:400;color:var(--text-dark);margin-bottom:5px}
+.home p{font-size:13px;color:var(--text-soft);line-height:1.6;margin-bottom:24px}
+.recent-label{font-size:10px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.recent-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
+.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.home-empty{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 20px;color:var(--text-beige);text-align:center}
+.home-empty i{font-size:48px}
 .home-empty h3{font-size:15px;font-weight:400;font-family:var(--font);color:var(--text-mid)}
 .home-empty p{font-size:12px;color:var(--text-soft);max-width:280px;line-height:1.6}
 
 /* STRUCT PAGE */
-.struct-page{flex:1;display:flex;flex-direction:column;overflow:hidden;height:100%}
-.struct-header{padding:18px 24px 0;flex-shrink:0}
-.struct-header-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
-.struct-illus{width:68px;height:68px;border-radius:12px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;cursor:pointer;position:relative}
-.struct-illus:hover::after{content:'✎';position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:20px;border-radius:12px}
-.struct-illus svg{width:54px;height:54px}
-.struct-illus img{width:100%;height:100%;object-fit:cover}
-.struct-header-info{flex:1}
-.struct-cat-tag{font-size:10px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
-.struct-title{font-family:var(--font);font-size:20px;color:var(--text-dark);margin-bottom:3px}
-.struct-meta{font-size:12px;color:var(--text-soft)}
-.struct-tabs{display:flex;gap:2px;border-bottom:0.5px solid var(--border);padding:0 24px}
-.struct-tab{padding:9px 16px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text-soft);border-bottom:2px solid transparent;transition:all .12s;display:flex;align-items:center;gap:5px}
-.struct-tab:hover{color:var(--text-dark)}
-.struct-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
-.struct-body{flex:1;overflow-y:auto}
+.sp{flex:1;display:flex;flex-direction:column;overflow:hidden;height:100%}
+.sp-hd{padding:16px 22px 0;flex-shrink:0}
+.sp-hd-top{display:flex;align-items:flex-start;gap:13px;margin-bottom:13px}
+.sp-illus{width:64px;height:64px;border-radius:11px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;cursor:pointer;position:relative;transition:filter .15s}
+.sp-illus:hover{filter:brightness(1.2)}
+.sp-illus svg,.sp-illus img{width:100%;height:100%;object-fit:cover}
+.sp-illus-hint{position:absolute;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;border-radius:11px}
+.sp-illus:hover .sp-illus-hint{display:flex}
+.sp-info{flex:1}
+.sp-tag{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.sp-title{font-family:var(--font);font-size:19px;color:var(--text-dark);margin-bottom:3px}
+.sp-meta{font-size:12px;color:var(--text-soft)}
+.sp-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--border);padding:0 22px}
+.sp-tab{padding:9px 16px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text-soft);border-bottom:2px solid transparent;transition:all .12s;display:flex;align-items:center;gap:5px}
+.sp-tab:hover{color:var(--text-dark)}
+.sp-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+.sp-body{flex:1;overflow-y:auto}
 
 /* GALLERY */
-.gallery-pane{padding:18px 24px}
-.gallery-toolbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.gallery-search{flex:1;position:relative}
-.gallery-search i{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-soft);pointer-events:none}
-.gallery-search input{width:100%;background:var(--beige2);border:0.5px solid var(--border);border-radius:6px;padding:6px 10px 6px 28px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui)}
-.gallery-search input:focus{border-color:var(--accent2);background:#fff}
-.gallery-search input::placeholder{color:var(--text-soft)}
-.gfilter{display:flex;gap:4px}
-.gf-btn{padding:5px 10px;border-radius:5px;font-size:11px;cursor:pointer;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-soft);transition:all .12s;font-family:var(--ui)}
-.gf-btn.on{background:var(--navy);border-color:var(--navy);color:var(--beige)}
-.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.gal-pane{padding:16px 22px}
+.gal-bar{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+.gal-search{flex:1;position:relative}
+.gal-search i{position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--text-soft);pointer-events:none}
+.gal-search input{width:100%;background:var(--beige2);border:0.5px solid var(--border);border-radius:6px;padding:6px 10px 6px 28px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui)}
+.gal-search input:focus{border-color:var(--accent2);background:#fff}
+.gal-search input::placeholder{color:var(--text-soft)}
+.gf{display:flex;gap:4px}
+.gf-b{padding:5px 9px;border-radius:5px;font-size:11px;cursor:pointer;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-soft);transition:all .12s;font-family:var(--ui)}
+.gf-b.on{background:var(--navy);border-color:var(--navy);color:var(--beige)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:10px}
 .icard{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .15s}
-.icard:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 6px 20px rgba(30,45,74,0.1)}
-.ithumb{width:100%;height:115px;background:var(--beige2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.icard:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,45,74,0.1)}
+.ithumb{width:100%;height:112px;background:var(--beige2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .ithumb img{width:100%;height:100%;object-fit:cover}
 .ithumb-ph{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-beige)}
-.ithumb-ph i{font-size:26px}
-.ibadge{position:absolute;top:6px;left:6px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px}
+.ithumb-ph i{font-size:24px}
+.ibadge{position:absolute;top:5px;left:5px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px}
 .b-pat{background:var(--danger-bg);color:var(--danger)}
 .b-norm{background:var(--success-bg);color:var(--success)}
 .b-var{background:var(--warning-bg);color:var(--warning)}
-.iinfo{padding:8px 10px}
+.iinfo{padding:7px 9px}
 .i-les{font-size:11px;font-weight:500;color:var(--text-dark);line-height:1.3;margin-bottom:2px}
 .i-date{font-size:10px;color:var(--text-soft)}
-.gallery-empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:40px 20px;color:var(--text-beige);text-align:center}
-.gallery-empty i{font-size:40px}
-.gallery-empty p{font-size:12px;color:var(--text-soft);max-width:220px;line-height:1.5}
+.gal-empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:40px 20px;color:var(--text-beige);text-align:center}
+.gal-empty i{font-size:38px}
+.gal-empty p{font-size:12px;color:var(--text-soft);max-width:200px;line-height:1.5}
 
 /* ATLAS EDIT */
-.atlas-edit-pane{padding:20px 24px;display:flex;flex-direction:column;gap:14px;max-width:780px}
-.atlas-edit-section{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
-.atlas-edit-hd{padding:11px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--beige2)}
-.atlas-edit-icon{width:26px;height:26px;border-radius:6px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.atlas-edit-icon i{font-size:13px;color:var(--beige)}
-.atlas-edit-title{font-size:13px;font-weight:600;color:var(--text-dark)}
-.atlas-edit-body{padding:14px 16px}
-.atlas-textarea{width:100%;background:var(--beige3);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px 14px;font-size:13px;color:var(--text-dark);outline:none;font-family:var(--ui);resize:vertical;min-height:120px;line-height:1.8;transition:border-color .15s}
-.atlas-textarea:focus{border-color:var(--accent2);background:#fff}
-.atlas-textarea::placeholder{color:var(--text-soft);font-style:italic}
-.illus-upload-zone{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:20px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige3);display:flex;flex-direction:column;align-items:center;gap:8px}
-.illus-upload-zone:hover{border-color:var(--navy);background:var(--beige2)}
-.illus-upload-zone i{font-size:28px;color:var(--text-beige)}
-.illus-upload-zone p{font-size:12px;color:var(--text-soft);line-height:1.5}
-.illus-preview{width:100%;height:160px;object-fit:contain;border-radius:var(--radius);border:0.5px solid var(--border);background:var(--beige3)}
-.atlas-edit-footer{padding:0 24px 20px;display:flex;justify-content:flex-end;gap:8px;max-width:780px}
+.ae-pane{padding:18px 22px;display:flex;flex-direction:column;gap:13px;max-width:760px}
+.ae-sec{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.ae-hd{padding:10px 15px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:9px;background:var(--beige2)}
+.ae-ico{width:24px;height:24px;border-radius:5px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ae-ico i{font-size:12px;color:var(--beige)}
+.ae-ttl{font-size:13px;font-weight:600;color:var(--text-dark)}
+.ae-bd{padding:13px 15px}
+.ae-ta{width:100%;background:var(--beige3);border:0.5px solid var(--border);border-radius:var(--radius);padding:11px 13px;font-size:13px;color:var(--text-dark);outline:none;font-family:var(--ui);resize:vertical;line-height:1.8;transition:border-color .15s}
+.ae-ta:focus{border-color:var(--accent2);background:#fff}
+.ae-ta::placeholder{color:var(--text-soft);font-style:italic}
+.illus-zone{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:18px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige3);display:flex;flex-direction:column;align-items:center;gap:7px}
+.illus-zone:hover{border-color:var(--navy);background:var(--beige2)}
+.illus-zone i{font-size:26px;color:var(--text-beige)}
+.illus-zone p{font-size:11px;color:var(--text-soft);line-height:1.5}
+.illus-prev{width:100%;max-height:180px;object-fit:contain;border-radius:var(--radius);border:0.5px solid var(--border)}
+.ae-footer{padding:0 22px 18px;display:flex;justify-content:flex-end;gap:8px;max-width:760px}
 
 /* ATLAS READ */
-.atlas-read-pane{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.atlas-read-header{padding:16px 24px 14px;border-bottom:0.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;background:var(--beige4)}
-.atlas-read-title{font-family:var(--font);font-size:19px;color:var(--text-dark)}
-.atlas-read-sub{font-size:12px;color:var(--text-soft);margin-top:2px}
-.atlas-read-actions{display:flex;gap:8px}
-.atlas-read-body{flex:1;overflow:hidden;display:flex}
-.atlas-read-left{flex:1;padding:24px;overflow-y:auto;border-right:0.5px solid var(--border)}
-.atlas-read-right{width:300px;min-width:300px;padding:18px;background:var(--beige2);display:flex;flex-direction:column;gap:14px;overflow-y:auto}
-.atlas-sec-block{margin-bottom:26px}
-.atlas-sec-lbl{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.atlas-sec-lbl::after{content:'';flex:1;height:0.5px;background:var(--border)}
-.atlas-sec-txt{font-size:13px;color:var(--text-mid);line-height:1.9;white-space:pre-wrap}
-.atlas-refs-txt{font-size:11px;color:var(--text-soft);line-height:1.8;white-space:pre-wrap}
-.atlas-right-lbl{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);margin-bottom:8px}
-.atlas-illus-box{border-radius:var(--radius-lg);overflow:hidden;background:var(--navy);display:flex;align-items:center;justify-content:center;min-height:160px}
-.atlas-illus-box svg{width:80%;height:80%}
-.atlas-illus-box img{width:100%;height:100%;object-fit:contain}
-.atlas-imgs-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.atlas-img-mini{aspect-ratio:1;border-radius:6px;overflow:hidden;cursor:pointer;border:0.5px solid var(--border);background:var(--beige3);display:flex;align-items:center;justify-content:center;transition:all .12s}
-.atlas-img-mini:hover{border-color:var(--navy);transform:scale(1.02)}
-.atlas-img-mini img{width:100%;height:100%;object-fit:cover}
-.atlas-img-mini i{font-size:20px;color:var(--text-beige)}
-.atlas-empty-right{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 10px;text-align:center}
-.atlas-empty-right i{font-size:28px;color:var(--text-beige)}
-.atlas-empty-right p{font-size:11px;color:var(--text-soft);line-height:1.5}
+.ar-pane{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.ar-hd{padding:14px 22px 12px;border-bottom:0.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;background:var(--beige4)}
+.ar-title{font-family:var(--font);font-size:18px;color:var(--text-dark)}
+.ar-sub{font-size:11px;color:var(--text-soft);margin-top:2px}
+.ar-actions{display:flex;gap:7px}
+.ar-body{flex:1;overflow:hidden;display:flex}
+.ar-left{flex:1;padding:22px;overflow-y:auto;border-right:0.5px solid var(--border)}
+.ar-right{width:290px;min-width:290px;padding:16px;background:var(--beige2);display:flex;flex-direction:column;gap:13px;overflow-y:auto}
+.ar-sec{margin-bottom:24px}
+.ar-sec-lbl{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.ar-sec-lbl::after{content:'';flex:1;height:0.5px;background:var(--border)}
+.ar-sec-txt{font-size:13px;color:var(--text-mid);line-height:1.9;white-space:pre-wrap}
+.ar-refs{font-size:11px;color:var(--text-soft);line-height:1.8;white-space:pre-wrap}
+.ar-right-lbl{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);margin-bottom:7px}
+.ar-illus-box{border-radius:var(--radius-lg);overflow:hidden;background:var(--navy);display:flex;align-items:center;justify-content:center;min-height:150px}
+.ar-illus-box svg{width:75%;height:75%}
+.ar-illus-box img{width:100%;height:100%;object-fit:contain}
+.ar-illus-change{font-size:10px;color:var(--text-soft);text-align:center;margin-top:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:3px}
+.ar-illus-change:hover{color:var(--accent)}
+.ar-imgs-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.ar-img-mini{aspect-ratio:1;border-radius:6px;overflow:hidden;cursor:pointer;border:0.5px solid var(--border);background:var(--beige3);display:flex;align-items:center;justify-content:center;transition:all .12s}
+.ar-img-mini:hover{border-color:var(--navy);transform:scale(1.02)}
+.ar-img-mini img{width:100%;height:100%;object-fit:cover}
+.ar-img-mini i{font-size:18px;color:var(--text-beige)}
+.ar-empty{display:flex;flex-direction:column;align-items:center;gap:7px;padding:18px 10px;text-align:center}
+.ar-empty i{font-size:26px;color:var(--text-beige)}
+.ar-empty p{font-size:11px;color:var(--text-soft);line-height:1.5}
 
 /* VIEW MODAL */
-.view-overlay{position:fixed;inset:0;background:rgba(8,14,28,0.88);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
-.view-modal{background:var(--beige4);border-radius:14px;width:100%;max-width:900px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,0.5)}
-.view-top{background:var(--navy);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.view-top-title{font-family:var(--font);font-size:15px;color:var(--beige);font-weight:400}
-.view-body{display:flex;flex:1;overflow:hidden;min-height:0}
-.view-img-panel{flex:1;background:#06090f;display:flex;align-items:center;justify-content:center}
-.view-img-panel img{max-width:100%;max-height:100%;object-fit:contain}
-.view-img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.12)}
-.view-img-ph i{font-size:56px}
-.view-info{width:300px;min-width:300px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:11px}
+.vo{position:fixed;inset:0;background:rgba(8,14,28,0.88);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
+.vm{background:var(--beige4);border-radius:14px;width:100%;max-width:880px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column}
+.vm-top{background:var(--navy);padding:12px 15px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.vm-title{font-family:var(--font);font-size:15px;color:var(--beige);font-weight:400}
+.vm-body{display:flex;flex:1;overflow:hidden;min-height:0}
+.vm-img{flex:1;background:#06090f;display:flex;align-items:center;justify-content:center}
+.vm-img img{max-width:100%;max-height:100%;object-fit:contain}
+.vm-img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.1)}
+.vm-img-ph i{font-size:52px}
+.vm-info{width:290px;min-width:290px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
 .vi-reg{font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent)}
-.vi-str{font-family:var(--font);font-size:17px;color:var(--text-dark);line-height:1.3}
+.vi-str{font-family:var(--font);font-size:16px;color:var(--text-dark);line-height:1.3}
 .vi-les{font-size:12px;color:var(--text-mid)}
 .vi-pills{display:flex;gap:5px;flex-wrap:wrap}
 .pill{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:500}
-.pill-navy{background:var(--navy);color:var(--beige)}
-.pill-beige{background:var(--beige);color:var(--text-mid);border:0.5px solid var(--border)}
-.vi-desc-lbl{font-size:9px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--text-soft)}
-.vi-desc{font-size:12px;color:var(--text-mid);line-height:1.7;background:var(--beige4);border-radius:var(--radius);padding:10px 12px;border:0.5px solid var(--border)}
+.pill-n{background:var(--navy);color:var(--beige)}
+.pill-b{background:var(--beige);color:var(--text-mid);border:0.5px solid var(--border)}
+.vi-desc-lbl{font-size:9px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft)}
+.vi-desc{font-size:12px;color:var(--text-mid);line-height:1.7;background:var(--beige4);border-radius:var(--radius);padding:9px 11px;border:0.5px solid var(--border)}
 .vi-date{font-size:10px;color:var(--text-beige)}
 .vi-atlas-btn{display:flex;align-items:center;gap:8px;background:var(--navy);border:none;border-radius:var(--radius);padding:10px 14px;color:var(--beige);font-size:12px;cursor:pointer;font-family:var(--ui);font-weight:500;transition:all .15s;width:100%;justify-content:center}
 .vi-atlas-btn:hover{background:var(--navy3)}
-.view-footer{padding:10px 14px;border-top:0.5px solid var(--border);display:flex;gap:7px;background:var(--beige4);flex-shrink:0}
+.vm-footer{padding:9px 13px;border-top:0.5px solid var(--border);display:flex;gap:6px;background:var(--beige4);flex-shrink:0}
 
 /* MODALS */
-.modal-overlay{position:fixed;inset:0;background:rgba(20,30,50,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
-.modal{background:var(--beige4);border-radius:var(--radius-lg);width:100%;max-width:500px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.modal-hd{background:var(--navy);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:sticky;top:0}
-.modal-hd-title{font-family:var(--font);font-size:14px;font-weight:400;color:var(--beige)}
-.modal-x{background:none;border:none;color:rgba(237,232,220,0.5);cursor:pointer;font-size:18px;display:flex;align-items:center}
-.modal-x:hover{color:var(--beige)}
-.modal-bd{padding:16px;display:flex;flex-direction:column;gap:11px}
+.mo{position:fixed;inset:0;background:rgba(20,30,50,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+.md{background:var(--beige4);border-radius:var(--radius-lg);width:100%;max-width:500px;max-height:90vh;overflow-y:auto}
+.md-hd{background:var(--navy);padding:12px 15px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:sticky;top:0}
+.md-ttl{font-family:var(--font);font-size:14px;font-weight:400;color:var(--beige)}
+.mx{background:none;border:none;color:rgba(237,232,220,0.5);cursor:pointer;font-size:17px;display:flex;align-items:center}
+.mx:hover{color:var(--beige)}
+.md-bd{padding:15px;display:flex;flex-direction:column;gap:10px}
 .fg{display:flex;flex-direction:column;gap:4px}
 .fl{font-size:10px;font-weight:600;letter-spacing:0.4px;color:var(--text-mid);text-transform:uppercase}
-.fi,.fs,.ft{background:var(--beige2);border:0.5px solid var(--border);border-radius:var(--radius);padding:8px 10px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui);width:100%;transition:border-color .15s}
+.fi,.fs,.ft{background:var(--beige2);border:0.5px solid var(--border);border-radius:var(--radius);padding:7px 10px;font-size:12px;color:var(--text-dark);outline:none;font-family:var(--ui);width:100%;transition:border-color .15s}
 .fi:focus,.fs:focus,.ft:focus{border-color:var(--accent2);background:#fff}
 .fs option{background:#fff}
-.ft{resize:vertical;min-height:80px;line-height:1.6}
+.ft{resize:vertical;min-height:78px;line-height:1.6}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.upload-z{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:20px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige2)}
-.upload-z:hover{border-color:var(--navy);background:var(--beige)}
-.upload-z i{font-size:26px;color:var(--text-beige);display:block;margin-bottom:6px}
-.upload-z p{font-size:11px;color:var(--text-soft);line-height:1.5}
-.upload-prev{width:100%;height:130px;object-fit:cover;border-radius:var(--radius);border:0.5px solid var(--border)}
-.modal-ft{padding:11px 16px;border-top:0.5px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:var(--beige2);border-radius:0 0 var(--radius-lg) var(--radius-lg);position:sticky;bottom:0}
-.btn{padding:7px 16px;border-radius:var(--radius);font-size:12px;cursor:pointer;border:0.5px solid var(--border);font-family:var(--ui);transition:all .12s}
-.btn-ghost{background:#fff;color:var(--text-mid)}
-.btn-ghost:hover{background:var(--beige)}
-.btn-primary{background:var(--navy);border-color:var(--navy);color:var(--beige);font-weight:500}
-.btn-primary:hover{background:var(--navy3)}
-.btn-danger{background:var(--danger-bg);border-color:#fca5a5;color:var(--danger)}
+.uz{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:18px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige2)}
+.uz:hover{border-color:var(--navy);background:var(--beige)}
+.uz i{font-size:24px;color:var(--text-beige);display:block;margin-bottom:5px}
+.uz p{font-size:11px;color:var(--text-soft);line-height:1.5}
+.up{width:100%;height:120px;object-fit:cover;border-radius:var(--radius);border:0.5px solid var(--border)}
+.md-ft{padding:10px 15px;border-top:0.5px solid var(--border);display:flex;gap:7px;justify-content:flex-end;background:var(--beige2);border-radius:0 0 var(--radius-lg) var(--radius-lg);position:sticky;bottom:0}
+.btn{padding:7px 15px;border-radius:var(--radius);font-size:12px;cursor:pointer;border:0.5px solid var(--border);font-family:var(--ui);transition:all .12s}
+.btn-g{background:#fff;color:var(--text-mid)}
+.btn-g:hover{background:var(--beige)}
+.btn-p{background:var(--navy);border-color:var(--navy);color:var(--beige);font-weight:500}
+.btn-p:hover{background:var(--navy3)}
+.btn-d{background:var(--danger-bg);border-color:#fca5a5;color:var(--danger)}
 .act-btn{flex:1;padding:7px;border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .12s;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui)}
 .act-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
 .act-btn.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#fca5a5}
-.hint-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.7);z-index:160;display:flex;align-items:center;justify-content:center}
-.hint-box{background:var(--navy2);border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:32px;text-align:center;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:14px}
-.hint-key{background:var(--beige);color:var(--navy);font-size:20px;font-weight:700;border-radius:8px;padding:10px 22px;font-family:var(--font)}
-.toast{position:fixed;bottom:20px;right:20px;background:var(--navy);border:0.5px solid rgba(255,255,255,0.15);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--beige);display:flex;align-items:center;gap:7px;z-index:300;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
+
+/* HINT */
+.hint-o{position:fixed;inset:0;background:rgba(10,18,35,0.7);z-index:160;display:flex;align-items:center;justify-content:center}
+.hint-b{background:var(--navy2);border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:30px;text-align:center;max-width:330px;display:flex;flex-direction:column;align-items:center;gap:13px}
+.hint-key{background:var(--beige);color:var(--navy);font-size:19px;font-weight:700;border-radius:8px;padding:9px 20px;font-family:var(--font)}
+
+.toast{position:fixed;bottom:18px;right:18px;background:var(--navy);border:0.5px solid rgba(255,255,255,0.15);border-radius:var(--radius);padding:9px 13px;font-size:12px;color:var(--beige);display:flex;align-items:center;gap:6px;z-index:300;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.ok i{color:#6ee7b7}
 .toast.err i{color:#fca5a5}
@@ -293,7 +303,8 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
-<body><div class="login-screen" id="login-screen">
+<body><!-- LOGIN -->
+<div class="login-screen" id="login-screen">
   <div class="login-logo">
     <svg width="80" height="80" viewBox="0 0 80 80">
       <rect width="80" height="80" rx="18" fill="#ede8dc"/>
@@ -315,17 +326,18 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   <div class="login-status" id="login-status">Clínica Senhor dos Passos</div>
 </div>
 
+<!-- APP -->
 <div class="app" id="app" style="display:none">
   <div class="topbar">
     <div class="logo-wrap" onclick="goHome()">
-      <svg width="30" height="30" viewBox="0 0 80 80"><rect width="80" height="80" rx="18" fill="#ede8dc"/><rect x="5" y="5" width="70" height="70" rx="14" fill="none" stroke="#1e2d4a" stroke-width="2"/><rect x="32" y="8" width="16" height="20" rx="4" fill="#1e2d4a"/><rect x="29" y="27" width="22" height="4" rx="2" fill="#1e2d4a" opacity="0.5"/><rect x="24" y="30" width="32" height="18" rx="5" fill="#1e2d4a"/><path d="M24 44 Q40 60 56 44" fill="#1e2d4a"/><path d="M19 60 Q40 78 61 60" fill="none" stroke="#1e2d4a" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/><path d="M14 70 Q40 92 66 70" fill="none" stroke="#1e2d4a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3"/></svg>
+      <svg width="28" height="28" viewBox="0 0 80 80"><rect width="80" height="80" rx="18" fill="#ede8dc"/><rect x="5" y="5" width="70" height="70" rx="14" fill="none" stroke="#1e2d4a" stroke-width="2"/><rect x="32" y="8" width="16" height="20" rx="4" fill="#1e2d4a"/><rect x="29" y="27" width="22" height="4" rx="2" fill="#1e2d4a" opacity="0.5"/><rect x="24" y="30" width="32" height="18" rx="5" fill="#1e2d4a"/><path d="M24 44 Q40 60 56 44" fill="#1e2d4a"/><path d="M19 60 Q40 78 61 60" fill="none" stroke="#1e2d4a" stroke-width="3" stroke-linecap="round" stroke-opacity="0.7"/><path d="M14 70 Q40 92 66 70" fill="none" stroke="#1e2d4a" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3"/></svg>
       <div class="logo-name">Sono<b>Vault</b></div>
     </div>
-    <div class="top-bc" id="breadcrumb"></div>
-    <div class="saving" id="saving-badge"><i class="ti ti-cloud-upload" style="font-size:11px"></i> Salvando...</div>
+    <div class="breadcrumb" id="bc"></div>
+    <div class="saving" id="sv-badge"><i class="ti ti-cloud-upload" style="font-size:11px"></i> Salvando...</div>
     <div class="top-sep"></div>
-    <span id="top-stat" style="font-size:11px;color:rgba(237,232,220,0.4);background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:20px;padding:3px 9px"></span>
-    <div class="user-pill"><div class="user-av" id="user-av">R</div><span class="user-nm" id="user-nm">...</span></div>
+    <span id="top-stat" style="font-size:11px;color:rgba(237,232,220,0.38);background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:20px;padding:3px 9px"></span>
+    <div class="user-pill"><div class="uav" id="uav">R</div><span class="unm" id="unm">...</span></div>
     <button class="tbtn hint" onclick="showHint()"><i class="ti ti-keyboard" style="font-size:10px"></i> Win+Shift+S</button>
     <button class="tbtn cta" id="add-btn" style="display:none" onclick="openAddModal()"><i class="ti ti-plus" style="font-size:11px"></i> Nova imagem</button>
     <button class="tbtn" id="pdf-btn" style="display:none" onclick="exportPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> PDF</button>
@@ -335,273 +347,283 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   <div class="main-layout">
     <div class="sidebar">
       <div class="sb-top">
-        <input type="text" class="sb-search" id="sb-search" placeholder="Buscar..." oninput="renderSidebar()">
+        <input class="sb-search" id="sb-q" placeholder="Buscar..." oninput="renderSB()">
       </div>
-      <div class="sb-scroll" id="sb-scroll"></div>
-      <div class="sb-add-cat" onclick="openNewCat()">
-        <i class="ti ti-plus" style="font-size:12px"></i> Nova categoria
-      </div>
-      <div class="sb-bottom">
-        <div class="drive-ok" id="drive-ok"><i class="ti ti-cloud-check" style="font-size:11px"></i> Google Drive conectado</div>
-      </div>
+      <div class="sb-list" id="sb-list"></div>
+      <div class="sb-add-cat" onclick="openNC()"><i class="ti ti-plus" style="font-size:12px"></i> Nova categoria</div>
+      <div class="sb-footer"><div class="drive-ok" id="drive-ok"><i class="ti ti-cloud-check" style="font-size:11px"></i> Google Drive conectado</div></div>
     </div>
     <div class="content" id="content"></div>
   </div>
 </div>
 
 <!-- VIEW MODAL -->
-<div id="view-overlay" class="view-overlay" style="display:none">
-  <div class="view-modal">
-    <div class="view-top">
-      <span class="view-top-title" id="vt-title"></span>
-      <div style="display:flex;gap:7px;align-items:center">
-        <button class="btn btn-ghost" style="font-size:11px;padding:5px 11px" onclick="editFromView()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button>
-        <button class="btn btn-danger" style="font-size:11px;padding:5px 11px" onclick="deleteFromView()"><i class="ti ti-trash" style="font-size:11px"></i> Excluir</button>
-        <button class="modal-x" onclick="closeView()"><i class="ti ti-x"></i></button>
+<div id="vo" class="vo" style="display:none">
+  <div class="vm">
+    <div class="vm-top">
+      <span class="vm-title" id="vm-ttl"></span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="btn btn-g" style="font-size:11px;padding:5px 10px" onclick="editFromView()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button>
+        <button class="btn btn-d" style="font-size:11px;padding:5px 10px" onclick="deleteFromView()"><i class="ti ti-trash" style="font-size:11px"></i> Excluir</button>
+        <button class="mx" onclick="closeView()"><i class="ti ti-x"></i></button>
       </div>
     </div>
-    <div class="view-body">
-      <div class="view-img-panel" id="v-img"></div>
-      <div class="view-info">
-        <div class="vi-reg" id="v-reg"></div>
-        <div class="vi-str" id="v-str"></div>
-        <div class="vi-les" id="v-les"></div>
-        <div class="vi-pills" id="v-pills"></div>
-        <div id="v-desc-wrap" style="display:none;flex-direction:column;gap:5px">
+    <div class="vm-body">
+      <div class="vm-img" id="vm-img"></div>
+      <div class="vm-info">
+        <div class="vi-reg" id="vi-reg"></div>
+        <div class="vi-str" id="vi-str"></div>
+        <div class="vi-les" id="vi-les"></div>
+        <div class="vi-pills" id="vi-pills"></div>
+        <div id="vi-dw" style="display:none;flex-direction:column;gap:4px">
           <div class="vi-desc-lbl">Descrição do achado</div>
-          <div class="vi-desc" id="v-desc"></div>
+          <div class="vi-desc" id="vi-desc"></div>
         </div>
-        <div class="vi-date" id="v-date"></div>
-        <button class="vi-atlas-btn" id="v-atlas-btn" onclick="openAtlasFromView()">
-          <i class="ti ti-book" style="font-size:14px"></i> Ver Atlas desta estrutura
+        <div class="vi-date" id="vi-date"></div>
+        <button class="vi-atlas-btn" id="vi-atlas-btn" onclick="openAtlasFromView()">
+          <i class="ti ti-book" style="font-size:13px"></i> Ver Atlas desta estrutura
         </button>
       </div>
     </div>
-    <div class="view-footer">
-      <button class="act-btn" onclick="exportSinglePDF()"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> Exportar card</button>
+    <div class="vm-footer">
+      <button class="act-btn" onclick="exportSinglePDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar card</button>
     </div>
   </div>
 </div>
 
 <!-- ADD/EDIT MODAL -->
-<div id="modal-overlay" class="modal-overlay" style="display:none">
-  <div class="modal">
-    <div class="modal-hd"><span class="modal-hd-title" id="modal-ttl">Nova imagem</span><button class="modal-x" onclick="closeModal()"><i class="ti ti-x"></i></button></div>
-    <div class="modal-bd">
-      <div class="upload-z" id="upload-z" onclick="document.getElementById('fi').click()"><i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p></div>
-      <input type="file" id="fi" accept="image/*" style="display:none" onchange="handleFile(this)">
-      <div class="fg"><label class="fl">Categoria</label><select class="fs" id="i-cat-sel" onchange="updateSysSel()"><option value="">Selecionar...</option></select></div>
-      <div class="fg"><label class="fl">Sistema</label><select class="fs" id="i-sys-sel" onchange="updateStrSel()"><option value="">Selecionar...</option></select></div>
-      <div class="fg"><label class="fl">Estrutura</label><select class="fs" id="i-str-sel"><option value="">Selecionar...</option></select></div>
-      <div class="fg"><label class="fl">Achado / tipo de lesão</label><input class="fi" id="i-les" placeholder="Ex: Rotura parcial, Tendinopatia..."></div>
+<div id="img-mo" class="mo" style="display:none">
+  <div class="md">
+    <div class="md-hd"><span class="md-ttl" id="img-ttl">Nova imagem</span><button class="mx" onclick="closeImgModal()"><i class="ti ti-x"></i></button></div>
+    <div class="md-bd">
+      <div class="uz" id="img-uz" onclick="document.getElementById('img-fi').click()"><i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p></div>
+      <input type="file" id="img-fi" accept="image/*" style="display:none" onchange="handleImgFile(this)">
+      <div class="fg"><label class="fl">Categoria</label><select class="fs" id="im-cat" onchange="fillImgSys()"><option value="">Selecionar...</option></select></div>
+      <div class="fg"><label class="fl">Sistema</label><select class="fs" id="im-sys" onchange="fillImgStr()"><option value="">Selecionar...</option></select></div>
+      <div class="fg"><label class="fl">Estrutura</label><select class="fs" id="im-str"><option value="">Selecionar...</option></select></div>
+      <div class="fg"><label class="fl">Achado / tipo de lesão</label><input class="fi" id="im-les" placeholder="Ex: Rotura parcial, Tendinopatia..."></div>
       <div class="frow">
-        <div class="fg"><label class="fl">Categoria da imagem</label><select class="fs" id="i-imgcat"><option value="patologia">Patologia</option><option value="normal">Normal</option><option value="variante">Variante anatômica</option></select></div>
-        <div class="fg"><label class="fl">Grau / nível</label><input class="fi" id="i-lvl" placeholder="Ex: Grau II"></div>
+        <div class="fg"><label class="fl">Categoria da imagem</label><select class="fs" id="im-icat"><option value="patologia">Patologia</option><option value="normal">Normal</option><option value="variante">Variante</option></select></div>
+        <div class="fg"><label class="fl">Grau / nível</label><input class="fi" id="im-lvl" placeholder="Ex: Grau II"></div>
       </div>
-      <div class="fg"><label class="fl">Descrição do achado</label><textarea class="ft" id="i-desc" placeholder="Descrição no estilo do laudo..."></textarea></div>
+      <div class="fg"><label class="fl">Descrição do achado</label><textarea class="ft" id="im-desc" placeholder="Descrição no estilo do laudo..."></textarea></div>
     </div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" id="save-btn" onclick="saveImg()"><i class="ti ti-check" style="font-size:11px"></i> Salvar</button></div>
+    <div class="md-ft"><button class="btn btn-g" onclick="closeImgModal()">Cancelar</button><button class="btn btn-p" id="img-save-btn" onclick="saveImg()"><i class="ti ti-check" style="font-size:11px"></i> Salvar</button></div>
   </div>
 </div>
 
 <!-- NEW CAT -->
-<div id="newcat-overlay" class="modal-overlay" style="display:none">
-  <div class="modal" style="max-width:400px">
-    <div class="modal-hd"><span class="modal-hd-title">Nova categoria</span><button class="modal-x" onclick="document.getElementById('newcat-overlay').style.display='none'"><i class="ti ti-x"></i></button></div>
-    <div class="modal-bd"><div class="fg"><label class="fl">Nome</label><input class="fi" id="newcat-name" placeholder="Ex: Musculoesquelético"></div></div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="document.getElementById('newcat-overlay').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="saveCat()">Criar</button></div>
+<div id="nc-mo" class="mo" style="display:none">
+  <div class="md" style="max-width:380px">
+    <div class="md-hd"><span class="md-ttl">Nova categoria</span><button class="mx" onclick="hide('nc-mo')"><i class="ti ti-x"></i></button></div>
+    <div class="md-bd"><div class="fg"><label class="fl">Nome da categoria</label><input class="fi" id="nc-name" placeholder="Ex: Musculoesquelético, Vascular..."></div></div>
+    <div class="md-ft"><button class="btn btn-g" onclick="hide('nc-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNC()">Criar</button></div>
   </div>
 </div>
 
 <!-- NEW SYS -->
-<div id="newsys-overlay" class="modal-overlay" style="display:none">
-  <div class="modal" style="max-width:400px">
-    <div class="modal-hd"><span class="modal-hd-title">Novo sistema</span><button class="modal-x" onclick="document.getElementById('newsys-overlay').style.display='none'"><i class="ti ti-x"></i></button></div>
-    <div class="modal-bd"><div class="fg"><label class="fl">Nome do sistema</label><input class="fi" id="newsys-name" placeholder="Ex: Joelho, Ombro, Tireoide..."></div></div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="document.getElementById('newsys-overlay').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="saveSys()">Criar</button></div>
+<div id="ns-mo" class="mo" style="display:none">
+  <div class="md" style="max-width:380px">
+    <div class="md-hd"><span class="md-ttl">Novo sistema</span><button class="mx" onclick="hide('ns-mo')"><i class="ti ti-x"></i></button></div>
+    <div class="md-bd"><div class="fg"><label class="fl">Nome do sistema</label><input class="fi" id="ns-name" placeholder="Ex: Joelho, Ombro, Tireoide..."></div></div>
+    <div class="md-ft"><button class="btn btn-g" onclick="hide('ns-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNS()">Criar</button></div>
   </div>
 </div>
 
 <!-- NEW STR -->
-<div id="newstr-overlay" class="modal-overlay" style="display:none">
-  <div class="modal" style="max-width:400px">
-    <div class="modal-hd"><span class="modal-hd-title">Nova estrutura</span><button class="modal-x" onclick="document.getElementById('newstr-overlay').style.display='none'"><i class="ti ti-x"></i></button></div>
-    <div class="modal-bd"><div class="fg"><label class="fl">Nome da estrutura</label><input class="fi" id="newstr-name" placeholder="Ex: Trato iliotibial, Cisto de Baker..."></div></div>
-    <div class="modal-ft"><button class="btn btn-ghost" onclick="document.getElementById('newstr-overlay').style.display='none'">Cancelar</button><button class="btn btn-primary" onclick="saveStr()">Criar</button></div>
+<div id="nst-mo" class="mo" style="display:none">
+  <div class="md" style="max-width:380px">
+    <div class="md-hd"><span class="md-ttl">Nova estrutura</span><button class="mx" onclick="hide('nst-mo')"><i class="ti ti-x"></i></button></div>
+    <div class="md-bd"><div class="fg"><label class="fl">Nome da estrutura</label><input class="fi" id="nst-name" placeholder="Ex: Cisto de Baker, Trato iliotibial..."></div></div>
+    <div class="md-ft"><button class="btn btn-g" onclick="hide('nst-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNST()">Criar</button></div>
   </div>
 </div>
 
 <!-- HINT -->
-<div id="hint-overlay" class="hint-overlay" style="display:none" onclick="closeHint()">
-  <div class="hint-box" onclick="event.stopPropagation()">
-    <div style="font-size:11px;color:rgba(237,232,220,0.4);text-transform:uppercase;letter-spacing:0.5px">Atalho de captura</div>
+<div id="hint-o" class="hint-o" style="display:none" onclick="hide('hint-o')">
+  <div class="hint-b" onclick="event.stopPropagation()">
+    <div style="font-size:10px;color:rgba(237,232,220,0.4);text-transform:uppercase;letter-spacing:0.5px">Atalho de captura</div>
     <div class="hint-key">⊞ + Shift + S</div>
     <div style="font-size:12px;color:rgba(237,232,220,0.6);line-height:1.6;text-align:center">Pressione para abrir a ferramenta de recorte do Windows. Selecione a área da imagem e faça upload aqui.</div>
-    <button class="btn btn-ghost" onclick="closeHint()" style="font-size:12px">Entendi</button>
+    <button class="btn btn-g" onclick="hide('hint-o')" style="font-size:12px">Entendi</button>
   </div>
 </div>
 
-<!-- ILLUS UPLOAD INPUT -->
 <input type="file" id="illus-fi" accept="image/*" style="display:none" onchange="handleIllusFile(this)">
-
 <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-msg"></span></div><script>
 const CLIENT_ID='155144252138-es5iuh573njhfvu1mtiih5qg5eok5r1b.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive.file';
 const FOLDER='SonoVault';
 
 // STATE
-// cats = [{id, name, systems:[{id, name, structs:[{id, name}]}]}]
+// cats=[{id,name,systems:[{id,name,structs:[{id,name}]}]}]
 let imgs=[],wiki={},cats=[];
-let curCat=null,curSys=null,curStr=null,curTab='gallery',curAtlasMode='read',gFilter='all';
-let viewId=null,editId=null,dataURL=null;
-let newCatPending=null,newSysPending=null,newStrPending=null;
-let tokenClient,token=null,folderId=null,dbId=null,wikiId=null,catsId=null;
-let saveT=null,saveWT=null,saveCT=null;
+let cC=null,cS=null,cST=null; // curCat, curSys, curStr
+let cTab='gallery',cAtlas='read',gF='all';
+let vId=null,eId=null,dURL=null;
+let nsCatId=null,nstSysId=null,nstCatId=null;
+let tok=null,fId=null,dbId=null,wId=null,cId=null;
+let tDb=null,tW=null,tC=null;
+let tc,sysOpen={},catOpen={};
 
 // AUTH
-function initGoogleAuth(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async r=>{if(r.error){toast('Erro: '+r.error,'err');return}token=r.access_token;await loadUser();await initDrive();showApp()}})}
-function signIn(){document.getElementById('login-status').textContent='Conectando...';tokenClient.requestAccessToken({prompt:'consent'})}
-function signOut(){if(token)google.accounts.oauth2.revoke(token);token=null;document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex'}
-async function loadUser(){try{const r=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+token}});const u=await r.json();const n=u.given_name||u.name||'Usuário';document.getElementById('user-nm').textContent=n;document.getElementById('user-av').textContent=n[0].toUpperCase()}catch(e){}}
-function showApp(){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='flex';renderSidebar();goHome()}
+function initGoogleAuth(){tc=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async r=>{if(r.error){toast('Erro: '+r.error,'err');return}tok=r.access_token;await loadUser();await initDrive();showApp()}})}
+function signIn(){document.getElementById('login-status').textContent='Conectando...';tc.requestAccessToken({prompt:'consent'})}
+function signOut(){if(tok)google.accounts.oauth2.revoke(tok);tok=null;document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex'}
+async function loadUser(){try{const r=await fetch('https://www.googleapis.com/oauth2/v3/userinfo',{headers:{Authorization:'Bearer '+tok}});const u=await r.json();const n=u.given_name||u.name||'Usuário';document.getElementById('unm').textContent=n;document.getElementById('uav').textContent=n[0].toUpperCase()}catch(e){}}
+function showApp(){document.getElementById('login-screen').style.display='none';document.getElementById('app').style.display='flex';renderSB();renderHome()}
 
 // DRIVE
-async function dr(url,opts={}){const r=await fetch(url,{...opts,headers:{Authorization:'Bearer '+token,...(opts.headers||{})}});if(!r.ok)throw new Error(r.status);return r}
-async function getOrMkFolder(){const q=encodeURIComponent(`name='${FOLDER}' and mimeType='application/vnd.google-apps.folder' and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();if(d.files?.length)return d.files[0].id;const c=await dr('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:FOLDER,mimeType:'application/vnd.google-apps.folder'})});return(await c.json()).id}
-async function getFileId(name){const q=encodeURIComponent(`name='${name}' and '${folderId}' in parents and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();return d.files?.length?d.files[0].id:null}
-async function saveFile(fileId,name,data){const blob=new Blob([JSON.stringify(data)],{type:'application/json'});if(fileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:blob});return fileId}const meta={name,parents:[folderId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+token},body:form});return(await r.json()).id}
-async function initDrive(){try{folderId=await getOrMkFolder();dbId=await getFileId('sonovault-db.json');wikiId=await getFileId('sonovault-wiki.json');catsId=await getFileId('sonovault-cats.json');if(dbId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${dbId}?alt=media`);const d=await r.json();imgs=Array.isArray(d)?d:[]}if(wikiId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${wikiId}?alt=media`);const d=await r.json();wiki=d&&typeof d==='object'?d:{}}if(catsId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${catsId}?alt=media`);const d=await r.json();cats=Array.isArray(d)?d:[]}if(!cats.length)cats=defaultCats();updateStats();renderSidebar()}catch(e){toast('Erro no Drive','err')}}
-function defaultCats(){return[{id:'msk',name:'Musculoesquelético',systems:[{id:'joelho',name:'Joelho',structs:[{id:'cisto_baker',name:'Cisto de Baker'},{id:'trato_ilio',name:'Trato iliotibial'},{id:'menisco_med',name:'Menisco medial'},{id:'tend_patelar',name:'Tendão patelar'}]},{id:'ombro',name:'Ombro',structs:[{id:'supraespinhal',name:'Tendão supraespinhal'},{id:'ac_joint',name:'Articulação AC'},{id:'biceps_longo',name:'Cabo longo do bíceps'},{id:'bursa_sub',name:'Bursa subacromial'}]},{id:'tornozelo',name:'Tornozelo',structs:[{id:'tend_calc',name:'Tendão calcâneo'},{id:'tend_tibpost',name:'Tendão tibial posterior'},{id:'ligamento_ltfa',name:'Ligamento LTFA'},{id:'fascia_plantar',name:'Fáscia plantar'}]},{id:'cotovelo',name:'Cotovelo',structs:[{id:'epicondilo_lat',name:'Epicôndilo lateral'},{id:'nervo_ulnar',name:'Nervo ulnar'},{id:'biceps_dist',name:'Bíceps distal'}]},{id:'mao',name:'Mão',structs:[{id:'polia_a1',name:'Polia A1'},{id:'lig_colateral',name:'Ligamento colateral ulnar'}]},{id:'punho',name:'Punho',structs:[{id:'nervo_mediano',name:'Nervo mediano'},{id:'tend_ext',name:'Tendões extensores'}]},{id:'quadril',name:'Quadril',structs:[{id:'gluteo_medio',name:'Tendão glúteo médio'},{id:'bursa_troc',name:'Bursa trocantérica'}]}]},{id:'pp',name:'Pequenas Partes',systems:[{id:'tireoide_sys',name:'Tireoide',structs:[{id:'lobodireito',name:'Lobo direito'},{id:'loboesquerdo',name:'Lobo esquerdo'},{id:'nodulo_tire',name:'Nódulo tireoidiano'}]},{id:'mama_sys',name:'Mama',structs:[{id:'cisto_mama',name:'Cisto mamário'},{id:'nodulo_mama',name:'Nódulo sólido'}]},{id:'testicular_sys',name:'Testicular',structs:[{id:'testiculo',name:'Testículo'},{id:'epididimo',name:'Epidídimo'}]}]},{id:'abd',name:'Abdômen',systems:[{id:'figado_sys',name:'Fígado',structs:[{id:'figado_str',name:'Parênquima hepático'},{id:'esteatose',name:'Esteatose hepática'},{id:'cisto_hepatico',name:'Cisto hepático'}]},{id:'vesicula_sys',name:'Vesícula biliar',structs:[{id:'vesicula_str',name:'Vesícula biliar'},{id:'colelitíase_str',name:'Colecistolitíase'}]},{id:'rins_sys',name:'Rins',structs:[{id:'rim_dir',name:'Rim direito'},{id:'rim_esq',name:'Rim esquerdo'},{id:'cisto_renal',name:'Cisto renal'}]}]},{id:'vasc',name:'Vascular',systems:[{id:'mmii_venoso',name:'MMII Venoso',structs:[{id:'safena_magna',name:'Veia safena magna'},{id:'safena_parva',name:'Veia safena parva'},{id:'sistema_prof',name:'Sistema profundo'}]},{id:'carotidas_sys',name:'Carótidas',structs:[{id:'carotida_com',name:'Artéria carótida comum'},{id:'carotida_int',name:'Artéria carótida interna'}]}]},{id:'pelv',name:'Pélvico',systems:[{id:'gineco_sys',name:'Ginecológico',structs:[{id:'utero_str',name:'Útero'},{id:'ovario_dir',name:'Ovário direito'},{id:'ovario_esq',name:'Ovário esquerdo'}]},{id:'urinario_sys',name:'Urinário',structs:[{id:'bexiga_str',name:'Bexiga'},{id:'prostata_str',name:'Próstata'}]}]}]}
-function sb(on){const el=document.getElementById('saving-badge');el.className=on?'saving on':'saving'}
-function schedSave(){clearTimeout(saveT);sb(true);saveT=setTimeout(async()=>{dbId=await saveFile(dbId,'sonovault-db.json',imgs);sb(false)},1500)}
-function schedWiki(){clearTimeout(saveWT);saveWT=setTimeout(async()=>{wikiId=await saveFile(wikiId,'sonovault-wiki.json',wiki)},1500)}
-function schedCats(){clearTimeout(saveCT);saveCT=setTimeout(async()=>{catsId=await saveFile(catsId,'sonovault-cats.json',cats)},1500)}
+async function dr(url,o={}){const r=await fetch(url,{...o,headers:{Authorization:'Bearer '+tok,...(o.headers||{})}});if(!r.ok)throw new Error(r.status);return r}
+async function mkFolder(){const q=encodeURIComponent(`name='${FOLDER}' and mimeType='application/vnd.google-apps.folder' and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();if(d.files?.length)return d.files[0].id;const c=await dr('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:FOLDER,mimeType:'application/vnd.google-apps.folder'})});return(await c.json()).id}
+async function getFileId(name){const q=encodeURIComponent(`name='${name}' and '${fId}' in parents and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();return d.files?.length?d.files[0].id:null}
+async function saveFile(fileId,name,data){const blob=new Blob([JSON.stringify(data)],{type:'application/json'});if(fileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+tok,'Content-Type':'application/json'},body:blob});return fileId}const meta={name,parents:[fId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+tok},body:form});return(await r.json()).id}
+async function initDrive(){try{fId=await mkFolder();dbId=await getFileId('sv-db.json');wId=await getFileId('sv-wiki.json');cId=await getFileId('sv-cats.json');if(dbId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${dbId}?alt=media`);const d=await r.json();imgs=Array.isArray(d)?d:[]}if(wId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${wId}?alt=media`);const d=await r.json();wiki=d&&typeof d==='object'?d:{}}if(cId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${cId}?alt=media`);const d=await r.json();cats=Array.isArray(d)?d:[]}updateStat();renderSB()}catch(e){toast('Erro no Drive','err')}}
+function sbOn(on){const el=document.getElementById('sv-badge');el.className=on?'saving on':'saving'}
+function schedDb(){clearTimeout(tDb);sbOn(true);tDb=setTimeout(async()=>{dbId=await saveFile(dbId,'sv-db.json',imgs);sbOn(false)},1500)}
+function schedW(){clearTimeout(tW);tW=setTimeout(async()=>{wId=await saveFile(wId,'sv-wiki.json',wiki)},1500)}
+function schedC(){clearTimeout(tC);tC=setTimeout(async()=>{cId=await saveFile(cId,'sv-cats.json',cats)},1500)}
 
 // HELPERS
-function getCat(cId){return cats.find(c=>c.id===cId)}
-function getSys(cId,sId){return getCat(cId)?.systems.find(s=>s.id===sId)}
-function getStr(cId,sId,stId){return getSys(cId,sId)?.structs.find(s=>s.id===stId)}
-function wKey(){return curCat+'::'+curSys+'::'+curStr}
-function imgCount(cId,sId,stId){return imgs.filter(i=>i.catId===cId&&i.sysId===sId&&i.strId===stId).length}
+function gCat(id){return cats.find(c=>c.id===id)}
+function gSys(cId,sId){return gCat(cId)?.systems?.find(s=>s.id===sId)}
+function gStr(cId,sId,stId){return gSys(cId,sId)?.structs?.find(s=>s.id===stId)}
+function wk(){return cC+'::'+cS+'::'+cST}
+function iCnt(cId,sId,stId){return imgs.filter(i=>i.catId===cId&&i.sysId===sId&&i.strId===stId).length}
+function uid(){return Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,6)}
+function hide(id){document.getElementById(id).style.display='none'}
+function show(id){document.getElementById(id).style.display='flex'}
 
 // SIDEBAR
-function renderSidebar(){
-  const q=(document.getElementById('sb-search')?.value||'').toLowerCase();
-  const el=document.getElementById('sb-scroll');
-  el.innerHTML=cats.map(cat=>{
-    const sysHtml=cat.systems.map(sys=>{
-      const structs=sys.structs.filter(s=>!q||s.name.toLowerCase().includes(q)||sys.name.toLowerCase().includes(q)||cat.name.toLowerCase().includes(q));
-      if(q&&!structs.length)return'';
-      const sysOpen=!q||structs.length>0;
-      const strHtml=structs.map(str=>{
-        const cnt=imgCount(cat.id,sys.id,str.id);
-        const wk=cat.id+'::'+sys.id+'::'+str.id;
-        const hasW=wiki[wk]&&Object.values(wiki[wk]).some(v=>v&&v!='');
-        const active=curCat===cat.id&&curSys===sys.id&&curStr===str.id;
-        return`<div class="sb-str ${active?'active':''}" onclick="selectStr('${cat.id}','${sys.id}','${str.id}')"><span class="sb-str-dot"></span>${str.name}${hasW?'<span class="sb-wiki-dot"></span>':''}<span class="sb-str-cnt">${cnt||''}</span><i class="ti ti-x sb-str-del" onclick="event.stopPropagation();deleteStr('${cat.id}','${sys.id}','${str.id}')"></i></div>`;
-      }).join('');
-      return`<div class="sb-sys"><div class="sb-sys-hd" onclick="toggleSys('${cat.id}','${sys.id}')"><i class="ti ti-chevron-right sb-sys-arr ${sysOpen?'open':''}" id="sarr-${sys.id}"></i><span class="sb-sys-name">${sys.name}</span><span class="sb-sys-cnt">${sys.structs.length}</span><i class="ti ti-x sb-sys-del" onclick="event.stopPropagation();deleteSys('${cat.id}','${sys.id}')"></i></div><div class="sb-sys-body ${sysOpen?'open':''}" id="sbody-${sys.id}">${strHtml}<div class="sb-add add-str" onclick="openNewStr('${cat.id}','${sys.id}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar estrutura</div></div></div>`;
-    }).join('');
-    const catOpen=!q||sysHtml.replace(/<!--.*?-->/g,'').trim().length>0;
-    return`<div class="sb-cat"><div class="sb-cat-hd" onclick="toggleCat('${cat.id}')"><i class="ti ti-chevron-right sb-cat-arr ${catOpen?'open':''}" id="carr-${cat.id}"></i><span class="sb-cat-name">${cat.name}</span><span class="sb-cat-cnt">${cat.systems.length}</span><i class="ti ti-x sb-cat-del" onclick="event.stopPropagation();deleteCat('${cat.id}')"></i></div><div class="sb-cat-body ${catOpen?'open':''}" id="cbody-${cat.id}">${sysHtml}<div class="sb-add add-sys" onclick="openNewSys('${cat.id}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar sistema</div></div></div>`;
-  }).join('');
+function renderSB(){
+  const q=(document.getElementById('sb-q')?.value||'').toLowerCase();
+  const el=document.getElementById('sb-list');
+  if(!el)return;
+  let html='';
+  for(const cat of cats){
+    const catId=cat.id;
+    const catOpen_=catOpen[catId]!==false;
+    let sysHtml='';
+    let catHasMatch=false;
+    for(const sys of (cat.systems||[])){
+      const sysId=sys.id;
+      const sysOpen_=sysOpen[sysId]!==false;
+      let strHtml='';
+      let sysHasMatch=false;
+      for(const str of (sys.structs||[])){
+        const match=!q||str.name.toLowerCase().includes(q)||sys.name.toLowerCase().includes(q)||cat.name.toLowerCase().includes(q);
+        if(!match)continue;
+        sysHasMatch=true;
+        const cnt=iCnt(catId,sysId,str.id);
+        const wKey=catId+'::'+sysId+'::'+str.id;
+        const hasW=wiki[wKey]&&Object.values(wiki[wKey]).some(v=>v&&v!='');
+        const active=cC===catId&&cS===sysId&&cST===str.id;
+        strHtml+=`<div class="l3 ${active?'active':''}" onclick="selStr('${catId}','${sysId}','${str.id}')"><span class="l3-dot"></span><span class="l3-name">${str.name}</span>${hasW?'<span class="l3-wiki"></span>':''}<span class="l3-cnt">${cnt||''}</span><i class="ti ti-x l3-del" onclick="event.stopPropagation();delStr('${catId}','${sysId}','${str.id}')"></i></div>`;
+      }
+      if(q&&!sysHasMatch)continue;
+      catHasMatch=true;
+      const open=q?sysHasMatch:sysOpen_;
+      sysHtml+=`<div class="l2"><div class="l2-hd" onclick="toggleSys('${sysId}')"><i class="ti ti-chevron-right l2-arr ${open?'o':''}" id="sa${sysId}"></i><span class="l2-name">${sys.name}</span><span class="l2-cnt">${(sys.structs||[]).length}</span><i class="ti ti-x l2-del" onclick="event.stopPropagation();delSys('${catId}','${sysId}')"></i></div><div class="l2-body ${open?'o':''}" id="sb${sysId}">${strHtml}<div class="sb-add a3" onclick="openNST('${catId}','${sysId}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar estrutura</div></div></div>`;
+    }
+    if(q&&!catHasMatch)continue;
+    const open=q?catHasMatch:catOpen_;
+    html+=`<div class="l1"><div class="l1-hd" onclick="toggleCat('${catId}')"><i class="ti ti-chevron-right l1-arr ${open?'o':''}" id="ca${catId}"></i><span class="l1-name">${cat.name}</span><span class="l1-cnt">${(cat.systems||[]).length}</span><i class="ti ti-x l1-del" onclick="event.stopPropagation();delCat('${catId}')"></i></div><div class="l1-body ${open?'o':''}" id="cb${catId}">${sysHtml}<div class="sb-add a2" onclick="openNS('${catId}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar sistema</div></div></div>`;
+  }
+  el.innerHTML=html||'<div style="padding:14px;font-size:11px;color:rgba(237,232,220,0.28);text-align:center">Nenhum resultado</div>';
 }
-function toggleCat(id){const b=document.getElementById('cbody-'+id);const a=document.getElementById('carr-'+id);b?.classList.toggle('open');a?.classList.toggle('open')}
-function toggleSys(cId,sId){const b=document.getElementById('sbody-'+sId);const a=document.getElementById('sarr-'+sId);b?.classList.toggle('open');a?.classList.toggle('open')}
+function toggleCat(id){catOpen[id]=!catOpen[id];renderSB()}
+function toggleSys(id){sysOpen[id]=!sysOpen[id];renderSB()}
 
 // NAV
-function selectStr(cId,sId,stId){curCat=cId;curSys=sId;curStr=stId;curTab='gallery';curAtlasMode='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=getCat(cId);const sys=getSys(cId,sId);const str=getStr(cId,sId,stId);document.getElementById('breadcrumb').innerHTML=`<span class="crumb" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb active">${str?.name||''}</span>`;renderSidebar();renderStructPage()}
-function goHome(){curCat=null;curSys=null;curStr=null;document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';document.getElementById('breadcrumb').innerHTML='';renderSidebar();renderHome()}
+function selStr(cId,sId,stId){cC=cId;cS=sId;cST=stId;cTab='gallery';cAtlas='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=gCat(cId);const sys=gSys(cId,sId);const str=gStr(cId,sId,stId);document.getElementById('bc').innerHTML=`<span class="bc" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc active">${str?.name||''}</span>`;renderSB();renderSP()}
+function goHome(){cC=null;cS=null;cST=null;document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';document.getElementById('bc').innerHTML='';renderSB();renderHome()}
 
 // HOME
-function renderHome(){const el=document.getElementById('content');const recent=imgs.slice(0,24);el.innerHTML=`<div class="home-view"><div class="home-welcome"><h1>SonoVault</h1><p>Banco de imagens ultrassonográficas · Clínica Senhor dos Passos</p></div>${recent.length?`<div class="home-recent-label">Imagens recentes</div><div class="recent-grid">${recent.map(img=>imgCard(img)).join('')}</div>`:`<div class="home-empty"><i class="ti ti-ripple"></i><h3>Bem-vindo ao SonoVault</h3><p>Selecione uma estrutura na barra lateral e adicione sua primeira imagem.</p></div>`}</div>`}
+function renderHome(){const el=document.getElementById('content');const recent=imgs.slice(0,24);el.innerHTML=`<div class="home"><h1>SonoVault</h1><p>Banco de imagens ultrassonográficas · Clínica Senhor dos Passos</p>${recent.length?`<div class="recent-label">Imagens recentes</div><div class="recent-grid">${recent.map(img=>iCard(img)).join('')}</div>`:`<div class="home-empty"><i class="ti ti-ripple"></i><h3>Bem-vindo ao SonoVault</h3><p>Crie categorias na barra lateral e comece a adicionar imagens.</p></div>`}</div>`}
 
 // STRUCT PAGE
-function renderStructPage(){
-  const cat=getCat(curCat);const sys=getSys(curCat,curSys);const str=getStr(curCat,curSys,curStr);
-  const wk=wKey();const w=wiki[wk]||{};const hasW=Object.values(w).some(v=>v&&v!='');
-  const illusHtml=w.illus?`<img src="${w.illus}" alt="">`:(getIllus(str?.name||''));
+function renderSP(){
+  const cat=gCat(cC);const sys=gSys(cC,cS);const str=gStr(cC,cS,cST);
+  const k=wk();const w=wiki[k]||{};const hasW=Object.values(w).some(v=>v&&v!='');
+  const ilHtml=w.illus?`<img src="${w.illus}" alt="">`:'<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>';
   const el=document.getElementById('content');
-  el.innerHTML=`<div class="struct-page"><div class="struct-header"><div class="struct-header-top"><div class="struct-illus" onclick="document.getElementById('illus-fi').click()" title="Clique para trocar ilustração">${illusHtml}</div><div class="struct-header-info"><div class="struct-cat-tag">${cat?.name||''} › ${sys?.name||''}</div><div class="struct-title">${str?.name||''}</div><div class="struct-meta">${imgCount(curCat,curSys,curStr)} imagens · ${hasW?'<span style="color:var(--accent)">Atlas disponível</span>':'Sem atlas ainda'}</div></div></div><div class="struct-tabs"><div class="struct-tab ${curTab==='gallery'?'active':''}" onclick="switchTab('gallery')"><i class="ti ti-photo" style="font-size:12px"></i> Imagens</div><div class="struct-tab ${curTab==='atlas'?'active':''}" onclick="switchTab('atlas')"><i class="ti ti-book" style="font-size:12px"></i> Atlas${hasW?' <span style="background:var(--accent);color:white;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:3px">✓</span>':''}</div></div></div><div class="struct-body" id="struct-body"></div></div>`;
-  renderTabContent();
+  el.innerHTML=`<div class="sp"><div class="sp-hd"><div class="sp-hd-top"><div class="sp-illus" onclick="document.getElementById('illus-fi').click()" title="Clique para adicionar/trocar ilustração">${ilHtml}<div class="sp-illus-hint"><i class="ti ti-photo-edit" style="font-size:18px;color:white"></i></div></div><div class="sp-info"><div class="sp-tag">${cat?.name||''} › ${sys?.name||''}</div><div class="sp-title">${str?.name||''}</div><div class="sp-meta">${iCnt(cC,cS,cST)} imagens · ${hasW?'<span style="color:var(--accent)">Atlas disponível</span>':'Sem atlas ainda'}</div></div></div><div class="sp-tabs"><div class="sp-tab ${cTab==='gallery'?'active':''}" onclick="swTab('gallery')"><i class="ti ti-photo" style="font-size:12px"></i> Imagens</div><div class="sp-tab ${cTab==='atlas'?'active':''}" onclick="swTab('atlas')"><i class="ti ti-book" style="font-size:12px"></i> Atlas${hasW?' <span style="background:var(--accent);color:white;font-size:9px;padding:1px 5px;border-radius:3px">✓</span>':''}</div></div></div><div class="sp-body" id="sp-body"></div></div>`;
+  renderTab();
 }
-function switchTab(t){curTab=t;renderStructPage()}
-function renderTabContent(){const el=document.getElementById('struct-body');if(!el)return;curTab==='gallery'?renderGalleryTab(el):renderAtlasTab(el)}
+function swTab(t){cTab=t;renderSP()}
+function renderTab(){const el=document.getElementById('sp-body');if(!el)return;cTab==='gallery'?renderGal(el):renderAtlas(el)}
 
 // GALLERY
-function renderGalleryTab(el){const all=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr);const filtered=gFilter==='all'?all:all.filter(i=>i.category===gFilter);el.innerHTML=`<div class="gallery-pane"><div class="gallery-toolbar"><div class="gallery-search"><i class="ti ti-search"></i><input type="text" id="gsearch" placeholder="Buscar achado..." oninput="filterGallery()"></div><div class="gfilter"><button class="gf-btn ${gFilter==='all'?'on':''}" onclick="setGFilter('all')">Todos</button><button class="gf-btn ${gFilter==='patologia'?'on':''}" onclick="setGFilter('patologia')">Patologia</button><button class="gf-btn ${gFilter==='normal'?'on':''}" onclick="setGFilter('normal')">Normal</button><button class="gf-btn ${gFilter==='variante'?'on':''}" onclick="setGFilter('variante')">Variante</button></div></div>${filtered.length?`<div class="img-grid">${filtered.map(img=>imgCard(img)).join('')}</div>`:`<div class="gallery-empty"><i class="ti ti-photo-off"></i><p>Nenhuma imagem. Use "Nova imagem" para adicionar.</p></div>`}</div>`}
-function setGFilter(f){gFilter=f;renderTabContent()}
-function filterGallery(){const q=(document.getElementById('gsearch')?.value||'').toLowerCase();const all=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr&&(gFilter==='all'||i.category===gFilter));const filtered=q?all.filter(i=>[i.lesion,i.description,i.level].join(' ').toLowerCase().includes(q)):all;const g=document.querySelector('.img-grid');if(g)g.innerHTML=filtered.map(img=>imgCard(img)).join('')}
-function imgCard(img){const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i></div>';return`<div class="icard" onclick="openView('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div><div class="i-date">${img.date?new Date(img.date).toLocaleDateString('pt-BR'):''}</div></div></div>`}
+function renderGal(el){
+  const all=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST);
+  const filtered=gF==='all'?all:all.filter(i=>i.category===gF);
+  el.innerHTML=`<div class="gal-pane"><div class="gal-bar"><div class="gal-search"><i class="ti ti-search"></i><input id="gsq" placeholder="Buscar achado..." oninput="filterGal()"></div><div class="gf"><button class="gf-b ${gF==='all'?'on':''}" onclick="setGF('all')">Todos</button><button class="gf-b ${gF==='patologia'?'on':''}" onclick="setGF('patologia')">Patologia</button><button class="gf-b ${gF==='normal'?'on':''}" onclick="setGF('normal')">Normal</button><button class="gf-b ${gF==='variante'?'on':''}" onclick="setGF('variante')">Variante</button></div></div>${filtered.length?`<div class="img-grid">${filtered.map(img=>iCard(img)).join('')}</div>`:`<div class="gal-empty"><i class="ti ti-photo-off"></i><p>Nenhuma imagem. Use "Nova imagem" para adicionar.</p></div>`}</div>`;
+}
+function setGF(f){gF=f;renderTab()}
+function filterGal(){const q=(document.getElementById('gsq')?.value||'').toLowerCase();const all=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST&&(gF==='all'||i.category===gF));const filtered=q?all.filter(i=>[i.lesion,i.description,i.level].join(' ').toLowerCase().includes(q)):all;const g=document.querySelector('.img-grid');if(g)g.innerHTML=filtered.map(img=>iCard(img)).join('')}
+function iCard(img){const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i></div>';return`<div class="icard" onclick="openView('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div><div class="i-date">${img.date?new Date(img.date).toLocaleDateString('pt-BR'):''}</div></div></div>`}
 
 // ATLAS
-function renderAtlasTab(el){const wk=wKey();const w=wiki[wk]||{};const hasContent=Object.values(w).some(v=>v&&v!='');if(curAtlasMode==='read'&&hasContent){renderAtlasRead(el,w)}else{renderAtlasEdit(el,w)}}
+function renderAtlas(el){const k=wk();const w=wiki[k]||{};const hasC=Object.values(w).some(v=>v&&v!='');if(cAtlas==='read'&&hasC)renderAR(el,w);else renderAE(el,w)}
 
-function renderAtlasRead(el,w){
-  const cat=getCat(curCat);const sys=getSys(curCat,curSys);const str=getStr(curCat,curSys,curStr);
-  const illusHtml=w.illus?`<img src="${w.illus}" alt="">`:(getIllus(str?.name||''));
-  const structImgs=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr).slice(0,6);
+function renderAR(el,w){
+  const cat=gCat(cC);const sys=gSys(cC,cS);const str=gStr(cC,cS,cST);
+  const ilHtml=w.illus?`<img src="${w.illus}" alt="">`:'<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>';
+  const si=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST).slice(0,6);
   const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS',isRef:true}];
-  el.innerHTML=`<div class="atlas-read-pane"><div class="atlas-read-header"><div><div class="atlas-read-title">${str?.name||''}</div><div class="atlas-read-sub">${cat?.name||''} › ${sys?.name||''} · Atlas Ultrassonográfico</div></div><div class="atlas-read-actions"><button class="btn btn-ghost" style="font-size:11px" onclick="curAtlasMode='edit';renderTabContent()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button><button class="btn btn-primary" style="font-size:11px" onclick="exportAtlasPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button></div></div><div class="atlas-read-body"><div class="atlas-read-left">${secs.map(s=>w[s.id]?`<div class="atlas-sec-block"><div class="atlas-sec-lbl">${s.label}</div>${s.isRef?`<div class="atlas-refs-txt">${w[s.id]}</div>`:`<div class="atlas-sec-txt">${w[s.id]}</div>`}</div>`:'').join('')}</div><div class="atlas-read-right"><div><div class="atlas-right-lbl">Ilustração anatômica</div><div class="atlas-illus-box">${illusHtml}</div><div style="font-size:10px;color:var(--text-soft);text-align:center;margin-top:5px;cursor:pointer" onclick="document.getElementById('illus-fi').click()"><i class="ti ti-edit" style="font-size:10px"></i> Trocar ilustração</div></div>${structImgs.length?`<div><div class="atlas-right-lbl">Imagens do banco</div><div class="atlas-imgs-mini">${structImgs.map(img=>`<div class="atlas-img-mini" onclick="openView('${img.id}')">${img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>'}</div>`).join('')}</div></div>`:`<div class="atlas-empty-right"><i class="ti ti-photo-off"></i><p>Adicione imagens na aba Imagens para vê-las aqui</p></div>`}</div></div></div>`
+  el.innerHTML=`<div class="ar-pane"><div class="ar-hd"><div><div class="ar-title">${str?.name||''}</div><div class="ar-sub">${cat?.name||''} › ${sys?.name||''} · Atlas Ultrassonográfico</div></div><div class="ar-actions"><button class="btn btn-g" style="font-size:11px" onclick="cAtlas='edit';renderTab()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button><button class="btn btn-p" style="font-size:11px" onclick="exportAtlasPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button></div></div><div class="ar-body"><div class="ar-left">${secs.map(s=>w[s.id]?`<div class="ar-sec"><div class="ar-sec-lbl">${s.label}</div>${s.isRef?`<div class="ar-refs">${w[s.id]}</div>`:`<div class="ar-sec-txt">${w[s.id]}</div>`}</div>`:'').join('')}</div><div class="ar-right"><div><div class="ar-right-lbl">Ilustração anatômica</div><div class="ar-illus-box">${ilHtml}</div><div class="ar-illus-change" onclick="document.getElementById('illus-fi').click()"><i class="ti ti-edit" style="font-size:10px"></i> Trocar ilustração</div></div>${si.length?`<div><div class="ar-right-lbl">Imagens do banco</div><div class="ar-imgs-grid">${si.map(img=>`<div class="ar-img-mini" onclick="openView('${img.id}')">${img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>'}</div>`).join('')}</div></div>`:`<div class="ar-empty"><i class="ti ti-photo-off"></i><p>Adicione imagens na aba Imagens para vê-las aqui</p></div>`}</div></div></div>`;
 }
 
-function renderAtlasEdit(el,w){
-  const secs=[{id:'history',icon:'ti-clock',title:'História / Quem descobriu',ph:'Ex: Descrito por William Morrant Baker em 1877...',h:120},{id:'anatomy',icon:'ti-bone',title:'Anatomia',ph:'Descreva a anatomia detalhada da estrutura...',h:150},{id:'physio',icon:'ti-heart-rate-monitor',title:'Fisiopatologia',ph:'Mecanismos fisiopatológicos, causas, fatores de risco...',h:150},{id:'findings',icon:'ti-ripple',title:'Achados no ultrassom',ph:'Como a estrutura e suas patologias aparecem no ultrassom...',h:150},{id:'treatment',icon:'ti-stethoscope',title:'Tratamento / Conduta',ph:'Conservador, injetáveis (corticosteroide, PRP, hidrodissecção), cirurgia...',h:150},{id:'refs',icon:'ti-books',title:'Referências',ph:'StatPearls NCBI · Skeletal Radiology · AJR · RadioGraphics · Journal of Ultrasound...',h:100}];
-  el.innerHTML=`<div class="atlas-edit-pane">
-<div class="atlas-edit-section"><div class="atlas-edit-hd"><div class="atlas-edit-icon"><i class="ti ti-photo"></i></div><div class="atlas-edit-title">Ilustração anatômica</div></div><div class="atlas-edit-body"><div class="illus-upload-zone" id="illus-zone" onclick="document.getElementById('illus-fi').click()">${w.illus?`<img src="${w.illus}" class="illus-preview" alt="Ilustração">`:`<i class="ti ti-photo-up"></i><p>Clique para fazer upload de ilustração<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — imagem anatômica, esquema, figura</span>`}</div></div></div>
-${secs.map(s=>`<div class="atlas-edit-section"><div class="atlas-edit-hd"><div class="atlas-edit-icon"><i class="ti ${s.icon}"></i></div><div class="atlas-edit-title">${s.title}</div></div><div class="atlas-edit-body"><textarea class="atlas-textarea" id="w-${s.id}" placeholder="${s.ph}" style="min-height:${s.h}px">${w[s.id]||''}</textarea></div></div>`).join('')}
-</div><div class="atlas-edit-footer"><button class="btn btn-ghost" onclick="curAtlasMode='read';renderTabContent()"><i class="ti ti-arrow-left" style="font-size:11px"></i> Cancelar</button><button class="btn btn-primary" onclick="saveAtlas()"><i class="ti ti-check" style="font-size:11px"></i> Salvar e visualizar</button></div>`
+function renderAE(el,w){
+  const secs=[{id:'history',icon:'ti-clock',title:'História / Quem descobriu',ph:'Ex: Descrito por William Morrant Baker em 1877...',h:110},{id:'anatomy',icon:'ti-bone',title:'Anatomia',ph:'Descreva a anatomia detalhada da estrutura...',h:140},{id:'physio',icon:'ti-heart-rate-monitor',title:'Fisiopatologia',ph:'Mecanismos fisiopatológicos, causas, fatores de risco...',h:140},{id:'findings',icon:'ti-ripple',title:'Achados no ultrassom',ph:'Como a estrutura e suas patologias aparecem no ultrassom...',h:140},{id:'treatment',icon:'ti-stethoscope',title:'Tratamento / Conduta',ph:'Conservador, injetáveis (corticosteroide, PRP, hidrodissecção), cirurgia...',h:140},{id:'refs',icon:'ti-books',title:'Referências',ph:'StatPearls NCBI · Skeletal Radiology · AJR · RadioGraphics · Journal of Ultrasound...',h:90}];
+  el.innerHTML=`<div class="ae-pane"><div class="ae-sec"><div class="ae-hd"><div class="ae-ico"><i class="ti ti-photo"></i></div><div class="ae-ttl">Ilustração anatômica</div></div><div class="ae-bd"><div class="illus-zone" onclick="document.getElementById('illus-fi').click()">${w.illus?`<img src="${w.illus}" class="illus-prev" alt="Ilustração">`:`<i class="ti ti-photo-up"></i><p>Clique para fazer upload de ilustração<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — esquema anatômico, figura de livro</span>`}</div></div></div>${secs.map(s=>`<div class="ae-sec"><div class="ae-hd"><div class="ae-ico"><i class="ti ${s.icon}"></i></div><div class="ae-ttl">${s.title}</div></div><div class="ae-bd"><textarea class="ae-ta" id="w-${s.id}" placeholder="${s.ph}" style="min-height:${s.h}px">${w[s.id]||''}</textarea></div></div>`).join('')}</div><div class="ae-footer"><button class="btn btn-g" onclick="cAtlas='read';renderTab()"><i class="ti ti-arrow-left" style="font-size:11px"></i> Cancelar</button><button class="btn btn-p" onclick="saveAtlas()"><i class="ti ti-check" style="font-size:11px"></i> Salvar e visualizar</button></div>`;
 }
 
-function saveAtlas(){const wk=wKey();const prev=wiki[wk]||{};wiki[wk]={illus:prev.illus||'',history:v('w-history'),anatomy:v('w-anatomy'),physio:v('w-physio'),findings:v('w-findings'),treatment:v('w-treatment'),refs:v('w-refs')};schedWiki();curAtlasMode='read';renderStructPage();toast('Atlas salvo','ok')}
+function saveAtlas(){const k=wk();const prev=wiki[k]||{};wiki[k]={illus:prev.illus||'',history:v('w-history'),anatomy:v('w-anatomy'),physio:v('w-physio'),findings:v('w-findings'),treatment:v('w-treatment'),refs:v('w-refs')};schedW();cAtlas='read';renderSP();toast('Atlas salvo','ok')}
 function v(id){return document.getElementById(id)?.value||''}
 
-// ILLUS UPLOAD
-function handleIllusFile(inp){const f=inp.files[0];if(!f)return;if(f.size>5*1024*1024){toast('Imagem muito grande (máx 5MB)','err');return}const rd=new FileReader();rd.onload=e=>{const wk=wKey();if(!wiki[wk])wiki[wk]={};wiki[wk].illus=e.target.result;schedWiki();renderStructPage();toast('Ilustração atualizada','ok')};rd.readAsDataURL(f)}
+// ILLUS
+function handleIllusFile(inp){const f=inp.files[0];if(!f)return;if(f.size>5*1024*1024){toast('Máx. 5MB','err');return}const rd=new FileReader();rd.onload=e=>{const k=wk();if(!wiki[k])wiki[k]={};wiki[k].illus=e.target.result;schedW();renderSP();toast('Ilustração atualizada','ok')};rd.readAsDataURL(f);inp.value=''}
 
-// VIEW MODAL
-function openView(id){viewId=id;const img=imgs.find(i=>i.id===id);if(!img)return;const cat=getCat(img.catId);const sys=getSys(img.catId,img.sysId);const str=getStr(img.catId,img.sysId,img.strId);const wk=img.catId+'::'+img.sysId+'::'+img.strId;const hasW=wiki[wk]&&Object.values(wiki[wk]).some(v=>v&&v!='');document.getElementById('vt-title').textContent=img.lesion;document.getElementById('v-reg').textContent=(cat?.name||'')+(sys?' › '+sys.name:'')+(str?' › '+str.name:'');document.getElementById('v-str').textContent=str?.name||'';document.getElementById('v-les').textContent=img.lesion+(img.level?' — '+img.level:'');document.getElementById('v-pills').innerHTML=`<span class="pill ${bCls(img.category)==='b-pat'?'pill-navy':'pill-beige'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}`;const dw=document.getElementById('v-desc-wrap');if(img.description){dw.style.display='flex';document.getElementById('v-desc').textContent=img.description}else dw.style.display='none';document.getElementById('v-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'';document.getElementById('v-img').innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="view-img-ph"><i class="ti ti-photo"></i></div>';const ab=document.getElementById('v-atlas-btn');ab.innerHTML=`<i class="ti ti-book" style="font-size:14px"></i> ${hasW?'Ver Atlas — '+str?.name:'Atlas ainda não criado para '+str?.name}`;ab.style.opacity=hasW?'1':'0.7';document.getElementById('view-overlay').style.display='flex'}
-function closeView(){document.getElementById('view-overlay').style.display='none';viewId=null}
-function editFromView(){const id=viewId;closeView();openEditModal(id)}
-function deleteFromView(){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==viewId);schedSave();closeView();renderTabContent();updateStats();renderSidebar();toast('Imagem removida','ok')}
-function openAtlasFromView(){const img=imgs.find(i=>i.id===viewId);if(!img)return;closeView();curCat=img.catId;curSys=img.sysId;curStr=img.strId;curTab='atlas';curAtlasMode='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=getCat(img.catId);const sys=getSys(img.catId,img.sysId);const str=getStr(img.catId,img.sysId,img.strId);document.getElementById('breadcrumb').innerHTML=`<span class="crumb" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="crumb active">${str?.name||''}</span>`;renderSidebar();renderStructPage()}
+// VIEW
+function openView(id){vId=id;const img=imgs.find(i=>i.id===id);if(!img)return;const cat=gCat(img.catId);const sys=gSys(img.catId,img.sysId);const str=gStr(img.catId,img.sysId,img.strId);const k=img.catId+'::'+img.sysId+'::'+img.strId;const hasW=wiki[k]&&Object.values(wiki[k]).some(v=>v&&v!='');document.getElementById('vm-ttl').textContent=img.lesion;document.getElementById('vi-reg').textContent=(cat?.name||'')+(sys?' › '+sys.name:'')+(str?' › '+str.name:'');document.getElementById('vi-str').textContent=str?.name||'';document.getElementById('vi-les').textContent=img.lesion+(img.level?' — '+img.level:'');document.getElementById('vi-pills').innerHTML=`<span class="pill ${bCls(img.category)==='b-pat'?'pill-n':'pill-b'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-b">${img.level}</span>`:''}`;const dw=document.getElementById('vi-dw');if(img.description){dw.style.display='flex';document.getElementById('vi-desc').textContent=img.description}else dw.style.display='none';document.getElementById('vi-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'';document.getElementById('vm-img').innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="vm-img-ph"><i class="ti ti-photo"></i></div>';const ab=document.getElementById('vi-atlas-btn');ab.innerHTML=`<i class="ti ti-book" style="font-size:13px"></i> ${hasW?'Ver Atlas — '+str?.name:'Atlas não criado — '+str?.name}`;ab.style.opacity=hasW?'1':'0.65';show('vo')}
+function closeView(){hide('vo');vId=null}
+function editFromView(){const id=vId;closeView();openEditModal(id)}
+function deleteFromView(){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==vId);schedDb();closeView();renderTab();updateStat();renderSB();toast('Imagem removida','ok')}
+function openAtlasFromView(){const img=imgs.find(i=>i.id===vId);if(!img)return;closeView();cC=img.catId;cS=img.sysId;cST=img.strId;cTab='atlas';cAtlas='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=gCat(img.catId);const sys=gSys(img.catId,img.sysId);const str=gStr(img.catId,img.sysId,img.strId);document.getElementById('bc').innerHTML=`<span class="bc" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc active">${str?.name||''}</span>`;renderSB();renderSP()}
 
-// ADD/EDIT MODAL
-function openAddModal(){editId=null;dataURL=null;document.getElementById('modal-ttl').textContent='Nova imagem';document.getElementById('modal-overlay').style.display='flex';const cs=document.getElementById('i-cat-sel');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===curCat?' selected':''}>${c.name}</option>`).join('');updateSysSel();['i-les','i-lvl','i-desc'].forEach(x=>document.getElementById(x).value='');document.getElementById('i-imgcat').value='patologia';document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}
-function openEditModal(id){editId=id;const img=imgs.find(i=>i.id===id);if(!img)return;dataURL=img.dataURL||null;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('modal-overlay').style.display='flex';const cs=document.getElementById('i-cat-sel');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===img.catId?' selected':''}>${c.name}</option>`).join('');updateSysSel(img.sysId,img.strId);document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-imgcat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';document.getElementById('upload-z').innerHTML=img.dataURL?`<img src="${img.dataURL}" class="upload-prev">`:'<i class="ti ti-photo-up"></i><p>Clique para trocar imagem</p>'}
-function updateSysSel(selSys,selStr){const cId=document.getElementById('i-cat-sel').value;const cat=getCat(cId);const ss=document.getElementById('i-sys-sel');ss.innerHTML='<option value="">Selecionar...</option>'+(cat?.systems||[]).map(s=>`<option value="${s.id}"${s.id===selSys?' selected':''}>${s.name}</option>`).join('');if(selSys)updateStrSel(selStr);else document.getElementById('i-str-sel').innerHTML='<option value="">Selecionar...</option>'}
-function updateStrSel(selStr){const cId=document.getElementById('i-cat-sel').value;const sId=document.getElementById('i-sys-sel').value;const sys=getSys(cId,sId);const ss=document.getElementById('i-str-sel');ss.innerHTML='<option value="">Selecionar...</option>'+(sys?.structs||[]).map(s=>`<option value="${s.id}"${s.id===selStr?' selected':''}>${s.name}</option>`).join('')}
-function closeModal(){document.getElementById('modal-overlay').style.display='none';editId=null;dataURL=null;document.getElementById('fi').value=''}
-function handleFile(inp){const f=inp.files[0];if(!f)return;if(f.size>8*1024*1024){toast('Imagem muito grande','err');return}const rd=new FileReader();rd.onload=e=>{dataURL=e.target.result;document.getElementById('upload-z').innerHTML=`<img src="${dataURL}" class="upload-prev">`};rd.readAsDataURL(f)}
-async function saveImg(){const catId=document.getElementById('i-cat-sel').value,sysId=document.getElementById('i-sys-sel').value,strId=document.getElementById('i-str-sel').value,les=document.getElementById('i-les').value.trim();if(!catId||!sysId||!strId||!les){toast('Preencha todos os campos','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),catId,sysId,strId,lesion:les,category:document.getElementById('i-imgcat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);schedSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar';updateStats();renderSidebar();if(curCat&&curSys&&curStr)renderTabContent();else renderHome();toast(editId?'Imagem atualizada':'Imagem salva','ok')}
+// ADD/EDIT IMG
+function openAddModal(){eId=null;dURL=null;document.getElementById('img-ttl').textContent='Nova imagem';show('img-mo');const cs=document.getElementById('im-cat');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===cC?' selected':''}>${c.name}</option>`).join('');fillImgSys();['im-les','im-lvl','im-desc'].forEach(x=>document.getElementById(x).value='');document.getElementById('im-icat').value='patologia';document.getElementById('img-uz').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}
+function openEditModal(id){eId=id;const img=imgs.find(i=>i.id===id);if(!img)return;dURL=img.dataURL||null;document.getElementById('img-ttl').textContent='Editar imagem';show('img-mo');const cs=document.getElementById('im-cat');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===img.catId?' selected':''}>${c.name}</option>`).join('');fillImgSys(img.sysId,img.strId);document.getElementById('im-les').value=img.lesion||'';document.getElementById('im-icat').value=img.category||'patologia';document.getElementById('im-lvl').value=img.level||'';document.getElementById('im-desc').value=img.description||'';document.getElementById('img-uz').innerHTML=img.dataURL?`<img src="${img.dataURL}" class="up" alt="">`:'<i class="ti ti-photo-up"></i><p>Clique para trocar imagem</p>'}
+function fillImgSys(selSys,selStr){const cId=document.getElementById('im-cat').value;const cat=gCat(cId);const ss=document.getElementById('im-sys');ss.innerHTML='<option value="">Selecionar...</option>'+(cat?.systems||[]).map(s=>`<option value="${s.id}"${s.id===selSys?' selected':''}>${s.name}</option>`).join('');fillImgStr(selStr)}
+function fillImgStr(selStr){const cId=document.getElementById('im-cat').value;const sId=document.getElementById('im-sys').value;const sys=gSys(cId,sId);const ss=document.getElementById('im-str');ss.innerHTML='<option value="">Selecionar...</option>'+(sys?.structs||[]).map(s=>`<option value="${s.id}"${s.id===selStr?' selected':''}>${s.name}</option>`).join('');if(cST&&!selStr)ss.value=cST||''}
+function closeImgModal(){hide('img-mo');eId=null;dURL=null;document.getElementById('img-fi').value=''}
+function handleImgFile(inp){const f=inp.files[0];if(!f)return;if(f.size>8*1024*1024){toast('Máx. 8MB','err');return}const rd=new FileReader();rd.onload=e=>{dURL=e.target.result;document.getElementById('img-uz').innerHTML=`<img src="${dURL}" class="up" alt="">`};rd.readAsDataURL(f)}
+async function saveImg(){const catId=document.getElementById('im-cat').value,sysId=document.getElementById('im-sys').value,strId=document.getElementById('im-str').value,les=document.getElementById('im-les').value.trim();if(!catId||!sysId||!strId||!les){toast('Preencha todos os campos','err');return}const btn=document.getElementById('img-save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:eId||uid(),catId,sysId,strId,lesion:les,category:document.getElementById('im-icat').value,level:document.getElementById('im-lvl').value.trim(),description:document.getElementById('im-desc').value.trim(),dataURL:dURL,date:eId?(imgs.find(i=>i.id===eId)?.date||new Date().toISOString()):new Date().toISOString()};if(eId){const x=imgs.findIndex(i=>i.id===eId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);schedDb();closeImgModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar';updateStat();renderSB();if(cC&&cS&&cST)renderTab();else renderHome();toast(eId?'Imagem atualizada':'Imagem salva','ok')}
 
 // CATS/SYS/STRUCTS
-function openNewCat(){document.getElementById('newcat-name').value='';document.getElementById('newcat-overlay').style.display='flex';setTimeout(()=>document.getElementById('newcat-name').focus(),100)}
-function saveCat(){const name=document.getElementById('newcat-name').value.trim();if(!name)return;cats.push({id:'cat_'+Date.now(),name,systems:[]});schedCats();renderSidebar();document.getElementById('newcat-overlay').style.display='none';toast('Categoria criada','ok')}
-function deleteCat(id){if(!confirm('Remover esta categoria?'))return;cats=cats.filter(c=>c.id!==id);if(curCat===id){curCat=null;curSys=null;curStr=null;goHome()}schedCats();renderSidebar()}
-function openNewSys(catId){newSysPending=catId;document.getElementById('newsys-name').value='';document.getElementById('newsys-overlay').style.display='flex';setTimeout(()=>document.getElementById('newsys-name').focus(),100)}
-function saveSys(){const name=document.getElementById('newsys-name').value.trim();if(!name)return;const cat=getCat(newSysPending);if(!cat)return;cat.systems.push({id:'sys_'+Date.now(),name,structs:[]});schedCats();renderSidebar();document.getElementById('newsys-overlay').style.display='none';toast('Sistema criado','ok')}
-function deleteSys(cId,sId){if(!confirm('Remover este sistema?'))return;const cat=getCat(cId);if(!cat)return;cat.systems=cat.systems.filter(s=>s.id!==sId);if(curCat===cId&&curSys===sId){curSys=null;curStr=null;goHome()}schedCats();renderSidebar()}
-function openNewStr(catId,sysId){newStrPending={catId,sysId};document.getElementById('newstr-name').value='';document.getElementById('newstr-overlay').style.display='flex';setTimeout(()=>document.getElementById('newstr-name').focus(),100)}
-function saveStr(){const name=document.getElementById('newstr-name').value.trim();if(!name)return;const sys=getSys(newStrPending.catId,newStrPending.sysId);if(!sys)return;sys.structs.push({id:'str_'+Date.now(),name});schedCats();renderSidebar();document.getElementById('newstr-overlay').style.display='none';toast('Estrutura criada','ok')}
-function deleteStr(cId,sId,stId){if(!confirm('Remover esta estrutura?'))return;const sys=getSys(cId,sId);if(!sys)return;sys.structs=sys.structs.filter(s=>s.id!==stId);if(curCat===cId&&curSys===sId&&curStr===stId){curStr=null;goHome()}schedCats();renderSidebar()}
+function openNC(){document.getElementById('nc-name').value='';show('nc-mo');setTimeout(()=>document.getElementById('nc-name').focus(),80)}
+function saveNC(){const n=document.getElementById('nc-name').value.trim();if(!n)return;cats.push({id:uid(),name:n,systems:[]});schedC();renderSB();hide('nc-mo');toast('Categoria criada','ok')}
+function delCat(id){if(!confirm('Remover esta categoria e todo seu conteúdo?'))return;cats=cats.filter(c=>c.id!==id);if(cC===id){cC=null;cS=null;cST=null;goHome()}schedC();renderSB()}
+function openNS(catId){nsCatId=catId;document.getElementById('ns-name').value='';show('ns-mo');setTimeout(()=>document.getElementById('ns-name').focus(),80)}
+function saveNS(){const n=document.getElementById('ns-name').value.trim();if(!n)return;const cat=gCat(nsCatId);if(!cat)return;if(!cat.systems)cat.systems=[];cat.systems.push({id:uid(),name:n,structs:[]});schedC();renderSB();hide('ns-mo');toast('Sistema criado','ok')}
+function delSys(cId,sId){if(!confirm('Remover este sistema?'))return;const cat=gCat(cId);if(cat)cat.systems=cat.systems.filter(s=>s.id!==sId);if(cC===cId&&cS===sId){cS=null;cST=null;goHome()}schedC();renderSB()}
+function openNST(catId,sysId){nstCatId=catId;nstSysId=sysId;document.getElementById('nst-name').value='';show('nst-mo');setTimeout(()=>document.getElementById('nst-name').focus(),80)}
+function saveNST(){const n=document.getElementById('nst-name').value.trim();if(!n)return;const sys=gSys(nstCatId,nstSysId);if(!sys)return;if(!sys.structs)sys.structs=[];sys.structs.push({id:uid(),name:n});schedC();renderSB();hide('nst-mo');toast('Estrutura criada','ok')}
+function delStr(cId,sId,stId){if(!confirm('Remover esta estrutura?'))return;const sys=gSys(cId,sId);if(sys)sys.structs=sys.structs.filter(s=>s.id!==stId);if(cC===cId&&cS===sId&&cST===stId){cST=null;goHome()}schedC();renderSB()}
 
 // PDF
-async function exportSinglePDF(){const img=imgs.find(i=>i.id===viewId);if(!img)return;await generateImgPDF([img])}
-async function exportPDF(){const list=imgs.filter(i=>i.catId===curCat&&i.sysId===curSys&&i.strId===curStr);if(!list.length){toast('Nenhuma imagem','err');return}await generateImgPDF(list)}
-async function generateImgPDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;list.forEach((img,idx)=>{if(idx>0)doc.addPage();const cat=getCat(img.catId);const sys=getSys(img.catId,img.sysId);const str=getStr(img.catId,img.sysId,img.strId);doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setDrawColor(237,232,220);doc.setLineWidth(0.8);doc.rect(6,6,W-12,H-12,'S');doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('SonoVault',18,20);doc.setFillColor(37,99,168);doc.roundedRect(W-70,10,58,10,2,2,'F');doc.setTextColor(237,232,220);doc.setFontSize(8);doc.text(((sys?.name||'')+(str?' › '+str.name:'')).toUpperCase(),W-41,16.5,{align:'center'});if(img.dataURL){try{doc.addImage(img.dataURL,'PNG',10,34,W-20,110,'','MEDIUM')}catch(e){}}doc.setFillColor(37,53,85);doc.rect(6,148,W-12,105,'F');const cc=img.category==='normal'?[45,122,79]:img.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...cc);doc.roundedRect(12,153,32,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(img.category).toUpperCase(),28,158.5,{align:'center'});doc.setTextColor(237,232,220);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text(str?.name||'',12,168);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(img.lesion+(img.level?' — '+img.level:''),12,178,{maxWidth:W-24});if(img.description){doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(200,194,182);doc.text(doc.splitTextToSize(img.description,W-24).slice(0,8),12,188)}doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-10,{align:'center'});doc.text(img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',W-12,H-10,{align:'right'})});const str=getStr(curCat,curSys,curStr);doc.save(`sonovault-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro ao gerar PDF','err')}}
+async function exportSinglePDF(){const img=imgs.find(i=>i.id===vId);if(!img)return;await genImgPDF([img])}
+async function exportPDF(){const list=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST);if(!list.length){toast('Nenhuma imagem','err');return}await genImgPDF(list)}
+async function genImgPDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;list.forEach((img,idx)=>{if(idx>0)doc.addPage();const cat=gCat(img.catId);const sys=gSys(img.catId,img.sysId);const str=gStr(img.catId,img.sysId,img.strId);doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setDrawColor(237,232,220);doc.setLineWidth(0.8);doc.rect(6,6,W-12,H-12,'S');doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('SonoVault',18,20);doc.setFillColor(37,99,168);doc.roundedRect(W-68,10,56,10,2,2,'F');doc.setTextColor(237,232,220);doc.setFontSize(8);doc.text(((sys?.name||'')+(str?' › '+str.name:'')).toUpperCase(),W-40,16.5,{align:'center'});if(img.dataURL){try{doc.addImage(img.dataURL,'PNG',10,34,W-20,110,'','MEDIUM')}catch(e){}}doc.setFillColor(37,53,85);doc.rect(6,148,W-12,105,'F');const cc=img.category==='normal'?[45,122,79]:img.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...cc);doc.roundedRect(12,153,32,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(img.category).toUpperCase(),28,158.5,{align:'center'});doc.setTextColor(237,232,220);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text(str?.name||'',12,168);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(img.lesion+(img.level?' — '+img.level:''),12,178,{maxWidth:W-24});if(img.description){doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(200,194,182);doc.text(doc.splitTextToSize(img.description,W-24).slice(0,8),12,188)}doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-10,{align:'center'});doc.text(img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',W-12,H-10,{align:'right'})});const str=gStr(cC,cS,cST);doc.save(`sonovault-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro PDF','err')}}
 
-async function exportAtlasPDF(){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;const cat=getCat(curCat);const sys=getSys(curCat,curSys);const str=getStr(curCat,curSys,curStr);const wk=wKey();const w=wiki[wk]||{};const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS'}];doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setFillColor(237,232,220);doc.rect(0,0,W,30,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('SonoVault',14,20);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Atlas Ultrassonográfico',60,14);doc.text((cat?.name||'')+(sys?' › '+sys.name:''),60,21);doc.setFontSize(15);doc.setFont('helvetica','bold');doc.setTextColor(237,232,220);doc.text(str?.name||'',14,44);let y=54;secs.forEach(s=>{if(!w[s.id])return;if(y>H-20){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20}doc.setFillColor(37,99,168);doc.roundedRect(10,y-4,W-20,7,1,1,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text(s.label,14,y+0.5);y+=9;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9);const lines=doc.splitTextToSize(w[s.id],W-24);lines.forEach(line=>{if(y>H-15){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9)}doc.text(line,12,y);y+=5.5});y+=6});const pc=doc.internal.getNumberOfPages();for(let i=1;i<=pc;i++){doc.setPage(i);doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-8,{align:'center'});doc.text(`${i}/${pc}`,W-12,H-8,{align:'right'})}doc.save(`sonovault-atlas-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('Atlas PDF exportado!','ok')}catch(e){toast('Erro ao exportar Atlas PDF','err')}}
-
-// ILLUSTRATIONS
-function getIllus(name){const n=(name||'').toLowerCase();if(n.includes('supraespinhal')||n.includes('manguito'))return`<svg viewBox="0 0 64 64" fill="none"><path d="M14 28 Q32 18 50 28" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/><path d="M16 32 Q32 22 48 32" stroke="#ede8dc" stroke-width="5" stroke-linecap="round" opacity="0.3"/><path d="M18 36 Q32 26 46 36" stroke="#ede8dc" stroke-width="3" stroke-linecap="round" opacity="0.5"/><circle cx="32" cy="46" r="8" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1" opacity="0.3"/></svg>`;if(n.includes('cisto')||n.includes('baker')||n.includes('poplíteo'))return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="32" cy="38" rx="14" ry="18" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/><ellipse cx="32" cy="38" rx="8" ry="12" fill="#ede8dc" opacity="0.12"/><path d="M22 20 Q32 14 42 20" stroke="#ede8dc" stroke-width="2" stroke-linecap="round" opacity="0.4"/><path d="M20 24 Q32 18 44 24" stroke="#ede8dc" stroke-width="3" stroke-linecap="round" opacity="0.25"/></svg>`;if(n.includes('iliotibial')||n.includes('trato'))return`<svg viewBox="0 0 64 64" fill="none"><rect x="22" y="8" width="20" height="30" rx="4" fill="#ede8dc" opacity="0.08" stroke="#ede8dc" stroke-width="1" stroke-opacity="0.3"/><path d="M26 8 L26 38" stroke="#ede8dc" stroke-width="2" opacity="0.5"/><path d="M32 8 L32 38" stroke="#ede8dc" stroke-width="2" opacity="0.3"/><path d="M38 8 L38 38" stroke="#ede8dc" stroke-width="2" opacity="0.5"/><ellipse cx="32" cy="44" rx="12" ry="7" fill="#ede8dc" opacity="0.12" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/></svg>`;if(n.includes('acromioclavicular')||n.includes(' ac'))return`<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="28" width="22" height="8" rx="3" fill="#ede8dc" opacity="0.3"/><rect x="34" y="28" width="22" height="8" rx="3" fill="#ede8dc" opacity="0.3"/><rect x="28" y="24" width="8" height="16" rx="2" fill="#ede8dc" opacity="0.12" stroke="#ede8dc" stroke-width="1" stroke-opacity="0.4"/></svg>`;if(n.includes('calcâneo'))return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="24" cy="44" rx="14" ry="10" fill="#ede8dc" opacity="0.2"/><path d="M38 20 Q50 22 52 34" stroke="#ede8dc" stroke-width="4" stroke-linecap="round" opacity="0.5"/></svg>`;if(n.includes('safena')||n.includes('veia'))return`<svg viewBox="0 0 64 64" fill="none"><path d="M32 8 Q38 16 32 24 Q26 32 32 40 Q38 48 32 56" stroke="#ede8dc" stroke-width="4" stroke-linecap="round" opacity="0.5"/><circle cx="32" cy="24" r="3" fill="#ede8dc" opacity="0.3"/><circle cx="32" cy="40" r="3" fill="#ede8dc" opacity="0.3"/></svg>`;if(n.includes('tireoide'))return`<svg viewBox="0 0 64 64" fill="none"><ellipse cx="24" cy="28" rx="8" ry="10" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/><ellipse cx="40" cy="28" rx="8" ry="10" fill="#ede8dc" opacity="0.15" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.4"/><path d="M28 28 L36 28" stroke="#ede8dc" stroke-width="2" opacity="0.3"/></svg>`;if(n.includes('menisco'))return`<svg viewBox="0 0 64 64" fill="none"><rect x="12" y="24" width="40" height="8" rx="2" fill="#ede8dc" opacity="0.2"/><rect x="12" y="34" width="40" height="8" rx="2" fill="#ede8dc" opacity="0.2"/><path d="M14 32 Q32 26 50 32" stroke="#ede8dc" stroke-width="3" opacity="0.4"/><path d="M14 32 Q32 38 50 32" stroke="#ede8dc" stroke-width="3" opacity="0.4"/></svg>`;return`<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3" fill="#ede8dc" fill-opacity="0.05"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>`}
+async function exportAtlasPDF(){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;const cat=gCat(cC);const sys=gSys(cC,cS);const str=gStr(cC,cS,cST);const k=wk();const w=wiki[k]||{};const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS'}];doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setFillColor(237,232,220);doc.rect(0,0,W,30,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('SonoVault',14,20);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Atlas Ultrassonográfico',58,14);doc.text((cat?.name||'')+(sys?' › '+sys.name:''),58,21);doc.setFontSize(15);doc.setFont('helvetica','bold');doc.setTextColor(237,232,220);doc.text(str?.name||'',14,44);let y=54;secs.forEach(s=>{if(!w[s.id])return;if(y>H-20){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20}doc.setFillColor(37,99,168);doc.roundedRect(10,y-4,W-20,7,1,1,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text(s.label,14,y+0.5);y+=9;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9);const lines=doc.splitTextToSize(w[s.id],W-24);lines.forEach(line=>{if(y>H-15){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9)}doc.text(line,12,y);y+=5.5});y+=6});const pc=doc.internal.getNumberOfPages();for(let i=1;i<=pc;i++){doc.setPage(i);doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-8,{align:'center'});doc.text(`${i}/${pc}`,W-12,H-8,{align:'right'})}doc.save(`sonovault-atlas-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('Atlas PDF exportado!','ok')}catch(e){toast('Erro PDF','err')}}
 
 // UTILS
 function bCls(c){return c==='normal'?'b-norm':c==='variante'?'b-var':'b-pat'}
 function bLbl(c){return c==='normal'?'Normal':c==='variante'?'Variante':'Patologia'}
-function updateStats(){const t=imgs.length;document.getElementById('top-stat').textContent=t+' imagem'+(t!==1?'ns':'')}
-function showHint(){document.getElementById('hint-overlay').style.display='flex'}
-function closeHint(){document.getElementById('hint-overlay').style.display='none'}
+function updateStat(){const t=imgs.length;document.getElementById('top-stat').textContent=t+' imagem'+(t!==1?'ns':'')}
+function showHint(){show('hint-o')}
 function toast(msg,type='ok'){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.className=`toast show ${type}`;t.querySelector('i').className=type==='ok'?'ti ti-check':'ti ti-alert-circle';setTimeout(()=>{t.className='toast'},2800)}
 
 window.onload=()=>{initGoogleAuth()}
