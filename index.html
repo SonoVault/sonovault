@@ -38,14 +38,12 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 
 /* APP */
 .app{display:flex;height:100vh;flex-direction:column}
-
-/* TOPBAR */
 .topbar{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
 .logo-wrap{display:flex;align-items:center;gap:9px;cursor:pointer}
 .logo-name{font-family:var(--font);font-size:16px;font-weight:400;color:var(--beige)}
 .logo-name b{font-weight:700}
 .top-sep{flex:1}
-.breadcrumb{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(237,232,220,0.45);flex-wrap:wrap}
+.breadcrumb{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(237,232,220,0.45)}
 .bc{cursor:pointer;transition:color .12s}
 .bc:hover{color:var(--beige)}
 .bc.active{color:rgba(237,232,220,0.85)}
@@ -60,8 +58,6 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .tbtn.logout{border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.35)}
 .saving{display:none;align-items:center;gap:4px;font-size:10px;color:rgba(237,232,220,0.4)}
 .saving.on{display:flex}
-
-/* LAYOUT */
 .main-layout{display:flex;flex:1;overflow:hidden}
 
 /* SIDEBAR */
@@ -70,50 +66,42 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .sb-search{background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--beige);outline:none;width:100%;font-family:var(--ui)}
 .sb-search::placeholder{color:rgba(237,232,220,0.28)}
 .sb-list{flex:1;overflow-y:auto;padding:2px 0 6px}
-
-/* L1 categoria */
 .l1{user-select:none}
 .l1-hd{display:flex;align-items:center;padding:6px 10px 6px 11px;cursor:pointer;gap:5px}
 .l1-hd:hover{background:rgba(255,255,255,0.04)}
 .l1-arr{font-size:10px;color:rgba(237,232,220,0.28);transition:transform .14s;flex-shrink:0}
 .l1-arr.o{transform:rotate(90deg)}
-.l1-name{font-size:10px;font-weight:700;color:rgba(237,232,220,0.45);letter-spacing:0.7px;text-transform:uppercase;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l1-name{font-size:10px;font-weight:700;color:rgba(237,232,220,0.45);letter-spacing:0.7px;text-transform:uppercase;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .l1-cnt{font-size:9px;color:rgba(237,232,220,0.2);background:rgba(255,255,255,0.05);border-radius:8px;padding:1px 5px;flex-shrink:0}
 .l1-del{font-size:11px;color:rgba(237,232,220,0.12);cursor:pointer;opacity:0;padding:2px;flex-shrink:0}
 .l1-hd:hover .l1-del{opacity:1}
 .l1-del:hover{color:#fca5a5}
 .l1-body{display:none;padding-bottom:2px}
 .l1-body.o{display:block}
-
-/* L2 sistema */
 .l2{user-select:none}
 .l2-hd{display:flex;align-items:center;padding:5px 10px 5px 20px;cursor:pointer;gap:5px}
 .l2-hd:hover{background:rgba(255,255,255,0.04)}
 .l2-arr{font-size:10px;color:rgba(237,232,220,0.22);transition:transform .14s;flex-shrink:0}
 .l2-arr.o{transform:rotate(90deg)}
-.l2-name{font-size:12px;font-weight:500;color:rgba(237,232,220,0.55);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l2-name{font-size:12px;font-weight:500;color:rgba(237,232,220,0.55);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .l2-cnt{font-size:9px;color:rgba(237,232,220,0.18);background:rgba(255,255,255,0.05);border-radius:8px;padding:1px 5px;flex-shrink:0}
 .l2-del{font-size:11px;color:rgba(237,232,220,0.1);cursor:pointer;opacity:0;padding:1px;flex-shrink:0}
 .l2-hd:hover .l2-del{opacity:1}
 .l2-del:hover{color:#fca5a5}
 .l2-body{display:none;padding-bottom:2px}
 .l2-body.o{display:block}
-
-/* L3 estrutura */
 .l3{display:flex;align-items:center;gap:5px;padding:5px 10px 5px 30px;cursor:pointer;font-size:12px;color:rgba(237,232,220,0.48);transition:all .12s}
 .l3:hover{background:rgba(255,255,255,0.05);color:rgba(237,232,220,0.8)}
 .l3.active{background:rgba(237,232,220,0.1);color:var(--beige);font-weight:500}
 .l3-dot{width:4px;height:4px;border-radius:50%;background:rgba(237,232,220,0.18);flex-shrink:0}
 .l3.active .l3-dot{background:var(--beige2)}
-.l3-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.l3-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .l3-wiki{width:5px;height:5px;border-radius:50%;background:var(--accent2);opacity:0.7;flex-shrink:0}
 .l3-cnt{font-size:9px;color:rgba(237,232,220,0.18);background:rgba(255,255,255,0.05);border-radius:8px;padding:1px 5px;flex-shrink:0}
 .l3.active .l3-cnt{color:rgba(237,232,220,0.4)}
 .l3-del{font-size:10px;color:rgba(237,232,220,0.1);cursor:pointer;opacity:0;padding:1px 2px;flex-shrink:0}
 .l3:hover .l3-del{opacity:1}
 .l3-del:hover{color:#fca5a5}
-
-/* add buttons */
 .sb-add{display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;color:rgba(237,232,220,0.26);transition:all .12s;border-radius:4px}
 .sb-add:hover{color:rgba(237,232,220,0.6);background:rgba(255,255,255,0.03)}
 .sb-add.a2{padding:4px 10px 4px 20px}
@@ -132,7 +120,7 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .home p{font-size:13px;color:var(--text-soft);line-height:1.6;margin-bottom:24px}
 .recent-label{font-size:10px;font-weight:700;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .recent-label::after{content:'';flex:1;height:0.5px;background:var(--border)}
-.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.recent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
 .home-empty{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 20px;color:var(--text-beige);text-align:center}
 .home-empty i{font-size:48px}
 .home-empty h3{font-size:15px;font-weight:400;font-family:var(--font);color:var(--text-mid)}
@@ -142,16 +130,14 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .sp{flex:1;display:flex;flex-direction:column;overflow:hidden;height:100%}
 .sp-hd{padding:16px 22px 0;flex-shrink:0}
 .sp-hd-top{display:flex;align-items:flex-start;gap:13px;margin-bottom:13px}
-.sp-illus{width:64px;height:64px;border-radius:11px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;cursor:pointer;position:relative;transition:filter .15s}
-.sp-illus:hover{filter:brightness(1.2)}
+.sp-illus{width:64px;height:64px;border-radius:11px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;cursor:pointer;position:relative}
+.sp-illus:hover::after{content:'✎';position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:white;font-size:18px;border-radius:11px}
 .sp-illus svg,.sp-illus img{width:100%;height:100%;object-fit:cover}
-.sp-illus-hint{position:absolute;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;border-radius:11px}
-.sp-illus:hover .sp-illus-hint{display:flex}
 .sp-info{flex:1}
 .sp-tag{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
 .sp-title{font-family:var(--font);font-size:19px;color:var(--text-dark);margin-bottom:3px}
 .sp-meta{font-size:12px;color:var(--text-soft)}
-.sp-tabs{display:flex;gap:0;border-bottom:0.5px solid var(--border);padding:0 22px}
+.sp-tabs{display:flex;border-bottom:0.5px solid var(--border);padding:0 22px}
 .sp-tab{padding:9px 16px;font-size:12px;font-weight:500;cursor:pointer;color:var(--text-soft);border-bottom:2px solid transparent;transition:all .12s;display:flex;align-items:center;gap:5px}
 .sp-tab:hover{color:var(--text-dark)}
 .sp-tab.active{color:var(--navy);border-bottom-color:var(--navy)}
@@ -168,20 +154,41 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .gf{display:flex;gap:4px}
 .gf-b{padding:5px 9px;border-radius:5px;font-size:11px;cursor:pointer;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-soft);transition:all .12s;font-family:var(--ui)}
 .gf-b.on{background:var(--navy);border-color:var(--navy);color:var(--beige)}
-.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:10px}
-.icard{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .15s}
-.icard:hover{border-color:var(--navy);transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,45,74,0.1)}
-.ithumb{width:100%;height:112px;background:var(--beige2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.ithumb img{width:100%;height:100%;object-fit:cover}
-.ithumb-ph{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--text-beige)}
-.ithumb-ph i{font-size:24px}
-.ibadge{position:absolute;top:5px;left:5px;font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px}
+.cases-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+
+/* CASE CARD — múltiplas imagens */
+.case-card{background:var(--beige4);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .15s}
+.case-card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(30,45,74,0.08)}
+.cc-photos{position:relative;height:180px;background:var(--beige2);overflow:hidden}
+.cc-main-img{width:100%;height:100%;object-fit:cover;cursor:pointer;transition:transform .2s}
+.cc-main-img:hover{transform:scale(1.02)}
+.cc-main-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-beige);flex-direction:column;gap:6px;cursor:pointer}
+.cc-main-ph i{font-size:32px}
+.cc-main-ph span{font-size:11px}
+.cc-thumbs{position:absolute;bottom:8px;left:8px;display:flex;gap:4px;align-items:center}
+.cc-thumb{width:36px;height:36px;border-radius:5px;overflow:hidden;border:2px solid rgba(255,255,255,0.3);cursor:pointer;transition:all .12s;flex-shrink:0}
+.cc-thumb:hover{border-color:white;transform:scale(1.05)}
+.cc-thumb.active{border-color:white;box-shadow:0 0 0 1px var(--accent2)}
+.cc-thumb img{width:100%;height:100%;object-fit:cover}
+.cc-thumb-ph{width:100%;height:100%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center}
+.cc-thumb-ph i{font-size:14px;color:rgba(255,255,255,0.6)}
+.cc-add-photo{width:36px;height:36px;border-radius:5px;border:1.5px dashed rgba(255,255,255,0.4);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s;background:rgba(0,0,0,0.2);flex-shrink:0}
+.cc-add-photo:hover{border-color:white;background:rgba(0,0,0,0.35)}
+.cc-add-photo i{font-size:16px;color:rgba(255,255,255,0.6)}
+.cc-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:600;padding:2px 7px;border-radius:3px}
 .b-pat{background:var(--danger-bg);color:var(--danger)}
 .b-norm{background:var(--success-bg);color:var(--success)}
 .b-var{background:var(--warning-bg);color:var(--warning)}
-.iinfo{padding:7px 9px}
-.i-les{font-size:11px;font-weight:500;color:var(--text-dark);line-height:1.3;margin-bottom:2px}
-.i-date{font-size:10px;color:var(--text-soft)}
+.cc-photo-cnt{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.5);color:white;font-size:10px;padding:2px 7px;border-radius:10px;display:flex;align-items:center;gap:3px}
+.cc-body{padding:12px 14px}
+.cc-lesion{font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:3px;line-height:1.3}
+.cc-meta{font-size:11px;color:var(--text-soft);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.cc-desc{font-size:12px;color:var(--text-mid);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:10px}
+.cc-actions{display:flex;gap:6px}
+.cc-btn{flex:1;padding:6px;border-radius:6px;font-size:11px;cursor:pointer;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui);transition:all .12s;display:flex;align-items:center;justify-content:center;gap:4px}
+.cc-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
+.cc-btn.atlas{background:var(--navy);border-color:var(--navy);color:var(--beige)}
+.cc-btn.atlas:hover{background:var(--navy3)}
 .gal-empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:40px 20px;color:var(--text-beige);text-align:center}
 .gal-empty i{font-size:38px}
 .gal-empty p{font-size:12px;color:var(--text-soft);max-width:200px;line-height:1.5}
@@ -197,11 +204,17 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .ae-ta{width:100%;background:var(--beige3);border:0.5px solid var(--border);border-radius:var(--radius);padding:11px 13px;font-size:13px;color:var(--text-dark);outline:none;font-family:var(--ui);resize:vertical;line-height:1.8;transition:border-color .15s}
 .ae-ta:focus{border-color:var(--accent2);background:#fff}
 .ae-ta::placeholder{color:var(--text-soft);font-style:italic}
-.illus-zone{border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:18px;text-align:center;cursor:pointer;transition:all .15s;background:var(--beige3);display:flex;flex-direction:column;align-items:center;gap:7px}
-.illus-zone:hover{border-color:var(--navy);background:var(--beige2)}
-.illus-zone i{font-size:26px;color:var(--text-beige)}
-.illus-zone p{font-size:11px;color:var(--text-soft);line-height:1.5}
-.illus-prev{width:100%;max-height:180px;object-fit:contain;border-radius:var(--radius);border:0.5px solid var(--border)}
+/* Ilustrações múltiplas no edit */
+.illus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:10px}
+.illus-item{position:relative;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);cursor:pointer;group}
+.illus-item img{width:100%;height:100%;object-fit:cover;transition:transform .15s}
+.illus-item:hover img{transform:scale(1.05)}
+.illus-item-del{position:absolute;top:4px;right:4px;background:rgba(185,28,28,0.85);border:none;border-radius:4px;color:white;font-size:11px;cursor:pointer;padding:2px 5px;opacity:0;transition:opacity .12s}
+.illus-item:hover .illus-item-del{opacity:1}
+.illus-add-btn{aspect-ratio:1;border:1.5px dashed var(--border2);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all .15s;background:var(--beige3);min-height:120px}
+.illus-add-btn:hover{border-color:var(--navy);background:var(--beige2)}
+.illus-add-btn i{font-size:22px;color:var(--text-beige)}
+.illus-add-btn span{font-size:11px;color:var(--text-soft)}
 .ae-footer{padding:0 22px 18px;display:flex;justify-content:flex-end;gap:8px;max-width:760px}
 
 /* ATLAS READ */
@@ -219,13 +232,22 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .ar-sec-txt{font-size:13px;color:var(--text-mid);line-height:1.9;white-space:pre-wrap}
 .ar-refs{font-size:11px;color:var(--text-soft);line-height:1.8;white-space:pre-wrap}
 .ar-right-lbl{font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);margin-bottom:7px}
-.ar-illus-box{border-radius:var(--radius-lg);overflow:hidden;background:var(--navy);display:flex;align-items:center;justify-content:center;min-height:150px}
-.ar-illus-box svg{width:75%;height:75%}
-.ar-illus-box img{width:100%;height:100%;object-fit:contain}
-.ar-illus-change{font-size:10px;color:var(--text-soft);text-align:center;margin-top:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:3px}
-.ar-illus-change:hover{color:var(--accent)}
+/* Ilustrações múltiplas no read */
+.ar-illus-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ar-illus-item{aspect-ratio:1;border-radius:var(--radius);overflow:hidden;cursor:pointer;border:0.5px solid var(--border);background:var(--navy);display:flex;align-items:center;justify-content:center;transition:all .15s;position:relative}
+.ar-illus-item:hover{border-color:var(--accent2);transform:scale(1.02)}
+.ar-illus-item img{width:100%;height:100%;object-fit:cover}
+.ar-illus-item svg{width:75%;height:75%}
+.ar-illus-item-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.ar-illus-item:hover .ar-illus-item-overlay{background:rgba(0,0,0,0.25)}
+.ar-illus-item-overlay i{font-size:20px;color:white;opacity:0;transition:opacity .15s}
+.ar-illus-item:hover .ar-illus-item-overlay i{opacity:1}
+.ar-illus-add{aspect-ratio:1;border-radius:var(--radius);border:1.5px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;transition:all .15s;background:var(--beige3)}
+.ar-illus-add:hover{border-color:var(--navy);background:var(--beige)}
+.ar-illus-add i{font-size:18px;color:var(--text-beige)}
+.ar-illus-add span{font-size:10px;color:var(--text-soft)}
 .ar-imgs-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.ar-img-mini{aspect-ratio:1;border-radius:6px;overflow:hidden;cursor:pointer;border:0.5px solid var(--border);background:var(--beige3);display:flex;align-items:center;justify-content:center;transition:all .12s}
+.ar-img-mini{aspect-ratio:1;border-radius:6px;overflow:hidden;cursor:pointer;border:0.5px solid var(--border);background:var(--beige3);display:flex;align-items:center;justify-content:center;transition:all .12s;position:relative}
 .ar-img-mini:hover{border-color:var(--navy);transform:scale(1.02)}
 .ar-img-mini img{width:100%;height:100%;object-fit:cover}
 .ar-img-mini i{font-size:18px;color:var(--text-beige)}
@@ -233,30 +255,22 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .ar-empty i{font-size:26px;color:var(--text-beige)}
 .ar-empty p{font-size:11px;color:var(--text-soft);line-height:1.5}
 
-/* VIEW MODAL */
-.vo{position:fixed;inset:0;background:rgba(8,14,28,0.88);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
-.vm{background:var(--beige4);border-radius:14px;width:100%;max-width:880px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column}
-.vm-top{background:var(--navy);padding:12px 15px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.vm-title{font-family:var(--font);font-size:15px;color:var(--beige);font-weight:400}
-.vm-body{display:flex;flex:1;overflow:hidden;min-height:0}
-.vm-img{flex:1;background:#06090f;display:flex;align-items:center;justify-content:center}
-.vm-img img{max-width:100%;max-height:100%;object-fit:contain}
-.vm-img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.1)}
-.vm-img-ph i{font-size:52px}
-.vm-info{width:290px;min-width:290px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
-.vi-reg{font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent)}
-.vi-str{font-family:var(--font);font-size:16px;color:var(--text-dark);line-height:1.3}
-.vi-les{font-size:12px;color:var(--text-mid)}
-.vi-pills{display:flex;gap:5px;flex-wrap:wrap}
-.pill{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:500}
-.pill-n{background:var(--navy);color:var(--beige)}
-.pill-b{background:var(--beige);color:var(--text-mid);border:0.5px solid var(--border)}
-.vi-desc-lbl{font-size:9px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft)}
-.vi-desc{font-size:12px;color:var(--text-mid);line-height:1.7;background:var(--beige4);border-radius:var(--radius);padding:9px 11px;border:0.5px solid var(--border)}
-.vi-date{font-size:10px;color:var(--text-beige)}
-.vi-atlas-btn{display:flex;align-items:center;gap:8px;background:var(--navy);border:none;border-radius:var(--radius);padding:10px 14px;color:var(--beige);font-size:12px;cursor:pointer;font-family:var(--ui);font-weight:500;transition:all .15s;width:100%;justify-content:center}
-.vi-atlas-btn:hover{background:var(--navy3)}
-.vm-footer{padding:9px 13px;border-top:0.5px solid var(--border);display:flex;gap:6px;background:var(--beige4);flex-shrink:0}
+/* LIGHTBOX — modal de alta resolução */
+.lightbox{position:fixed;inset:0;background:rgba(4,8,18,0.96);z-index:250;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.lb-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.1);border:none;border-radius:8px;color:white;font-size:20px;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.lb-close:hover{background:rgba(255,255,255,0.2)}
+.lb-img-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 80px;position:relative;width:100%}
+.lb-img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;border-radius:8px;color:white;font-size:20px;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.lb-nav:hover{background:rgba(255,255,255,0.2)}
+.lb-nav.prev{left:16px}
+.lb-nav.next{right:16px}
+.lb-bottom{padding:12px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
+.lb-caption{font-size:13px;color:rgba(255,255,255,0.7);text-align:center;max-width:600px}
+.lb-dots{display:flex;gap:6px}
+.lb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:background .12s}
+.lb-dot.active{background:white}
+.lb-counter{font-size:11px;color:rgba(255,255,255,0.4)}
 
 /* MODALS */
 .mo{position:fixed;inset:0;background:rgba(20,30,50,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
@@ -285,15 +299,14 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .btn-p{background:var(--navy);border-color:var(--navy);color:var(--beige);font-weight:500}
 .btn-p:hover{background:var(--navy3)}
 .btn-d{background:var(--danger-bg);border-color:#fca5a5;color:var(--danger)}
-.act-btn{flex:1;padding:7px;border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .12s;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui)}
-.act-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
-.act-btn.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#fca5a5}
-
-/* HINT */
+/* foto preview no modal add */
+.img-preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-bottom:4px}
+.img-prev-item{position:relative;aspect-ratio:1;border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border)}
+.img-prev-item img{width:100%;height:100%;object-fit:cover}
+.img-prev-del{position:absolute;top:2px;right:2px;background:rgba(185,28,28,0.85);border:none;border-radius:3px;color:white;font-size:10px;cursor:pointer;padding:1px 4px;line-height:1.4}
 .hint-o{position:fixed;inset:0;background:rgba(10,18,35,0.7);z-index:160;display:flex;align-items:center;justify-content:center}
 .hint-b{background:var(--navy2);border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:30px;text-align:center;max-width:330px;display:flex;flex-direction:column;align-items:center;gap:13px}
 .hint-key{background:var(--beige);color:var(--navy);font-size:19px;font-weight:700;border-radius:8px;padding:9px 20px;font-family:var(--font)}
-
 .toast{position:fixed;bottom:18px;right:18px;background:var(--navy);border:0.5px solid rgba(255,255,255,0.15);border-radius:var(--radius);padding:9px 13px;font-size:12px;color:var(--beige);display:flex;align-items:center;gap:6px;z-index:300;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.ok i{color:#6ee7b7}
@@ -303,8 +316,7 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
-<body><!-- LOGIN -->
-<div class="login-screen" id="login-screen">
+<body><div class="login-screen" id="login-screen">
   <div class="login-logo">
     <svg width="80" height="80" viewBox="0 0 80 80">
       <rect width="80" height="80" rx="18" fill="#ede8dc"/>
@@ -326,7 +338,6 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   <div class="login-status" id="login-status">Clínica Senhor dos Passos</div>
 </div>
 
-<!-- APP -->
 <div class="app" id="app" style="display:none">
   <div class="topbar">
     <div class="logo-wrap" onclick="goHome()">
@@ -338,17 +349,14 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
     <div class="top-sep"></div>
     <span id="top-stat" style="font-size:11px;color:rgba(237,232,220,0.38);background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);border-radius:20px;padding:3px 9px"></span>
     <div class="user-pill"><div class="uav" id="uav">R</div><span class="unm" id="unm">...</span></div>
-    <button class="tbtn hint" onclick="showHint()"><i class="ti ti-keyboard" style="font-size:10px"></i> Win+Shift+S</button>
-    <button class="tbtn cta" id="add-btn" style="display:none" onclick="openAddModal()"><i class="ti ti-plus" style="font-size:11px"></i> Nova imagem</button>
-    <button class="tbtn" id="pdf-btn" style="display:none" onclick="exportPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> PDF</button>
+    <button class="tbtn hint" onclick="show('hint-o')"><i class="ti ti-keyboard" style="font-size:10px"></i> Win+Shift+S</button>
+    <button class="tbtn cta" id="add-btn" style="display:none" onclick="openAddModal()"><i class="ti ti-plus" style="font-size:11px"></i> Novo caso</button>
+    <button class="tbtn" id="pdf-btn" style="display:none" onclick="exportAllPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> PDF</button>
     <button class="tbtn logout" onclick="signOut()"><i class="ti ti-logout" style="font-size:12px"></i></button>
   </div>
-
   <div class="main-layout">
     <div class="sidebar">
-      <div class="sb-top">
-        <input class="sb-search" id="sb-q" placeholder="Buscar..." oninput="renderSB()">
-      </div>
+      <div class="sb-top"><input class="sb-search" id="sb-q" placeholder="Buscar..." oninput="renderSB()"></div>
       <div class="sb-list" id="sb-list"></div>
       <div class="sb-add-cat" onclick="openNC()"><i class="ti ti-plus" style="font-size:12px"></i> Nova categoria</div>
       <div class="sb-footer"><div class="drive-ok" id="drive-ok"><i class="ti ti-cloud-check" style="font-size:11px"></i> Google Drive conectado</div></div>
@@ -357,114 +365,79 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   </div>
 </div>
 
-<!-- VIEW MODAL -->
-<div id="vo" class="vo" style="display:none">
-  <div class="vm">
-    <div class="vm-top">
-      <span class="vm-title" id="vm-ttl"></span>
-      <div style="display:flex;gap:6px;align-items:center">
-        <button class="btn btn-g" style="font-size:11px;padding:5px 10px" onclick="editFromView()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button>
-        <button class="btn btn-d" style="font-size:11px;padding:5px 10px" onclick="deleteFromView()"><i class="ti ti-trash" style="font-size:11px"></i> Excluir</button>
-        <button class="mx" onclick="closeView()"><i class="ti ti-x"></i></button>
-      </div>
-    </div>
-    <div class="vm-body">
-      <div class="vm-img" id="vm-img"></div>
-      <div class="vm-info">
-        <div class="vi-reg" id="vi-reg"></div>
-        <div class="vi-str" id="vi-str"></div>
-        <div class="vi-les" id="vi-les"></div>
-        <div class="vi-pills" id="vi-pills"></div>
-        <div id="vi-dw" style="display:none;flex-direction:column;gap:4px">
-          <div class="vi-desc-lbl">Descrição do achado</div>
-          <div class="vi-desc" id="vi-desc"></div>
-        </div>
-        <div class="vi-date" id="vi-date"></div>
-        <button class="vi-atlas-btn" id="vi-atlas-btn" onclick="openAtlasFromView()">
-          <i class="ti ti-book" style="font-size:13px"></i> Ver Atlas desta estrutura
-        </button>
-      </div>
-    </div>
-    <div class="vm-footer">
-      <button class="act-btn" onclick="exportSinglePDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar card</button>
-    </div>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" style="display:none">
+  <button class="lb-close" onclick="closeLB()"><i class="ti ti-x"></i></button>
+  <div class="lb-img-wrap">
+    <button class="lb-nav prev" id="lb-prev" onclick="lbNav(-1)"><i class="ti ti-chevron-left"></i></button>
+    <img class="lb-img" id="lb-img" src="" alt="">
+    <button class="lb-nav next" id="lb-next" onclick="lbNav(1)"><i class="ti ti-chevron-right"></i></button>
+  </div>
+  <div class="lb-bottom">
+    <div class="lb-caption" id="lb-caption"></div>
+    <div class="lb-dots" id="lb-dots"></div>
+    <div class="lb-counter" id="lb-counter"></div>
   </div>
 </div>
 
-<!-- ADD/EDIT MODAL -->
+<!-- ADD/EDIT CASE MODAL -->
 <div id="img-mo" class="mo" style="display:none">
-  <div class="md">
-    <div class="md-hd"><span class="md-ttl" id="img-ttl">Nova imagem</span><button class="mx" onclick="closeImgModal()"><i class="ti ti-x"></i></button></div>
+  <div class="md" style="max-width:540px">
+    <div class="md-hd"><span class="md-ttl" id="img-ttl">Novo caso</span><button class="mx" onclick="closeImgModal()"><i class="ti ti-x"></i></button></div>
     <div class="md-bd">
-      <div class="uz" id="img-uz" onclick="document.getElementById('img-fi').click()"><i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p></div>
-      <input type="file" id="img-fi" accept="image/*" style="display:none" onchange="handleImgFile(this)">
+      <!-- Fotos múltiplas -->
+      <div class="fg">
+        <label class="fl">Imagens do caso</label>
+        <div class="img-preview-grid" id="img-preview-grid"></div>
+        <div class="uz" onclick="document.getElementById('img-fi').click()" style="padding:12px">
+          <i class="ti ti-photo-plus" style="font-size:20px"></i>
+          <p style="margin-top:4px">Clique para adicionar imagens<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — pode selecionar várias</span></p>
+        </div>
+        <input type="file" id="img-fi" accept="image/*" multiple style="display:none" onchange="handleImgFiles(this)">
+      </div>
       <div class="fg"><label class="fl">Categoria</label><select class="fs" id="im-cat" onchange="fillImgSys()"><option value="">Selecionar...</option></select></div>
       <div class="fg"><label class="fl">Sistema</label><select class="fs" id="im-sys" onchange="fillImgStr()"><option value="">Selecionar...</option></select></div>
       <div class="fg"><label class="fl">Estrutura</label><select class="fs" id="im-str"><option value="">Selecionar...</option></select></div>
       <div class="fg"><label class="fl">Achado / tipo de lesão</label><input class="fi" id="im-les" placeholder="Ex: Rotura parcial, Tendinopatia..."></div>
       <div class="frow">
-        <div class="fg"><label class="fl">Categoria da imagem</label><select class="fs" id="im-icat"><option value="patologia">Patologia</option><option value="normal">Normal</option><option value="variante">Variante</option></select></div>
+        <div class="fg"><label class="fl">Categoria</label><select class="fs" id="im-icat"><option value="patologia">Patologia</option><option value="normal">Normal</option><option value="variante">Variante</option></select></div>
         <div class="fg"><label class="fl">Grau / nível</label><input class="fi" id="im-lvl" placeholder="Ex: Grau II"></div>
       </div>
-      <div class="fg"><label class="fl">Descrição do achado</label><textarea class="ft" id="im-desc" placeholder="Descrição no estilo do laudo..."></textarea></div>
+      <div class="fg"><label class="fl">Descrição do achado</label><textarea class="ft" id="im-desc" placeholder="Descrição no estilo do laudo..." style="min-height:90px"></textarea></div>
     </div>
-    <div class="md-ft"><button class="btn btn-g" onclick="closeImgModal()">Cancelar</button><button class="btn btn-p" id="img-save-btn" onclick="saveImg()"><i class="ti ti-check" style="font-size:11px"></i> Salvar</button></div>
+    <div class="md-ft"><button class="btn btn-g" onclick="closeImgModal()">Cancelar</button><button class="btn btn-p" id="img-save-btn" onclick="saveCase()"><i class="ti ti-check" style="font-size:11px"></i> Salvar caso</button></div>
   </div>
 </div>
 
-<!-- NEW CAT -->
-<div id="nc-mo" class="mo" style="display:none">
-  <div class="md" style="max-width:380px">
-    <div class="md-hd"><span class="md-ttl">Nova categoria</span><button class="mx" onclick="hide('nc-mo')"><i class="ti ti-x"></i></button></div>
-    <div class="md-bd"><div class="fg"><label class="fl">Nome da categoria</label><input class="fi" id="nc-name" placeholder="Ex: Musculoesquelético, Vascular..."></div></div>
-    <div class="md-ft"><button class="btn btn-g" onclick="hide('nc-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNC()">Criar</button></div>
-  </div>
-</div>
-
-<!-- NEW SYS -->
-<div id="ns-mo" class="mo" style="display:none">
-  <div class="md" style="max-width:380px">
-    <div class="md-hd"><span class="md-ttl">Novo sistema</span><button class="mx" onclick="hide('ns-mo')"><i class="ti ti-x"></i></button></div>
-    <div class="md-bd"><div class="fg"><label class="fl">Nome do sistema</label><input class="fi" id="ns-name" placeholder="Ex: Joelho, Ombro, Tireoide..."></div></div>
-    <div class="md-ft"><button class="btn btn-g" onclick="hide('ns-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNS()">Criar</button></div>
-  </div>
-</div>
-
-<!-- NEW STR -->
-<div id="nst-mo" class="mo" style="display:none">
-  <div class="md" style="max-width:380px">
-    <div class="md-hd"><span class="md-ttl">Nova estrutura</span><button class="mx" onclick="hide('nst-mo')"><i class="ti ti-x"></i></button></div>
-    <div class="md-bd"><div class="fg"><label class="fl">Nome da estrutura</label><input class="fi" id="nst-name" placeholder="Ex: Cisto de Baker, Trato iliotibial..."></div></div>
-    <div class="md-ft"><button class="btn btn-g" onclick="hide('nst-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNST()">Criar</button></div>
-  </div>
-</div>
+<!-- NEW CAT/SYS/STR MODALS -->
+<div id="nc-mo" class="mo" style="display:none"><div class="md" style="max-width:380px"><div class="md-hd"><span class="md-ttl">Nova categoria</span><button class="mx" onclick="hide('nc-mo')"><i class="ti ti-x"></i></button></div><div class="md-bd"><div class="fg"><label class="fl">Nome</label><input class="fi" id="nc-name" placeholder="Ex: Musculoesquelético"></div></div><div class="md-ft"><button class="btn btn-g" onclick="hide('nc-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNC()">Criar</button></div></div></div>
+<div id="ns-mo" class="mo" style="display:none"><div class="md" style="max-width:380px"><div class="md-hd"><span class="md-ttl">Novo sistema</span><button class="mx" onclick="hide('ns-mo')"><i class="ti ti-x"></i></button></div><div class="md-bd"><div class="fg"><label class="fl">Nome</label><input class="fi" id="ns-name" placeholder="Ex: Joelho, Ombro..."></div></div><div class="md-ft"><button class="btn btn-g" onclick="hide('ns-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNS()">Criar</button></div></div></div>
+<div id="nst-mo" class="mo" style="display:none"><div class="md" style="max-width:380px"><div class="md-hd"><span class="md-ttl">Nova estrutura</span><button class="mx" onclick="hide('nst-mo')"><i class="ti ti-x"></i></button></div><div class="md-bd"><div class="fg"><label class="fl">Nome</label><input class="fi" id="nst-name" placeholder="Ex: Cisto de Baker..."></div></div><div class="md-ft"><button class="btn btn-g" onclick="hide('nst-mo')">Cancelar</button><button class="btn btn-p" onclick="saveNST()">Criar</button></div></div></div>
 
 <!-- HINT -->
-<div id="hint-o" class="hint-o" style="display:none" onclick="hide('hint-o')">
-  <div class="hint-b" onclick="event.stopPropagation()">
-    <div style="font-size:10px;color:rgba(237,232,220,0.4);text-transform:uppercase;letter-spacing:0.5px">Atalho de captura</div>
-    <div class="hint-key">⊞ + Shift + S</div>
-    <div style="font-size:12px;color:rgba(237,232,220,0.6);line-height:1.6;text-align:center">Pressione para abrir a ferramenta de recorte do Windows. Selecione a área da imagem e faça upload aqui.</div>
-    <button class="btn btn-g" onclick="hide('hint-o')" style="font-size:12px">Entendi</button>
-  </div>
-</div>
+<div id="hint-o" class="hint-o" style="display:none" onclick="hide('hint-o')"><div class="hint-b" onclick="event.stopPropagation()"><div style="font-size:10px;color:rgba(237,232,220,0.4);text-transform:uppercase;letter-spacing:0.5px">Atalho de captura</div><div class="hint-key">⊞ + Shift + S</div><div style="font-size:12px;color:rgba(237,232,220,0.6);line-height:1.6;text-align:center">Pressione para abrir a ferramenta de recorte do Windows.</div><button class="btn btn-g" onclick="hide('hint-o')" style="font-size:12px">Entendi</button></div></div>
 
-<input type="file" id="illus-fi" accept="image/*" style="display:none" onchange="handleIllusFile(this)">
+<input type="file" id="illus-fi" accept="image/*" multiple style="display:none" onchange="handleIllusFiles(this)">
 <div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-msg"></span></div><script>
 const CLIENT_ID='155144252138-es5iuh573njhfvu1mtiih5qg5eok5r1b.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive.file';
 const FOLDER='SonoVault';
 
 // STATE
+// cases=[{id,catId,sysId,strId,lesion,category,level,description,photos:[dataURL,...],date}]
+// wiki={key:{history,anatomy,physio,findings,treatment,refs,illus:[dataURL,...]}}
 // cats=[{id,name,systems:[{id,name,structs:[{id,name}]}]}]
-let imgs=[],wiki={},cats=[];
-let cC=null,cS=null,cST=null; // curCat, curSys, curStr
+let cases=[],wiki={},cats=[];
+let cC=null,cS=null,cST=null;
 let cTab='gallery',cAtlas='read',gF='all';
-let vId=null,eId=null,dURL=null;
+let eId=null,newPhotos=[]; // fotos no modal
 let nsCatId=null,nstSysId=null,nstCatId=null;
 let tok=null,fId=null,dbId=null,wId=null,cId=null;
 let tDb=null,tW=null,tC=null;
-let tc,sysOpen={},catOpen={};
+let tc,catOpen={},sysOpen={};
+
+// LIGHTBOX STATE
+let lbImgs=[],lbIdx=0,lbCaption='';
 
 // AUTH
 function initGoogleAuth(){tc=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async r=>{if(r.error){toast('Erro: '+r.error,'err');return}tok=r.access_token;await loadUser();await initDrive();showApp()}})}
@@ -478,9 +451,9 @@ async function dr(url,o={}){const r=await fetch(url,{...o,headers:{Authorization
 async function mkFolder(){const q=encodeURIComponent(`name='${FOLDER}' and mimeType='application/vnd.google-apps.folder' and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();if(d.files?.length)return d.files[0].id;const c=await dr('https://www.googleapis.com/drive/v3/files',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:FOLDER,mimeType:'application/vnd.google-apps.folder'})});return(await c.json()).id}
 async function getFileId(name){const q=encodeURIComponent(`name='${name}' and '${fId}' in parents and trashed=false`);const r=await dr(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)`);const d=await r.json();return d.files?.length?d.files[0].id:null}
 async function saveFile(fileId,name,data){const blob=new Blob([JSON.stringify(data)],{type:'application/json'});if(fileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+tok,'Content-Type':'application/json'},body:blob});return fileId}const meta={name,parents:[fId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+tok},body:form});return(await r.json()).id}
-async function initDrive(){try{fId=await mkFolder();dbId=await getFileId('sv-db.json');wId=await getFileId('sv-wiki.json');cId=await getFileId('sv-cats.json');if(dbId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${dbId}?alt=media`);const d=await r.json();imgs=Array.isArray(d)?d:[]}if(wId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${wId}?alt=media`);const d=await r.json();wiki=d&&typeof d==='object'?d:{}}if(cId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${cId}?alt=media`);const d=await r.json();cats=Array.isArray(d)?d:[]}updateStat();renderSB()}catch(e){toast('Erro no Drive','err')}}
+async function initDrive(){try{fId=await mkFolder();dbId=await getFileId('sv-db.json');wId=await getFileId('sv-wiki.json');cId=await getFileId('sv-cats.json');if(dbId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${dbId}?alt=media`);const d=await r.json();cases=Array.isArray(d)?d:[]}if(wId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${wId}?alt=media`);const d=await r.json();wiki=d&&typeof d==='object'?d:{}}if(cId){const r=await dr(`https://www.googleapis.com/drive/v3/files/${cId}?alt=media`);const d=await r.json();cats=Array.isArray(d)?d:[]}updateStat();renderSB()}catch(e){toast('Erro no Drive','err')}}
 function sbOn(on){const el=document.getElementById('sv-badge');el.className=on?'saving on':'saving'}
-function schedDb(){clearTimeout(tDb);sbOn(true);tDb=setTimeout(async()=>{dbId=await saveFile(dbId,'sv-db.json',imgs);sbOn(false)},1500)}
+function schedDb(){clearTimeout(tDb);sbOn(true);tDb=setTimeout(async()=>{dbId=await saveFile(dbId,'sv-db.json',cases);sbOn(false)},1500)}
 function schedW(){clearTimeout(tW);tW=setTimeout(async()=>{wId=await saveFile(wId,'sv-wiki.json',wiki)},1500)}
 function schedC(){clearTimeout(tC);tC=setTimeout(async()=>{cId=await saveFile(cId,'sv-cats.json',cats)},1500)}
 
@@ -489,122 +462,169 @@ function gCat(id){return cats.find(c=>c.id===id)}
 function gSys(cId,sId){return gCat(cId)?.systems?.find(s=>s.id===sId)}
 function gStr(cId,sId,stId){return gSys(cId,sId)?.structs?.find(s=>s.id===stId)}
 function wk(){return cC+'::'+cS+'::'+cST}
-function iCnt(cId,sId,stId){return imgs.filter(i=>i.catId===cId&&i.sysId===sId&&i.strId===stId).length}
+function cCnt(cId,sId,stId){return cases.filter(c=>c.catId===cId&&c.sysId===sId&&c.strId===stId).length}
 function uid(){return Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,6)}
 function hide(id){document.getElementById(id).style.display='none'}
 function show(id){document.getElementById(id).style.display='flex'}
 
+// LIGHTBOX
+function openLB(imgs,idx,caption){lbImgs=imgs;lbIdx=idx;lbCaption=caption||'';renderLB();show('lightbox')}
+function closeLB(){hide('lightbox')}
+function lbNav(dir){lbIdx=Math.max(0,Math.min(lbImgs.length-1,lbIdx+dir));renderLB()}
+function renderLB(){const img=lbImgs[lbIdx];document.getElementById('lb-img').src=img;document.getElementById('lb-caption').textContent=lbCaption;document.getElementById('lb-counter').textContent=lbImgs.length>1?`${lbIdx+1} / ${lbImgs.length}`:'';document.getElementById('lb-prev').style.display=lbIdx>0?'flex':'none';document.getElementById('lb-next').style.display=lbIdx<lbImgs.length-1?'flex':'none';const dots=document.getElementById('lb-dots');dots.innerHTML=lbImgs.length>1?lbImgs.map((_,i)=>`<div class="lb-dot ${i===lbIdx?'active':''}" onclick="lbNav(${i-lbIdx})"></div>`).join(''):''}
+document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').style.display!=='none'){if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLB()}})
+
 // SIDEBAR
 function renderSB(){
   const q=(document.getElementById('sb-q')?.value||'').toLowerCase();
-  const el=document.getElementById('sb-list');
-  if(!el)return;
+  const el=document.getElementById('sb-list');if(!el)return;
   let html='';
   for(const cat of cats){
-    const catId=cat.id;
-    const catOpen_=catOpen[catId]!==false;
-    let sysHtml='';
-    let catHasMatch=false;
-    for(const sys of (cat.systems||[])){
-      const sysId=sys.id;
-      const sysOpen_=sysOpen[sysId]!==false;
-      let strHtml='';
-      let sysHasMatch=false;
-      for(const str of (sys.structs||[])){
-        const match=!q||str.name.toLowerCase().includes(q)||sys.name.toLowerCase().includes(q)||cat.name.toLowerCase().includes(q);
-        if(!match)continue;
-        sysHasMatch=true;
-        const cnt=iCnt(catId,sysId,str.id);
-        const wKey=catId+'::'+sysId+'::'+str.id;
-        const hasW=wiki[wKey]&&Object.values(wiki[wKey]).some(v=>v&&v!='');
-        const active=cC===catId&&cS===sysId&&cST===str.id;
-        strHtml+=`<div class="l3 ${active?'active':''}" onclick="selStr('${catId}','${sysId}','${str.id}')"><span class="l3-dot"></span><span class="l3-name">${str.name}</span>${hasW?'<span class="l3-wiki"></span>':''}<span class="l3-cnt">${cnt||''}</span><i class="ti ti-x l3-del" onclick="event.stopPropagation();delStr('${catId}','${sysId}','${str.id}')"></i></div>`;
+    const catOpen_=catOpen[cat.id]!==false;
+    let sysHtml='',catMatch=false;
+    for(const sys of(cat.systems||[])){
+      const sysOpen_=sysOpen[sys.id]!==false;
+      let strHtml='',sysMatch=false;
+      for(const str of(sys.structs||[])){
+        const m=!q||str.name.toLowerCase().includes(q)||sys.name.toLowerCase().includes(q)||cat.name.toLowerCase().includes(q);
+        if(!m)continue;sysMatch=true;
+        const cnt=cCnt(cat.id,sys.id,str.id);
+        const k=cat.id+'::'+sys.id+'::'+str.id;
+        const hasW=wiki[k]&&(wiki[k].anatomy||wiki[k].history||wiki[k].findings);
+        const active=cC===cat.id&&cS===sys.id&&cST===str.id;
+        strHtml+=`<div class="l3 ${active?'active':''}" onclick="selStr('${cat.id}','${sys.id}','${str.id}')"><span class="l3-dot"></span><span class="l3-name">${str.name}</span>${hasW?'<span class="l3-wiki"></span>':''}<span class="l3-cnt">${cnt||''}</span><i class="ti ti-x l3-del" onclick="event.stopPropagation();delStr('${cat.id}','${sys.id}','${str.id}')"></i></div>`;
       }
-      if(q&&!sysHasMatch)continue;
-      catHasMatch=true;
-      const open=q?sysHasMatch:sysOpen_;
-      sysHtml+=`<div class="l2"><div class="l2-hd" onclick="toggleSys('${sysId}')"><i class="ti ti-chevron-right l2-arr ${open?'o':''}" id="sa${sysId}"></i><span class="l2-name">${sys.name}</span><span class="l2-cnt">${(sys.structs||[]).length}</span><i class="ti ti-x l2-del" onclick="event.stopPropagation();delSys('${catId}','${sysId}')"></i></div><div class="l2-body ${open?'o':''}" id="sb${sysId}">${strHtml}<div class="sb-add a3" onclick="openNST('${catId}','${sysId}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar estrutura</div></div></div>`;
+      if(q&&!sysMatch)continue;catMatch=true;
+      const open=q?sysMatch:sysOpen_;
+      sysHtml+=`<div class="l2"><div class="l2-hd" onclick="toggleSys('${sys.id}')"><i class="ti ti-chevron-right l2-arr ${open?'o':''}" id="sa${sys.id}"></i><span class="l2-name">${sys.name}</span><span class="l2-cnt">${(sys.structs||[]).length}</span><i class="ti ti-x l2-del" onclick="event.stopPropagation();delSys('${cat.id}','${sys.id}')"></i></div><div class="l2-body ${open?'o':''}" id="sb${sys.id}">${strHtml}<div class="sb-add a3" onclick="openNST('${cat.id}','${sys.id}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar estrutura</div></div></div>`;
     }
-    if(q&&!catHasMatch)continue;
-    const open=q?catHasMatch:catOpen_;
-    html+=`<div class="l1"><div class="l1-hd" onclick="toggleCat('${catId}')"><i class="ti ti-chevron-right l1-arr ${open?'o':''}" id="ca${catId}"></i><span class="l1-name">${cat.name}</span><span class="l1-cnt">${(cat.systems||[]).length}</span><i class="ti ti-x l1-del" onclick="event.stopPropagation();delCat('${catId}')"></i></div><div class="l1-body ${open?'o':''}" id="cb${catId}">${sysHtml}<div class="sb-add a2" onclick="openNS('${catId}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar sistema</div></div></div>`;
+    if(q&&!catMatch)continue;
+    const open=q?catMatch:catOpen_;
+    html+=`<div class="l1"><div class="l1-hd" onclick="toggleCat('${cat.id}')"><i class="ti ti-chevron-right l1-arr ${open?'o':''}" id="ca${cat.id}"></i><span class="l1-name">${cat.name}</span><span class="l1-cnt">${(cat.systems||[]).length}</span><i class="ti ti-x l1-del" onclick="event.stopPropagation();delCat('${cat.id}')"></i></div><div class="l1-body ${open?'o':''}" id="cb${cat.id}">${sysHtml}<div class="sb-add a2" onclick="openNS('${cat.id}')"><i class="ti ti-plus" style="font-size:10px"></i> Adicionar sistema</div></div></div>`;
   }
   el.innerHTML=html||'<div style="padding:14px;font-size:11px;color:rgba(237,232,220,0.28);text-align:center">Nenhum resultado</div>';
 }
-function toggleCat(id){catOpen[id]=!catOpen[id];renderSB()}
-function toggleSys(id){sysOpen[id]=!sysOpen[id];renderSB()}
+function toggleCat(id){catOpen[id]=catOpen[id]===false;renderSB()}
+function toggleSys(id){sysOpen[id]=sysOpen[id]===false;renderSB()}
 
 // NAV
 function selStr(cId,sId,stId){cC=cId;cS=sId;cST=stId;cTab='gallery';cAtlas='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=gCat(cId);const sys=gSys(cId,sId);const str=gStr(cId,sId,stId);document.getElementById('bc').innerHTML=`<span class="bc" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc active">${str?.name||''}</span>`;renderSB();renderSP()}
 function goHome(){cC=null;cS=null;cST=null;document.getElementById('add-btn').style.display='none';document.getElementById('pdf-btn').style.display='none';document.getElementById('bc').innerHTML='';renderSB();renderHome()}
 
 // HOME
-function renderHome(){const el=document.getElementById('content');const recent=imgs.slice(0,24);el.innerHTML=`<div class="home"><h1>SonoVault</h1><p>Banco de imagens ultrassonográficas · Clínica Senhor dos Passos</p>${recent.length?`<div class="recent-label">Imagens recentes</div><div class="recent-grid">${recent.map(img=>iCard(img)).join('')}</div>`:`<div class="home-empty"><i class="ti ti-ripple"></i><h3>Bem-vindo ao SonoVault</h3><p>Crie categorias na barra lateral e comece a adicionar imagens.</p></div>`}</div>`}
+function renderHome(){const el=document.getElementById('content');const recent=cases.slice(0,20);el.innerHTML=`<div class="home"><h1>SonoVault</h1><p>Banco de imagens ultrassonográficas · Clínica Senhor dos Passos</p>${recent.length?`<div class="recent-label">Casos recentes</div><div class="recent-grid">${recent.map(c=>caseCard(c,true)).join('')}</div>`:`<div class="home-empty"><i class="ti ti-ripple"></i><h3>Bem-vindo ao SonoVault</h3><p>Crie categorias na barra lateral e comece a adicionar casos.</p></div>`}</div>`}
 
 // STRUCT PAGE
 function renderSP(){
   const cat=gCat(cC);const sys=gSys(cC,cS);const str=gStr(cC,cS,cST);
-  const k=wk();const w=wiki[k]||{};const hasW=Object.values(w).some(v=>v&&v!='');
-  const ilHtml=w.illus?`<img src="${w.illus}" alt="">`:'<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>';
+  const k=wk();const w=wiki[k]||{};const hasW=w.anatomy||w.history||w.findings;
+  const ilHtml=getIllusPreview(k);
   const el=document.getElementById('content');
-  el.innerHTML=`<div class="sp"><div class="sp-hd"><div class="sp-hd-top"><div class="sp-illus" onclick="document.getElementById('illus-fi').click()" title="Clique para adicionar/trocar ilustração">${ilHtml}<div class="sp-illus-hint"><i class="ti ti-photo-edit" style="font-size:18px;color:white"></i></div></div><div class="sp-info"><div class="sp-tag">${cat?.name||''} › ${sys?.name||''}</div><div class="sp-title">${str?.name||''}</div><div class="sp-meta">${iCnt(cC,cS,cST)} imagens · ${hasW?'<span style="color:var(--accent)">Atlas disponível</span>':'Sem atlas ainda'}</div></div></div><div class="sp-tabs"><div class="sp-tab ${cTab==='gallery'?'active':''}" onclick="swTab('gallery')"><i class="ti ti-photo" style="font-size:12px"></i> Imagens</div><div class="sp-tab ${cTab==='atlas'?'active':''}" onclick="swTab('atlas')"><i class="ti ti-book" style="font-size:12px"></i> Atlas${hasW?' <span style="background:var(--accent);color:white;font-size:9px;padding:1px 5px;border-radius:3px">✓</span>':''}</div></div></div><div class="sp-body" id="sp-body"></div></div>`;
+  el.innerHTML=`<div class="sp"><div class="sp-hd"><div class="sp-hd-top"><div class="sp-illus" onclick="document.getElementById('illus-fi').click()" title="Clique para adicionar ilustração">${ilHtml}<div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;border-radius:11px" id="illus-hover"><i class="ti ti-photo-edit" style="font-size:18px;color:white"></i></div></div><div class="sp-info"><div class="sp-tag">${cat?.name||''} › ${sys?.name||''}</div><div class="sp-title">${str?.name||''}</div><div class="sp-meta">${cCnt(cC,cS,cST)} casos · ${hasW?'<span style="color:var(--accent)">Atlas disponível</span>':'Sem atlas ainda'}</div></div></div><div class="sp-tabs"><div class="sp-tab ${cTab==='gallery'?'active':''}" onclick="swTab('gallery')"><i class="ti ti-photo" style="font-size:12px"></i> Imagens</div><div class="sp-tab ${cTab==='atlas'?'active':''}" onclick="swTab('atlas')"><i class="ti ti-book" style="font-size:12px"></i> Atlas${hasW?' <span style="background:var(--accent);color:white;font-size:9px;padding:1px 5px;border-radius:3px">✓</span>':''}</div></div></div><div class="sp-body" id="sp-body"></div></div>`;
+  const ih=document.getElementById('illus-hover');const si=document.querySelector('.sp-illus');if(ih&&si){si.addEventListener('mouseenter',()=>ih.style.display='flex');si.addEventListener('mouseleave',()=>ih.style.display='none')}
   renderTab();
 }
+function getIllusPreview(k){const w=wiki[k]||{};const illus=w.illus||[];if(illus.length>0)return`<img src="${illus[0]}" style="width:100%;height:100%;object-fit:cover" alt="">`;return`<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>`}
 function swTab(t){cTab=t;renderSP()}
 function renderTab(){const el=document.getElementById('sp-body');if(!el)return;cTab==='gallery'?renderGal(el):renderAtlas(el)}
 
+// CASE CARD
+function caseCard(c,isHome){
+  const photos=c.photos||[];
+  const mainPhoto=photos[0]||null;
+  const thumbs=photos.slice(0,4);
+  const extra=photos.length>4?photos.length-4:0;
+  const cat=gCat(c.catId);const sys=gSys(c.catId,c.sysId);const str=gStr(c.catId,c.sysId,c.strId);
+  const k=c.catId+'::'+c.sysId+'::'+c.strId;
+  const hasW=wiki[k]&&(wiki[k].anatomy||wiki[k].history||wiki[k].findings);
+  const mainHtml=mainPhoto?`<img class="cc-main-img" src="${mainPhoto}" alt="" onclick="openLB(${JSON.stringify(photos)},0,'${(c.lesion||'').replace(/'/g,"\\'")}')">`:
+    `<div class="cc-main-ph" onclick="openAddPhotoToCase('${c.id}')"><i class="ti ti-photo-plus"></i><span>Adicionar foto</span></div>`;
+  const thumbsHtml=thumbs.map((p,i)=>`<div class="cc-thumb ${i===0?'active':''}" onclick="event.stopPropagation();setMainPhoto('${c.id}',${i})">${i===0&&!photos[i]?`<div class="cc-thumb-ph"><i class="ti ti-photo"></i></div>`:`<img src="${p}" alt="">`}</div>`).join('');
+  return`<div class="case-card" id="cc-${c.id}">
+    <div class="cc-photos">
+      ${mainHtml}
+      <span class="cc-badge ${bCls(c.category)}">${bLbl(c.category)}</span>
+      ${photos.length>0?`<span class="cc-photo-cnt"><i class="ti ti-photo" style="font-size:9px"></i> ${photos.length}</span>`:''}
+      <div class="cc-thumbs">
+        ${thumbsHtml}
+        <div class="cc-add-photo" onclick="openAddPhotoToCase('${c.id}')" title="Adicionar foto"><i class="ti ti-plus"></i></div>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-lesion">${c.lesion}${c.level?' — '+c.level:''}</div>
+      <div class="cc-meta">${isHome&&str?`<span>${cat?.name||''} › ${str.name}</span> · `:''}<span>${c.date?new Date(c.date).toLocaleDateString('pt-BR'):''}</span></div>
+      ${c.description?`<div class="cc-desc">${c.description}</div>`:''}
+      <div class="cc-actions">
+        <button class="cc-btn" onclick="openEditCase('${c.id}')"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button>
+        <button class="cc-btn" onclick="exportCasePDF('${c.id}')"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> PDF</button>
+        ${hasW?`<button class="cc-btn atlas" onclick="openAtlasFromCase('${c.id}')"><i class="ti ti-book" style="font-size:11px"></i> Atlas</button>`:''}
+        <button class="cc-btn" style="flex:none;padding:6px 8px" onclick="deleteCase('${c.id}')"><i class="ti ti-trash" style="font-size:11px;color:var(--danger)"></i></button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function setMainPhoto(caseId,idx){const c=cases.find(x=>x.id===caseId);if(!c||!c.photos)return;const photos=c.photos;const card=document.getElementById('cc-'+caseId);if(!card)return;const mainImg=card.querySelector('.cc-main-img');if(mainImg)mainImg.src=photos[idx];const thumbs=card.querySelectorAll('.cc-thumb');thumbs.forEach((t,i)=>t.classList.toggle('active',i===idx))}
+
 // GALLERY
 function renderGal(el){
-  const all=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST);
-  const filtered=gF==='all'?all:all.filter(i=>i.category===gF);
-  el.innerHTML=`<div class="gal-pane"><div class="gal-bar"><div class="gal-search"><i class="ti ti-search"></i><input id="gsq" placeholder="Buscar achado..." oninput="filterGal()"></div><div class="gf"><button class="gf-b ${gF==='all'?'on':''}" onclick="setGF('all')">Todos</button><button class="gf-b ${gF==='patologia'?'on':''}" onclick="setGF('patologia')">Patologia</button><button class="gf-b ${gF==='normal'?'on':''}" onclick="setGF('normal')">Normal</button><button class="gf-b ${gF==='variante'?'on':''}" onclick="setGF('variante')">Variante</button></div></div>${filtered.length?`<div class="img-grid">${filtered.map(img=>iCard(img)).join('')}</div>`:`<div class="gal-empty"><i class="ti ti-photo-off"></i><p>Nenhuma imagem. Use "Nova imagem" para adicionar.</p></div>`}</div>`;
+  const all=cases.filter(c=>c.catId===cC&&c.sysId===cS&&c.strId===cST);
+  const filtered=gF==='all'?all:all.filter(c=>c.category===gF);
+  el.innerHTML=`<div class="gal-pane"><div class="gal-bar"><div class="gal-search"><i class="ti ti-search"></i><input id="gsq" placeholder="Buscar achado..." oninput="filterGal()"></div><div class="gf"><button class="gf-b ${gF==='all'?'on':''}" onclick="setGF('all')">Todos</button><button class="gf-b ${gF==='patologia'?'on':''}" onclick="setGF('patologia')">Patologia</button><button class="gf-b ${gF==='normal'?'on':''}" onclick="setGF('normal')">Normal</button><button class="gf-b ${gF==='variante'?'on':''}" onclick="setGF('variante')">Variante</button></div></div>${filtered.length?`<div class="cases-grid">${filtered.map(c=>caseCard(c,false)).join('')}</div>`:`<div class="gal-empty"><i class="ti ti-photo-off"></i><p>Nenhum caso. Use "Novo caso" para adicionar.</p></div>`}</div>`;
 }
 function setGF(f){gF=f;renderTab()}
-function filterGal(){const q=(document.getElementById('gsq')?.value||'').toLowerCase();const all=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST&&(gF==='all'||i.category===gF));const filtered=q?all.filter(i=>[i.lesion,i.description,i.level].join(' ').toLowerCase().includes(q)):all;const g=document.querySelector('.img-grid');if(g)g.innerHTML=filtered.map(img=>iCard(img)).join('')}
-function iCard(img){const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i></div>';return`<div class="icard" onclick="openView('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div><div class="i-date">${img.date?new Date(img.date).toLocaleDateString('pt-BR'):''}</div></div></div>`}
+function filterGal(){const q=(document.getElementById('gsq')?.value||'').toLowerCase();const all=cases.filter(c=>c.catId===cC&&c.sysId===cS&&c.strId===cST&&(gF==='all'||c.category===gF));const filtered=q?all.filter(c=>[c.lesion,c.description,c.level].join(' ').toLowerCase().includes(q)):all;const g=document.querySelector('.cases-grid');if(g)g.innerHTML=filtered.map(c=>caseCard(c,false)).join('')}
 
 // ATLAS
-function renderAtlas(el){const k=wk();const w=wiki[k]||{};const hasC=Object.values(w).some(v=>v&&v!='');if(cAtlas==='read'&&hasC)renderAR(el,w);else renderAE(el,w)}
+function renderAtlas(el){const k=wk();const w=wiki[k]||{};const hasC=w.anatomy||w.history||w.findings||w.physio||w.treatment||w.refs;if(cAtlas==='read'&&hasC)renderAR(el,w);else renderAE(el,w)}
 
 function renderAR(el,w){
   const cat=gCat(cC);const sys=gSys(cC,cS);const str=gStr(cC,cS,cST);
-  const ilHtml=w.illus?`<img src="${w.illus}" alt="">`:'<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg>';
-  const si=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST).slice(0,6);
+  const k=wk();
+  const illus=w.illus||[];
+  const si=cases.filter(c=>c.catId===cC&&c.sysId===cS&&c.strId===cST);
+  const siPhotos=si.flatMap(c=>c.photos||[]).slice(0,6);
   const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS',isRef:true}];
-  el.innerHTML=`<div class="ar-pane"><div class="ar-hd"><div><div class="ar-title">${str?.name||''}</div><div class="ar-sub">${cat?.name||''} › ${sys?.name||''} · Atlas Ultrassonográfico</div></div><div class="ar-actions"><button class="btn btn-g" style="font-size:11px" onclick="cAtlas='edit';renderTab()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button><button class="btn btn-p" style="font-size:11px" onclick="exportAtlasPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button></div></div><div class="ar-body"><div class="ar-left">${secs.map(s=>w[s.id]?`<div class="ar-sec"><div class="ar-sec-lbl">${s.label}</div>${s.isRef?`<div class="ar-refs">${w[s.id]}</div>`:`<div class="ar-sec-txt">${w[s.id]}</div>`}</div>`:'').join('')}</div><div class="ar-right"><div><div class="ar-right-lbl">Ilustração anatômica</div><div class="ar-illus-box">${ilHtml}</div><div class="ar-illus-change" onclick="document.getElementById('illus-fi').click()"><i class="ti ti-edit" style="font-size:10px"></i> Trocar ilustração</div></div>${si.length?`<div><div class="ar-right-lbl">Imagens do banco</div><div class="ar-imgs-grid">${si.map(img=>`<div class="ar-img-mini" onclick="openView('${img.id}')">${img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>'}</div>`).join('')}</div></div>`:`<div class="ar-empty"><i class="ti ti-photo-off"></i><p>Adicione imagens na aba Imagens para vê-las aqui</p></div>`}</div></div></div>`;
+  const illusHtml=illus.length>0?
+    illus.map((img,i)=>`<div class="ar-illus-item" onclick="openLB(${JSON.stringify(illus)},${i},'Ilustração anatômica')"><img src="${img}" alt=""><div class="ar-illus-item-overlay"><i class="ti ti-zoom-in"></i></div></div>`).join('')+
+    `<div class="ar-illus-add" onclick="document.getElementById('illus-fi').click()"><i class="ti ti-plus"></i><span>Adicionar</span></div>`:
+    `<div class="ar-illus-item" style="grid-column:span 2;min-height:120px" onclick="document.getElementById('illus-fi').click()"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#ede8dc" stroke-width="1.5" stroke-opacity="0.3"/><path d="M20 32 Q26 22 32 32 Q38 42 44 32" stroke="#ede8dc" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/></svg><div class="ar-illus-item-overlay"><i class="ti ti-photo-plus"></i></div></div>`;
+  el.innerHTML=`<div class="ar-pane"><div class="ar-hd"><div><div class="ar-title">${str?.name||''}</div><div class="ar-sub">${cat?.name||''} › ${sys?.name||''} · Atlas Ultrassonográfico</div></div><div class="ar-actions"><button class="btn btn-g" style="font-size:11px" onclick="cAtlas='edit';renderTab()"><i class="ti ti-edit" style="font-size:11px"></i> Editar</button><button class="btn btn-p" style="font-size:11px" onclick="exportAtlasPDF()"><i class="ti ti-file-type-pdf" style="font-size:11px"></i> Exportar PDF</button></div></div><div class="ar-body"><div class="ar-left">${secs.map(s=>w[s.id]?`<div class="ar-sec"><div class="ar-sec-lbl">${s.label}</div>${s.isRef?`<div class="ar-refs">${w[s.id]}</div>`:`<div class="ar-sec-txt">${w[s.id]}</div>`}</div>`:'').join('')}</div><div class="ar-right"><div><div class="ar-right-lbl">Ilustrações anatômicas</div><div class="ar-illus-grid">${illusHtml}</div></div>${siPhotos.length?`<div><div class="ar-right-lbl">Imagens do banco</div><div class="ar-imgs-grid">${siPhotos.map((p,i)=>`<div class="ar-img-mini" onclick="openLB(${JSON.stringify(siPhotos)},${i},'Imagem do banco')"><img src="${p}" alt=""></div>`).join('')}</div></div>`:`<div class="ar-empty"><i class="ti ti-photo-off"></i><p>Adicione casos na aba Imagens para vê-los aqui</p></div>`}</div></div></div>`;
 }
 
 function renderAE(el,w){
-  const secs=[{id:'history',icon:'ti-clock',title:'História / Quem descobriu',ph:'Ex: Descrito por William Morrant Baker em 1877...',h:110},{id:'anatomy',icon:'ti-bone',title:'Anatomia',ph:'Descreva a anatomia detalhada da estrutura...',h:140},{id:'physio',icon:'ti-heart-rate-monitor',title:'Fisiopatologia',ph:'Mecanismos fisiopatológicos, causas, fatores de risco...',h:140},{id:'findings',icon:'ti-ripple',title:'Achados no ultrassom',ph:'Como a estrutura e suas patologias aparecem no ultrassom...',h:140},{id:'treatment',icon:'ti-stethoscope',title:'Tratamento / Conduta',ph:'Conservador, injetáveis (corticosteroide, PRP, hidrodissecção), cirurgia...',h:140},{id:'refs',icon:'ti-books',title:'Referências',ph:'StatPearls NCBI · Skeletal Radiology · AJR · RadioGraphics · Journal of Ultrasound...',h:90}];
-  el.innerHTML=`<div class="ae-pane"><div class="ae-sec"><div class="ae-hd"><div class="ae-ico"><i class="ti ti-photo"></i></div><div class="ae-ttl">Ilustração anatômica</div></div><div class="ae-bd"><div class="illus-zone" onclick="document.getElementById('illus-fi').click()">${w.illus?`<img src="${w.illus}" class="illus-prev" alt="Ilustração">`:`<i class="ti ti-photo-up"></i><p>Clique para fazer upload de ilustração<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — esquema anatômico, figura de livro</span>`}</div></div></div>${secs.map(s=>`<div class="ae-sec"><div class="ae-hd"><div class="ae-ico"><i class="ti ${s.icon}"></i></div><div class="ae-ttl">${s.title}</div></div><div class="ae-bd"><textarea class="ae-ta" id="w-${s.id}" placeholder="${s.ph}" style="min-height:${s.h}px">${w[s.id]||''}</textarea></div></div>`).join('')}</div><div class="ae-footer"><button class="btn btn-g" onclick="cAtlas='read';renderTab()"><i class="ti ti-arrow-left" style="font-size:11px"></i> Cancelar</button><button class="btn btn-p" onclick="saveAtlas()"><i class="ti ti-check" style="font-size:11px"></i> Salvar e visualizar</button></div>`;
+  const illus=w.illus||[];
+  const secs=[{id:'history',icon:'ti-clock',title:'História / Quem descobriu',ph:'Ex: Descrito por William Morrant Baker em 1877...',h:110},{id:'anatomy',icon:'ti-bone',title:'Anatomia',ph:'Descreva a anatomia detalhada da estrutura...',h:140},{id:'physio',icon:'ti-heart-rate-monitor',title:'Fisiopatologia',ph:'Mecanismos fisiopatológicos, causas...',h:140},{id:'findings',icon:'ti-ripple',title:'Achados no ultrassom',ph:'Como aparece no ultrassom...',h:140},{id:'treatment',icon:'ti-stethoscope',title:'Tratamento / Conduta',ph:'Conservador, injetáveis (PRP, corticosteroide), cirurgia...',h:140},{id:'refs',icon:'ti-books',title:'Referências',ph:'StatPearls NCBI · Skeletal Radiology · AJR · RadioGraphics...',h:90}];
+  const illusGrid=illus.map((img,i)=>`<div class="illus-item"><img src="${img}" alt=""><button class="illus-item-del" onclick="delIllus(${i})">✕</button></div>`).join('')+`<div class="illus-add-btn" onclick="document.getElementById('illus-fi').click()"><i class="ti ti-photo-plus"></i><span>Adicionar</span></div>`;
+  el.innerHTML=`<div class="ae-pane"><div class="ae-sec"><div class="ae-hd"><div class="ae-ico"><i class="ti ti-photo"></i></div><div class="ae-ttl">Ilustrações anatômicas (múltiplas)</div></div><div class="ae-bd"><div class="illus-grid">${illusGrid}</div></div></div>${secs.map(s=>`<div class="ae-sec"><div class="ae-hd"><div class="ae-ico"><i class="ti ${s.icon}"></i></div><div class="ae-ttl">${s.title}</div></div><div class="ae-bd"><textarea class="ae-ta" id="w-${s.id}" placeholder="${s.ph}" style="min-height:${s.h}px">${w[s.id]||''}</textarea></div></div>`).join('')}</div><div class="ae-footer"><button class="btn btn-g" onclick="cAtlas='read';renderTab()"><i class="ti ti-arrow-left" style="font-size:11px"></i> Cancelar</button><button class="btn btn-p" onclick="saveAtlas()"><i class="ti ti-check" style="font-size:11px"></i> Salvar e visualizar</button></div>`;
 }
 
-function saveAtlas(){const k=wk();const prev=wiki[k]||{};wiki[k]={illus:prev.illus||'',history:v('w-history'),anatomy:v('w-anatomy'),physio:v('w-physio'),findings:v('w-findings'),treatment:v('w-treatment'),refs:v('w-refs')};schedW();cAtlas='read';renderSP();toast('Atlas salvo','ok')}
+function saveAtlas(){const k=wk();const prev=wiki[k]||{};wiki[k]={illus:prev.illus||[],history:v('w-history'),anatomy:v('w-anatomy'),physio:v('w-physio'),findings:v('w-findings'),treatment:v('w-treatment'),refs:v('w-refs')};schedW();cAtlas='read';renderSP();toast('Atlas salvo','ok')}
 function v(id){return document.getElementById(id)?.value||''}
 
-// ILLUS
-function handleIllusFile(inp){const f=inp.files[0];if(!f)return;if(f.size>5*1024*1024){toast('Máx. 5MB','err');return}const rd=new FileReader();rd.onload=e=>{const k=wk();if(!wiki[k])wiki[k]={};wiki[k].illus=e.target.result;schedW();renderSP();toast('Ilustração atualizada','ok')};rd.readAsDataURL(f);inp.value=''}
+function delIllus(idx){const k=wk();if(!wiki[k]||!wiki[k].illus)return;wiki[k].illus.splice(idx,1);schedW();renderTab()}
 
-// VIEW
-function openView(id){vId=id;const img=imgs.find(i=>i.id===id);if(!img)return;const cat=gCat(img.catId);const sys=gSys(img.catId,img.sysId);const str=gStr(img.catId,img.sysId,img.strId);const k=img.catId+'::'+img.sysId+'::'+img.strId;const hasW=wiki[k]&&Object.values(wiki[k]).some(v=>v&&v!='');document.getElementById('vm-ttl').textContent=img.lesion;document.getElementById('vi-reg').textContent=(cat?.name||'')+(sys?' › '+sys.name:'')+(str?' › '+str.name:'');document.getElementById('vi-str').textContent=str?.name||'';document.getElementById('vi-les').textContent=img.lesion+(img.level?' — '+img.level:'');document.getElementById('vi-pills').innerHTML=`<span class="pill ${bCls(img.category)==='b-pat'?'pill-n':'pill-b'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-b">${img.level}</span>`:''}`;const dw=document.getElementById('vi-dw');if(img.description){dw.style.display='flex';document.getElementById('vi-desc').textContent=img.description}else dw.style.display='none';document.getElementById('vi-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'';document.getElementById('vm-img').innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="vm-img-ph"><i class="ti ti-photo"></i></div>';const ab=document.getElementById('vi-atlas-btn');ab.innerHTML=`<i class="ti ti-book" style="font-size:13px"></i> ${hasW?'Ver Atlas — '+str?.name:'Atlas não criado — '+str?.name}`;ab.style.opacity=hasW?'1':'0.65';show('vo')}
-function closeView(){hide('vo');vId=null}
-function editFromView(){const id=vId;closeView();openEditModal(id)}
-function deleteFromView(){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==vId);schedDb();closeView();renderTab();updateStat();renderSB();toast('Imagem removida','ok')}
-function openAtlasFromView(){const img=imgs.find(i=>i.id===vId);if(!img)return;closeView();cC=img.catId;cS=img.sysId;cST=img.strId;cTab='atlas';cAtlas='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=gCat(img.catId);const sys=gSys(img.catId,img.sysId);const str=gStr(img.catId,img.sysId,img.strId);document.getElementById('bc').innerHTML=`<span class="bc" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc active">${str?.name||''}</span>`;renderSB();renderSP()}
+// ILLUS UPLOAD
+function handleIllusFiles(inp){const files=Array.from(inp.files);if(!files.length)return;const k=wk();if(!wiki[k])wiki[k]={};if(!wiki[k].illus)wiki[k].illus=[];let loaded=0;files.forEach(f=>{if(f.size>5*1024*1024){toast('Máx. 5MB por imagem','err');return}const rd=new FileReader();rd.onload=e=>{wiki[k].illus.push(e.target.result);loaded++;if(loaded===files.length){schedW();renderSP();toast(loaded+' ilustração(ões) adicionada(s)','ok')}};rd.readAsDataURL(f)});inp.value=''}
 
-// ADD/EDIT IMG
-function openAddModal(){eId=null;dURL=null;document.getElementById('img-ttl').textContent='Nova imagem';show('img-mo');const cs=document.getElementById('im-cat');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===cC?' selected':''}>${c.name}</option>`).join('');fillImgSys();['im-les','im-lvl','im-desc'].forEach(x=>document.getElementById(x).value='');document.getElementById('im-icat').value='patologia';document.getElementById('img-uz').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}
-function openEditModal(id){eId=id;const img=imgs.find(i=>i.id===id);if(!img)return;dURL=img.dataURL||null;document.getElementById('img-ttl').textContent='Editar imagem';show('img-mo');const cs=document.getElementById('im-cat');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===img.catId?' selected':''}>${c.name}</option>`).join('');fillImgSys(img.sysId,img.strId);document.getElementById('im-les').value=img.lesion||'';document.getElementById('im-icat').value=img.category||'patologia';document.getElementById('im-lvl').value=img.level||'';document.getElementById('im-desc').value=img.description||'';document.getElementById('img-uz').innerHTML=img.dataURL?`<img src="${img.dataURL}" class="up" alt="">`:'<i class="ti ti-photo-up"></i><p>Clique para trocar imagem</p>'}
-function fillImgSys(selSys,selStr){const cId=document.getElementById('im-cat').value;const cat=gCat(cId);const ss=document.getElementById('im-sys');ss.innerHTML='<option value="">Selecionar...</option>'+(cat?.systems||[]).map(s=>`<option value="${s.id}"${s.id===selSys?' selected':''}>${s.name}</option>`).join('');fillImgStr(selStr)}
-function fillImgStr(selStr){const cId=document.getElementById('im-cat').value;const sId=document.getElementById('im-sys').value;const sys=gSys(cId,sId);const ss=document.getElementById('im-str');ss.innerHTML='<option value="">Selecionar...</option>'+(sys?.structs||[]).map(s=>`<option value="${s.id}"${s.id===selStr?' selected':''}>${s.name}</option>`).join('');if(cST&&!selStr)ss.value=cST||''}
-function closeImgModal(){hide('img-mo');eId=null;dURL=null;document.getElementById('img-fi').value=''}
-function handleImgFile(inp){const f=inp.files[0];if(!f)return;if(f.size>8*1024*1024){toast('Máx. 8MB','err');return}const rd=new FileReader();rd.onload=e=>{dURL=e.target.result;document.getElementById('img-uz').innerHTML=`<img src="${dURL}" class="up" alt="">`};rd.readAsDataURL(f)}
-async function saveImg(){const catId=document.getElementById('im-cat').value,sysId=document.getElementById('im-sys').value,strId=document.getElementById('im-str').value,les=document.getElementById('im-les').value.trim();if(!catId||!sysId||!strId||!les){toast('Preencha todos os campos','err');return}const btn=document.getElementById('img-save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:eId||uid(),catId,sysId,strId,lesion:les,category:document.getElementById('im-icat').value,level:document.getElementById('im-lvl').value.trim(),description:document.getElementById('im-desc').value.trim(),dataURL:dURL,date:eId?(imgs.find(i=>i.id===eId)?.date||new Date().toISOString()):new Date().toISOString()};if(eId){const x=imgs.findIndex(i=>i.id===eId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);schedDb();closeImgModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar';updateStat();renderSB();if(cC&&cS&&cST)renderTab();else renderHome();toast(eId?'Imagem atualizada':'Imagem salva','ok')}
+// ADD/EDIT CASE
+function openAddModal(){eId=null;newPhotos=[];document.getElementById('img-ttl').textContent='Novo caso';show('img-mo');const cs=document.getElementById('im-cat');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(c=>`<option value="${c.id}"${c.id===cC?' selected':''}>${c.name}</option>`).join('');fillImgSys();['im-les','im-lvl','im-desc'].forEach(x=>document.getElementById(x).value='');document.getElementById('im-icat').value='patologia';renderImgPreviews()}
+function openEditCase(id){eId=id;const c=cases.find(x=>x.id===id);if(!c)return;newPhotos=[...(c.photos||[])];document.getElementById('img-ttl').textContent='Editar caso';show('img-mo');const cs=document.getElementById('im-cat');cs.innerHTML='<option value="">Selecionar...</option>'+cats.map(x=>`<option value="${x.id}"${x.id===c.catId?' selected':''}>${x.name}</option>`).join('');fillImgSys(c.sysId,c.strId);document.getElementById('im-les').value=c.lesion||'';document.getElementById('im-icat').value=c.category||'patologia';document.getElementById('im-lvl').value=c.level||'';document.getElementById('im-desc').value=c.description||'';renderImgPreviews()}
+function openAddPhotoToCase(caseId){const c=cases.find(x=>x.id===caseId);if(!c)return;openEditCase(caseId)}
+function fillImgSys(selSys,selStr){const catId=document.getElementById('im-cat').value;const cat=gCat(catId);const ss=document.getElementById('im-sys');ss.innerHTML='<option value="">Selecionar...</option>'+(cat?.systems||[]).map(s=>`<option value="${s.id}"${s.id===selSys?' selected':''}>${s.name}</option>`).join('');fillImgStr(selStr)}
+function fillImgStr(selStr){const catId=document.getElementById('im-cat').value;const sysId=document.getElementById('im-sys').value;const sys=gSys(catId,sysId);const ss=document.getElementById('im-str');ss.innerHTML='<option value="">Selecionar...</option>'+(sys?.structs||[]).map(s=>`<option value="${s.id}"${s.id===selStr?' selected':''}>${s.name}</option>`).join('');if(cST&&!selStr)ss.value=cST||''}
+function closeImgModal(){hide('img-mo');eId=null;newPhotos=[];document.getElementById('img-fi').value=''}
+function handleImgFiles(inp){const files=Array.from(inp.files);files.forEach(f=>{if(f.size>8*1024*1024){toast('Máx. 8MB','err');return}const rd=new FileReader();rd.onload=e=>{newPhotos.push(e.target.result);renderImgPreviews()};rd.readAsDataURL(f)});inp.value=''}
+function renderImgPreviews(){const grid=document.getElementById('img-preview-grid');if(!grid)return;grid.innerHTML=newPhotos.map((p,i)=>`<div class="img-prev-item"><img src="${p}" alt=""><button class="img-prev-del" onclick="removePreviewPhoto(${i})">✕</button></div>`).join('')}
+function removePreviewPhoto(idx){newPhotos.splice(idx,1);renderImgPreviews()}
+async function saveCase(){const catId=document.getElementById('im-cat').value,sysId=document.getElementById('im-sys').value,strId=document.getElementById('im-str').value,les=document.getElementById('im-les').value.trim();if(!catId||!sysId||!strId||!les){toast('Preencha categoria, sistema, estrutura e achado','err');return}const btn=document.getElementById('img-save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:eId||uid(),catId,sysId,strId,lesion:les,category:document.getElementById('im-icat').value,level:document.getElementById('im-lvl').value.trim(),description:document.getElementById('im-desc').value.trim(),photos:newPhotos,date:eId?(cases.find(c=>c.id===eId)?.date||new Date().toISOString()):new Date().toISOString()};if(eId){const x=cases.findIndex(c=>c.id===eId);if(x>-1)cases[x]=obj}else cases.unshift(obj);schedDb();closeImgModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:11px"></i> Salvar caso';updateStat();renderSB();if(cC&&cS&&cST)renderTab();else renderHome();toast(eId?'Caso atualizado':'Caso salvo','ok')}
+function deleteCase(id){if(!confirm('Excluir este caso?'))return;cases=cases.filter(c=>c.id!==id);schedDb();updateStat();renderSB();if(cC&&cS&&cST)renderTab();else renderHome();toast('Caso removido','ok')}
+function openAtlasFromCase(caseId){const c=cases.find(x=>x.id===caseId);if(!c)return;cC=c.catId;cS=c.sysId;cST=c.strId;cTab='atlas';cAtlas='read';document.getElementById('add-btn').style.display='flex';document.getElementById('pdf-btn').style.display='flex';const cat=gCat(c.catId);const sys=gSys(c.catId,c.sysId);const str=gStr(c.catId,c.sysId,c.strId);document.getElementById('bc').innerHTML=`<span class="bc" onclick="goHome()">${cat?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc">${sys?.name||''}</span><i class="ti ti-chevron-right" style="font-size:9px"></i><span class="bc active">${str?.name||''}</span>`;renderSB();renderSP()}
 
 // CATS/SYS/STRUCTS
 function openNC(){document.getElementById('nc-name').value='';show('nc-mo');setTimeout(()=>document.getElementById('nc-name').focus(),80)}
 function saveNC(){const n=document.getElementById('nc-name').value.trim();if(!n)return;cats.push({id:uid(),name:n,systems:[]});schedC();renderSB();hide('nc-mo');toast('Categoria criada','ok')}
-function delCat(id){if(!confirm('Remover esta categoria e todo seu conteúdo?'))return;cats=cats.filter(c=>c.id!==id);if(cC===id){cC=null;cS=null;cST=null;goHome()}schedC();renderSB()}
+function delCat(id){if(!confirm('Remover esta categoria?'))return;cats=cats.filter(c=>c.id!==id);if(cC===id){cC=null;cS=null;cST=null;goHome()}schedC();renderSB()}
 function openNS(catId){nsCatId=catId;document.getElementById('ns-name').value='';show('ns-mo');setTimeout(()=>document.getElementById('ns-name').focus(),80)}
 function saveNS(){const n=document.getElementById('ns-name').value.trim();if(!n)return;const cat=gCat(nsCatId);if(!cat)return;if(!cat.systems)cat.systems=[];cat.systems.push({id:uid(),name:n,structs:[]});schedC();renderSB();hide('ns-mo');toast('Sistema criado','ok')}
 function delSys(cId,sId){if(!confirm('Remover este sistema?'))return;const cat=gCat(cId);if(cat)cat.systems=cat.systems.filter(s=>s.id!==sId);if(cC===cId&&cS===sId){cS=null;cST=null;goHome()}schedC();renderSB()}
@@ -613,17 +633,17 @@ function saveNST(){const n=document.getElementById('nst-name').value.trim();if(!
 function delStr(cId,sId,stId){if(!confirm('Remover esta estrutura?'))return;const sys=gSys(cId,sId);if(sys)sys.structs=sys.structs.filter(s=>s.id!==stId);if(cC===cId&&cS===sId&&cST===stId){cST=null;goHome()}schedC();renderSB()}
 
 // PDF
-async function exportSinglePDF(){const img=imgs.find(i=>i.id===vId);if(!img)return;await genImgPDF([img])}
-async function exportPDF(){const list=imgs.filter(i=>i.catId===cC&&i.sysId===cS&&i.strId===cST);if(!list.length){toast('Nenhuma imagem','err');return}await genImgPDF(list)}
-async function genImgPDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;list.forEach((img,idx)=>{if(idx>0)doc.addPage();const cat=gCat(img.catId);const sys=gSys(img.catId,img.sysId);const str=gStr(img.catId,img.sysId,img.strId);doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setDrawColor(237,232,220);doc.setLineWidth(0.8);doc.rect(6,6,W-12,H-12,'S');doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('SonoVault',18,20);doc.setFillColor(37,99,168);doc.roundedRect(W-68,10,56,10,2,2,'F');doc.setTextColor(237,232,220);doc.setFontSize(8);doc.text(((sys?.name||'')+(str?' › '+str.name:'')).toUpperCase(),W-40,16.5,{align:'center'});if(img.dataURL){try{doc.addImage(img.dataURL,'PNG',10,34,W-20,110,'','MEDIUM')}catch(e){}}doc.setFillColor(37,53,85);doc.rect(6,148,W-12,105,'F');const cc=img.category==='normal'?[45,122,79]:img.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...cc);doc.roundedRect(12,153,32,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(img.category).toUpperCase(),28,158.5,{align:'center'});doc.setTextColor(237,232,220);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text(str?.name||'',12,168);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(img.lesion+(img.level?' — '+img.level:''),12,178,{maxWidth:W-24});if(img.description){doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(200,194,182);doc.text(doc.splitTextToSize(img.description,W-24).slice(0,8),12,188)}doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-10,{align:'center'});doc.text(img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',W-12,H-10,{align:'right'})});const str=gStr(cC,cS,cST);doc.save(`sonovault-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro PDF','err')}}
+async function exportCasePDF(caseId){const c=cases.find(x=>x.id===caseId);if(!c)return;await genCasePDF([c])}
+async function exportAllPDF(){const list=cases.filter(c=>c.catId===cC&&c.sysId===cS&&c.strId===cST);if(!list.length){toast('Nenhum caso','err');return}await genCasePDF(list)}
+async function genCasePDF(list){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;for(let idx=0;idx<list.length;idx++){const c=list[idx];if(idx>0)doc.addPage();const cat=gCat(c.catId);const sys=gSys(c.catId,c.sysId);const str=gStr(c.catId,c.sysId,c.strId);const photos=c.photos||[];doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setFillColor(237,232,220);doc.rect(6,6,W-12,22,'F');doc.setDrawColor(237,232,220);doc.setLineWidth(0.5);doc.rect(6,6,W-12,H-12,'S');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(15);doc.text('SonoVault',18,19);doc.setFillColor(37,99,168);doc.roundedRect(W-70,10,58,10,2,2,'F');doc.setTextColor(255,255,255);doc.setFontSize(8);doc.text(((sys?.name||'')+(str?' › '+str.name:'')).toUpperCase(),W-41,16.5,{align:'center'});const cc=c.category==='normal'?[45,122,79]:c.category==='variante'?[146,96,10]:[185,28,28];doc.setFillColor(...cc);doc.roundedRect(12,33,32,8,1,1,'F');doc.setTextColor(255,255,255);doc.setFontSize(7);doc.setFont('helvetica','bold');doc.text(bLbl(c.category).toUpperCase(),28,38.5,{align:'center'});doc.setTextColor(237,232,220);doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text(c.lesion+(c.level?' — '+c.level:''),12,50,{maxWidth:W-24});if(c.description){doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(200,194,182);const lines=doc.splitTextToSize(c.description,W-24);doc.text(lines.slice(0,3),12,58)}let imgY=72;if(photos.length>0){const cols=Math.min(photos.length,2);const imgW=(W-24-(cols-1)*4)/cols;const imgH=Math.min(80,imgW*0.75);for(let pi=0;pi<Math.min(photos.length,4);pi++){const col=pi%cols;const row=Math.floor(pi/cols);const px=12+col*(imgW+4);const py=imgY+row*(imgH+4);try{doc.addImage(photos[pi],'PNG',px,py,imgW,imgH,'','MEDIUM')}catch(e){}}imgY+=Math.ceil(photos.length/cols)*(imgH+4)+6}doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-8,{align:'center'});doc.text(c.date?new Date(c.date).toLocaleDateString('pt-BR'):'',W-12,H-8,{align:'right'})}const str=gStr(cC,cS,cST);doc.save(`sonovault-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('PDF exportado!','ok')}catch(e){toast('Erro PDF','err');console.error(e)}}
 
 async function exportAtlasPDF(){try{const{jsPDF}=window.jspdf;const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});const W=210,H=297;const cat=gCat(cC);const sys=gSys(cC,cS);const str=gStr(cC,cS,cST);const k=wk();const w=wiki[k]||{};const secs=[{id:'history',label:'HISTÓRIA / QUEM DESCOBRIU'},{id:'anatomy',label:'ANATOMIA'},{id:'physio',label:'FISIOPATOLOGIA'},{id:'findings',label:'ACHADOS NO ULTRASSOM'},{id:'treatment',label:'TRATAMENTO / CONDUTA'},{id:'refs',label:'REFERÊNCIAS'}];doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');doc.setFillColor(237,232,220);doc.rect(0,0,W,30,'F');doc.setTextColor(30,45,74);doc.setFont('helvetica','bold');doc.setFontSize(18);doc.text('SonoVault',14,20);doc.setFontSize(9);doc.setFont('helvetica','normal');doc.text('Atlas Ultrassonográfico',58,14);doc.text((cat?.name||'')+(sys?' › '+sys.name:''),58,21);doc.setFontSize(15);doc.setFont('helvetica','bold');doc.setTextColor(237,232,220);doc.text(str?.name||'',14,44);let y=54;secs.forEach(s=>{if(!w[s.id])return;if(y>H-20){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20}doc.setFillColor(37,99,168);doc.roundedRect(10,y-4,W-20,7,1,1,'F');doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text(s.label,14,y+0.5);y+=9;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9);const lines=doc.splitTextToSize(w[s.id],W-24);lines.forEach(line=>{if(y>H-15){doc.addPage();doc.setFillColor(30,45,74);doc.rect(0,0,W,H,'F');y=20;doc.setTextColor(220,215,205);doc.setFont('helvetica','normal');doc.setFontSize(9)}doc.text(line,12,y);y+=5.5});y+=6});const pc=doc.internal.getNumberOfPages();for(let i=1;i<=pc;i++){doc.setPage(i);doc.setTextColor(150,140,120);doc.setFontSize(7);doc.text('Clínica Senhor dos Passos · SonoVault',W/2,H-8,{align:'center'});doc.text(`${i}/${pc}`,W-12,H-8,{align:'right'})}doc.save(`sonovault-atlas-${str?.name||'export'}-${new Date().toISOString().slice(0,10)}.pdf`);toast('Atlas PDF exportado!','ok')}catch(e){toast('Erro PDF','err')}}
 
 // UTILS
 function bCls(c){return c==='normal'?'b-norm':c==='variante'?'b-var':'b-pat'}
 function bLbl(c){return c==='normal'?'Normal':c==='variante'?'Variante':'Patologia'}
-function updateStat(){const t=imgs.length;document.getElementById('top-stat').textContent=t+' imagem'+(t!==1?'ns':'')}
-function showHint(){show('hint-o')}
+function updateStat(){const t=cases.length;document.getElementById('top-stat').textContent=t+' caso'+(t!==1?'s':'')}
+
 function toast(msg,type='ok'){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.className=`toast show ${type}`;t.querySelector('i').className=type==='ok'?'ti ti-check':'ti ti-alert-circle';setTimeout(()=>{t.className='toast'},2800)}
 
 window.onload=()=>{initGoogleAuth()}
