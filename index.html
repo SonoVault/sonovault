@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SonoVault</title>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet">
-<script src="https://accounts.google.com/gsi/client" async defer></script><style>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#1e2d4a;--navy2:#253555;--navy3:#2e3f63;--navy-light:#3a4f7a;--beige:#ede8dc;--beige2:#f5f2ec;--beige3:#faf8f5;--beige4:#fff;--text-dark:#1a2540;--text-mid:#4a5568;--text-soft:#8896a8;--text-beige:#b8a98a;--accent:#2563a8;--accent2:#3b7fd4;--success:#2d7a4f;--success-bg:#e8f5ee;--danger:#b91c1c;--danger-bg:#fef2f2;--warning:#92600a;--warning-bg:#fefce8;--border:#ddd8ce;--border2:#c8c2b6;--radius:6px;--radius-lg:10px;--font:'Georgia','Times New Roman',serif;--ui:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
 html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(--text-dark);overflow:hidden}
@@ -32,6 +33,8 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .top-btn:hover{background:rgba(255,255,255,0.1);color:#fff}
 .top-btn.cta{background:var(--beige);border-color:var(--beige);color:var(--navy);font-weight:500}
 .top-btn.cta:hover{background:#e8e3d8}
+.top-btn.capture{background:rgba(99,155,220,0.15);border-color:rgba(99,155,220,0.4);color:#93c5fd}
+.top-btn.capture:hover{background:rgba(99,155,220,0.25);color:#bfdbfe}
 .top-btn.logout{border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.4)}
 .top-btn.logout:hover{color:rgba(255,255,255,0.8)}
 .body-row{display:flex;flex:1;overflow:hidden}
@@ -46,7 +49,6 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .sb-item.active .n{background:rgba(237,232,220,0.15);color:rgba(237,232,220,0.7)}
 .sb-div{height:0.5px;background:rgba(255,255,255,0.08);margin:4px 0}
 .drive-status{padding:10px 14px;font-size:10px;color:rgba(237,232,220,0.3);display:flex;align-items:center;gap:5px;margin-top:auto;border-top:0.5px solid rgba(255,255,255,0.06)}
-.drive-status i{font-size:12px}
 .drive-status.ok{color:rgba(110,231,183,0.6)}
 .main-col{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .toolbar{background:var(--beige4);border-bottom:0.5px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -86,29 +88,31 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .l-title{font-size:12px;font-weight:500;color:var(--text-dark);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .l-sub{font-size:10px;color:var(--text-soft)}
 .lbadge{font-size:9px;font-weight:600;padding:2px 7px;border-radius:3px;flex-shrink:0}
-.detail{width:280px;min-width:280px;background:var(--beige4);border-left:0.5px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
-.d-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--text-beige);padding:20px;text-align:center}
-.d-empty i{font-size:36px}
-.d-empty p{font-size:12px;line-height:1.6;color:var(--text-soft)}
-.d-img{width:100%;height:170px;background:var(--beige2);overflow:hidden;position:relative;border-bottom:0.5px solid var(--border);flex-shrink:0}
-.d-img img{width:100%;height:100%;object-fit:cover}
-.d-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--text-beige)}
-.d-img-ph i{font-size:40px}
-.d-body{padding:14px;flex:1}
-.d-reg{font-size:9px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
-.d-title{font-family:var(--font);font-size:15px;color:var(--text-dark);margin-bottom:3px;line-height:1.3}
-.d-str{font-size:11px;color:var(--text-mid);margin-bottom:10px}
-.d-pills{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
-.pill{font-size:10px;padding:3px 8px;border-radius:3px;font-weight:500}
+/* VIEW MODAL */
+.view-modal-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.92);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px}
+.view-modal{background:var(--beige4);border-radius:14px;width:100%;max-width:900px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
+.view-modal-top{background:var(--navy);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.view-modal-title{font-family:var(--font);font-size:16px;color:var(--beige);font-weight:400}
+.view-modal-actions{display:flex;gap:8px;align-items:center}
+.view-modal-body{display:flex;flex:1;overflow:hidden}
+.view-img-panel{flex:1;background:#0a0f1a;display:flex;align-items:center;justify-content:center;min-height:300px;position:relative}
+.view-img-panel img{max-width:100%;max-height:100%;object-fit:contain}
+.view-img-ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,0.2)}
+.view-img-ph i{font-size:56px}
+.view-info-panel{width:320px;min-width:320px;background:var(--beige3);border-left:0.5px solid var(--border);overflow-y:auto;display:flex;flex-direction:column}
+.view-info-body{padding:18px;flex:1}
+.view-reg{font-size:9px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.view-title{font-family:var(--font);font-size:18px;color:var(--text-dark);margin-bottom:4px;line-height:1.3}
+.view-lesion{font-size:13px;color:var(--text-mid);margin-bottom:12px}
+.view-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.pill{font-size:10px;padding:3px 9px;border-radius:3px;font-weight:500}
 .pill-navy{background:var(--navy);color:var(--beige)}
 .pill-beige{background:var(--beige);color:var(--text-mid);border:0.5px solid var(--border)}
-.d-desc-lbl{font-size:9px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-soft);margin-bottom:5px}
-.d-desc{font-size:11px;color:var(--text-mid);line-height:1.7;background:var(--beige2);border-radius:var(--radius);padding:10px 12px;border:0.5px solid var(--border)}
-.d-date{font-size:10px;color:var(--text-beige);margin-top:8px}
-.d-actions{padding:10px 14px;border-top:0.5px solid var(--border);display:flex;gap:7px;flex-shrink:0}
-.act-btn{flex:1;padding:7px;border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .12s;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui)}
-.act-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
-.act-btn.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#fca5a5}
+.view-section{margin-bottom:14px}
+.view-section-lbl{font-size:9px;font-weight:600;letter-spacing:0.7px;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px}
+.view-section-content{font-size:12px;color:var(--text-mid);line-height:1.7;background:var(--beige4);border-radius:var(--radius);padding:10px 12px;border:0.5px solid var(--border)}
+.view-info-footer{padding:12px 18px;border-top:0.5px solid var(--border);display:flex;gap:7px;background:var(--beige4);flex-shrink:0}
+/* EDIT/ADD MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(20,30,50,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
 .modal{background:var(--beige4);border:0.5px solid var(--border2);border-radius:var(--radius-lg);width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
 .modal-hd{background:var(--navy);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--radius-lg) var(--radius-lg) 0 0;position:sticky;top:0}
@@ -134,6 +138,11 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .btn-ghost:hover{background:var(--beige);color:var(--text-dark)}
 .btn-primary{background:var(--navy);border-color:var(--navy);color:var(--beige);font-weight:500}
 .btn-primary:hover{background:var(--navy3)}
+.btn-danger{background:var(--danger-bg);border-color:#fca5a5;color:var(--danger)}
+.btn-danger:hover{background:#fee2e2}
+.act-btn{flex:1;padding:7px;border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .12s;border:0.5px solid var(--border);background:var(--beige2);color:var(--text-mid);font-family:var(--ui)}
+.act-btn:hover{background:var(--navy);color:var(--beige);border-color:var(--navy)}
+.act-btn.del:hover{background:var(--danger-bg);color:var(--danger);border-color:#fca5a5}
 .empty-g{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:60px 20px;color:var(--text-beige);text-align:center}
 .empty-g i{font-size:48px}
 .empty-g h3{font-size:14px;font-weight:500;color:var(--text-soft)}
@@ -144,6 +153,10 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
 .toast.err i{color:#fca5a5}
 .saving-badge{display:none;align-items:center;gap:5px;font-size:10px;color:rgba(237,232,220,0.5)}
 .saving-badge.show{display:flex}
+/* CAPTURE PREVIEW */
+.capture-overlay{position:fixed;inset:0;background:rgba(10,18,35,0.95);z-index:160;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.capture-preview{max-width:80vw;max-height:60vh;border-radius:8px;border:2px solid var(--accent2);object-fit:contain}
+.capture-actions{display:flex;gap:10px}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
@@ -181,6 +194,7 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
     <div class="top-sep"></div>
     <span class="top-stat" id="top-stat">0 imagens</span>
     <div class="user-pill"><div class="user-avatar" id="user-initials">R</div><span class="user-name" id="user-name-top">...</span></div>
+    <button class="top-btn capture" onclick="captureScreen()"><i class="ti ti-screenshot" style="font-size:12px"></i> Capturar tela</button>
     <button class="top-btn" onclick="exportData()"><i class="ti ti-download" style="font-size:12px"></i> Exportar</button>
     <button class="top-btn cta" onclick="openModal()"><i class="ti ti-plus" style="font-size:12px"></i> Nova imagem</button>
     <button class="top-btn logout" onclick="signOut()" title="Sair"><i class="ti ti-logout" style="font-size:13px"></i></button>
@@ -206,10 +220,56 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
       </div>
       <div class="gallery" id="gallery"></div>
     </div>
-    <div class="detail" id="detail"><div class="d-empty"><i class="ti ti-hand-click"></i><p>Selecione uma imagem para ver detalhes</p></div></div>
   </div>
 </div>
 
+<!-- VIEW MODAL -->
+<div id="view-modal-overlay" class="view-modal-overlay" style="display:none">
+  <div class="view-modal">
+    <div class="view-modal-top">
+      <span class="view-modal-title" id="vm-title">Detalhes</span>
+      <div class="view-modal-actions">
+        <button class="btn btn-ghost" style="font-size:11px;padding:5px 12px" onclick="editFromView()"><i class="ti ti-edit" style="font-size:12px"></i> Editar</button>
+        <button class="btn btn-danger" style="font-size:11px;padding:5px 12px" onclick="deleteFromView()"><i class="ti ti-trash" style="font-size:12px"></i> Excluir</button>
+        <button class="modal-x" onclick="closeViewModal()" style="margin-left:4px"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+    <div class="view-modal-body">
+      <div class="view-img-panel" id="vm-img"></div>
+      <div class="view-info-panel">
+        <div class="view-info-body">
+          <div class="view-reg" id="vm-reg"></div>
+          <div class="view-title" id="vm-str"></div>
+          <div class="view-lesion" id="vm-les"></div>
+          <div class="view-pills" id="vm-pills"></div>
+          <div class="view-section" id="vm-desc-sec" style="display:none">
+            <div class="view-section-lbl">Descrição do achado</div>
+            <div class="view-section-content" id="vm-desc"></div>
+          </div>
+          <div class="view-section" id="vm-date-sec">
+            <div class="view-section-lbl">Data</div>
+            <div class="view-section-content" id="vm-date"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAPTURE PREVIEW -->
+<div id="capture-overlay" class="capture-overlay" style="display:none">
+  <div style="text-align:center;color:var(--beige);margin-bottom:8px">
+    <div style="font-family:var(--font);font-size:18px;margin-bottom:4px">Prévia da captura</div>
+    <div style="font-size:12px;color:rgba(237,232,220,0.5)">Confirme para salvar no banco</div>
+  </div>
+  <img id="capture-preview-img" class="capture-preview" src="" alt="">
+  <div class="capture-actions">
+    <button class="btn btn-ghost" onclick="discardCapture()"><i class="ti ti-x" style="font-size:12px"></i> Descartar</button>
+    <button class="btn btn-primary" onclick="confirmCapture()"><i class="ti ti-check" style="font-size:12px"></i> Usar esta imagem</button>
+  </div>
+</div>
+
+<!-- ADD/EDIT MODAL -->
 <div id="modal-overlay" class="modal-overlay" style="display:none">
   <div class="modal">
     <div class="modal-hd"><span class="modal-hd-title" id="modal-ttl">Nova imagem</span><button class="modal-x" onclick="closeModal()"><i class="ti ti-x"></i></button></div>
@@ -231,16 +291,15 @@ html,body{height:100%;font-family:var(--ui);background:var(--beige3);color:var(-
   </div>
 </div>
 
-<div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-msg">Salvo</span></div>
-
-<script>
+<div class="toast" id="toast"><i class="ti ti-check"></i><span id="toast-msg">Salvo</span></div><script>
 const CLIENT_ID='155144252138-es5iuh573njhfvu1mtiih5qg5eok5r1b.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive.file';
 const DB_FILENAME='sonovault-db.json';
 const FOLDER_NAME='SonoVault';
-let imgs=[],filter='all',region=null,view='grid',selId=null,editId=null,dataURL=null;
+let imgs=[],filter='all',region=null,view='grid',selId=null,editId=null,dataURL=null,viewingId=null,capturedDataURL=null;
 let tokenClient,accessToken=null,driveDbFileId=null,driveFolderId=null,saveTimeout=null;
-const STRUCTS={Ombro:['Tendão supraespinhal','Tendão infraespinhal','Tendão subescapular','Cabo longo do bíceps','Articulação AC','Bursa subacromial'],Joelho:['Tendão patelar','Tendão quadricipital','Ligamento colateral medial','Ligamento colateral lateral','Menisco medial','Menisco lateral','Cisto poplíteo','Pata de ganso'],Tornozelo:['Tendão calcâneo','Tendão tibial posterior','Tendões fibulares','Ligamento LTFA','Fáscia plantar','Sindesmose tibioperoneal','Seio do tarso'],Cotovelo:['Origem dos extensores','Origem dos flexores','Tendão do bíceps distal','Tendão do tríceps','Nervo ulnar','Bursa olecraniana'],Mão:['Polia A1','Polia A2','Ligamento colateral ulnar','Placa volar','Tendões flexores','Tendões extensores'],Punho:['Nervo mediano','Nervo ulnar','Tendões extensores','Tendões flexores','Canal de Guyon'],Quadril:['Tendão glúteo médio','Tendão glúteo mínimo','Tendão iliopsoas','Bursa trocantérica'],Abdômen:['Fígado','Vesícula biliar','Pâncreas','Baço','Rim direito','Rim esquerdo'],Tireoide:['Lobo direito','Lobo esquerdo','Istmo','Linfonodos cervicais'],Mama:['Quadrante superolateral','Quadrante superomedial','Quadrante inferolateral','Região retroareolar'],Vascular:['Veia safena magna','Veia safena parva','Sistema venoso profundo','Artéria carótida']};
+const STRUCTS={Ombro:['Tendão supraespinhal','Tendão infraespinhal','Tendão subescapular','Cabo longo do bíceps','Articulação AC','Bursa subacromial'],Joelho:['Tendão patelar','Tendão quadricipital','Ligamento colateral medial','Ligamento colateral lateral','Menisco medial','Menisco lateral','Cisto poplíteo','Pata de ganso','Trato iliotibial'],Tornozelo:['Tendão calcâneo','Tendão tibial posterior','Tendões fibulares','Ligamento LTFA','Fáscia plantar','Sindesmose tibioperoneal','Seio do tarso'],Cotovelo:['Origem dos extensores','Origem dos flexores','Tendão do bíceps distal','Tendão do tríceps','Nervo ulnar','Bursa olecraniana'],Mão:['Polia A1','Polia A2','Ligamento colateral ulnar','Placa volar','Tendões flexores','Tendões extensores'],Punho:['Nervo mediano','Nervo ulnar','Tendões extensores','Tendões flexores','Canal de Guyon'],Quadril:['Tendão glúteo médio','Tendão glúteo mínimo','Tendão iliopsoas','Bursa trocantérica'],Abdômen:['Fígado','Vesícula biliar','Pâncreas','Baço','Rim direito','Rim esquerdo'],Tireoide:['Lobo direito','Lobo esquerdo','Istmo','Linfonodos cervicais'],Mama:['Quadrante superolateral','Quadrante superomedial','Quadrante inferolateral','Região retroareolar'],Vascular:['Veia safena magna','Veia safena parva','Sistema venoso profundo','Artéria carótida']};
+
 function initGoogleAuth(){tokenClient=google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,scope:SCOPES,callback:async(resp)=>{if(resp.error){toast('Erro no login: '+resp.error,'err');return}accessToken=resp.access_token;await loadUserInfo();await initDrive();showApp()}})}
 function signIn(){document.getElementById('login-status').textContent='Conectando...';tokenClient.requestAccessToken({prompt:'consent'})}
 function signOut(){if(accessToken)google.accounts.oauth2.revoke(accessToken);accessToken=null;imgs=[];driveDbFileId=null;driveFolderId=null;document.getElementById('app').style.display='none';document.getElementById('login-screen').style.display='flex';document.getElementById('login-status').textContent='Clínica Senhor dos Passos'}
@@ -252,24 +311,76 @@ async function getDbFileId(folderId){const q=encodeURIComponent(`name='${DB_FILE
 async function initDrive(){try{driveFolderId=await getOrCreateFolder();driveDbFileId=await getDbFileId(driveFolderId);if(driveDbFileId){const r=await driveReq(`https://www.googleapis.com/drive/v3/files/${driveDbFileId}?alt=media`);const data=await r.json();imgs=Array.isArray(data)?data:[]}else{imgs=[]}document.getElementById('drive-status').className='drive-status ok';document.getElementById('drive-status').innerHTML='<i class="ti ti-cloud-check"></i> Google Drive conectado';renderAll()}catch(e){document.getElementById('drive-status').className='drive-status';document.getElementById('drive-status').innerHTML='<i class="ti ti-cloud-off"></i> Erro no Drive';toast('Erro ao conectar Drive','err')}}
 async function saveToDrive(){if(!accessToken||!driveFolderId)return;document.getElementById('saving-badge').classList.add('show');try{const blob=new Blob([JSON.stringify(imgs)],{type:'application/json'});if(driveDbFileId){await fetch(`https://www.googleapis.com/upload/drive/v3/files/${driveDbFileId}?uploadType=media`,{method:'PATCH',headers:{Authorization:'Bearer '+accessToken,'Content-Type':'application/json'},body:blob})}else{const meta={name:DB_FILENAME,parents:[driveFolderId]};const form=new FormData();form.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));form.append('file',blob);const r=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',{method:'POST',headers:{Authorization:'Bearer '+accessToken},body:form});const f=await r.json();driveDbFileId=f.id}}catch(e){toast('Erro ao salvar no Drive','err')}finally{document.getElementById('saving-badge').classList.remove('show')}}
 function scheduleSave(){clearTimeout(saveTimeout);saveTimeout=setTimeout(saveToDrive,1500)}
+
+// CAPTURA DE TELA
+async function captureScreen(){
+  try{
+    const stream=await navigator.mediaDevices.getDisplayMedia({video:{cursor:'never'},audio:false});
+    const video=document.createElement('video');
+    video.srcObject=stream;
+    await video.play();
+    const canvas=document.createElement('canvas');
+    canvas.width=video.videoWidth;
+    canvas.height=video.videoHeight;
+    canvas.getContext('2d').drawImage(video,0,0);
+    stream.getTracks().forEach(t=>t.stop());
+    capturedDataURL=canvas.toDataURL('image/png');
+    document.getElementById('capture-preview-img').src=capturedDataURL;
+    document.getElementById('capture-overlay').style.display='flex';
+  }catch(e){
+    if(e.name!=='NotAllowedError')toast('Erro na captura de tela','err');
+  }
+}
+function discardCapture(){capturedDataURL=null;document.getElementById('capture-overlay').style.display='none'}
+function confirmCapture(){
+  document.getElementById('capture-overlay').style.display='none';
+  dataURL=capturedDataURL;
+  capturedDataURL=null;
+  openModal();
+  setTimeout(()=>{
+    const z=document.getElementById('upload-z');
+    z.innerHTML=`<img src="${dataURL}" class="upload-prev">`;
+  },100);
+}
+
+// MODAL VIEW
+function openViewModal(id){
+  viewingId=id;
+  const img=imgs.find(i=>i.id===id);
+  if(!img)return;
+  document.getElementById('vm-title').textContent=img.structure+' — '+img.lesion;
+  document.getElementById('vm-reg').textContent=img.region;
+  document.getElementById('vm-str').textContent=img.structure;
+  document.getElementById('vm-les').textContent=img.lesion+(img.level?' — '+img.level:'');
+  const bc=bCls(img.category),bl=bLbl(img.category);
+  document.getElementById('vm-pills').innerHTML=`<span class="pill ${bc==='b-pat'?'pill-navy':'pill-beige'}">${bl}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}`;
+  const descSec=document.getElementById('vm-desc-sec');
+  if(img.description){descSec.style.display='block';document.getElementById('vm-desc').textContent=img.description}else{descSec.style.display='none'}
+  document.getElementById('vm-date').textContent=img.date?new Date(img.date).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}):'—';
+  const imgPanel=document.getElementById('vm-img');
+  imgPanel.innerHTML=img.dataURL?`<img src="${img.dataURL}" alt="${img.lesion}">`:'<div class="view-img-ph"><i class="ti ti-photo"></i></div>';
+  document.getElementById('view-modal-overlay').style.display='flex';
+}
+function closeViewModal(){document.getElementById('view-modal-overlay').style.display='none';viewingId=null}
+function editFromView(){const id=viewingId;closeViewModal();openModal(id)}
+function deleteFromView(){const id=viewingId;closeViewModal();delImg(id)}
+
 function fillStructures(){const r=document.getElementById('i-reg').value,dl=document.getElementById('str-dl');dl.innerHTML='';(STRUCTS[r]||[]).forEach(s=>{const o=document.createElement('option');o.value=s;dl.appendChild(o)})}
 function handleFile(inp){const f=inp.files[0];if(!f)return;if(f.size>8*1024*1024){toast('Imagem muito grande','err');return}const rd=new FileReader();rd.onload=e=>{dataURL=e.target.result;document.getElementById('upload-z').innerHTML=`<img src="${dataURL}" class="upload-prev">`};rd.readAsDataURL(f)}
-function openModal(id=null){editId=id;dataURL=null;document.getElementById('modal-overlay').style.display='flex';if(id){const img=imgs.find(i=>i.id===id);if(!img)return;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('i-reg').value=img.region||'';fillStructures();document.getElementById('i-str').value=img.structure||'';document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-cat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';if(img.dataURL){document.getElementById('upload-z').innerHTML=`<img src="${img.dataURL}" class="upload-prev">`;dataURL=img.dataURL}else{document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem</p>'}}else{document.getElementById('modal-ttl').textContent='Nova imagem';['i-str','i-les','i-lvl','i-desc'].forEach(x=>{const e=document.getElementById(x);if(e)e.value=''});document.getElementById('i-reg').value='';document.getElementById('i-cat').value='patologia';document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}}
+function openModal(id=null){editId=id;if(!id){}; document.getElementById('modal-overlay').style.display='flex';if(id){const img=imgs.find(i=>i.id===id);if(!img)return;document.getElementById('modal-ttl').textContent='Editar imagem';document.getElementById('i-reg').value=img.region||'';fillStructures();document.getElementById('i-str').value=img.structure||'';document.getElementById('i-les').value=img.lesion||'';document.getElementById('i-cat').value=img.category||'patologia';document.getElementById('i-lvl').value=img.level||'';document.getElementById('i-desc').value=img.description||'';if(img.dataURL){document.getElementById('upload-z').innerHTML=`<img src="${img.dataURL}" class="upload-prev">`;if(!dataURL)dataURL=img.dataURL}else{document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem</p>'}}else{document.getElementById('modal-ttl').textContent='Nova imagem';['i-str','i-les','i-lvl','i-desc'].forEach(x=>{const e=document.getElementById(x);if(e)e.value=''});document.getElementById('i-reg').value='';document.getElementById('i-cat').value='patologia';if(!dataURL)document.getElementById('upload-z').innerHTML='<i class="ti ti-photo-up"></i><p>Clique para selecionar imagem<br><span style="font-size:10px;color:var(--text-beige)">JPG, PNG — máx. 8MB</span></p>'}}
 function closeModal(){document.getElementById('modal-overlay').style.display='none';document.getElementById('fi').value='';editId=null;dataURL=null}
-async function saveImg(){const reg=document.getElementById('i-reg').value.trim(),str=document.getElementById('i-str').value.trim(),les=document.getElementById('i-les').value.trim();if(!reg||!str||!les){toast('Preencha região, estrutura e achado','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),region:reg,structure:str,lesion:les,category:document.getElementById('i-cat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);scheduleSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:12px"></i> Salvar imagem';renderAll();toast(editId?'Imagem atualizada':'Imagem salva','ok');selId=obj.id;renderGallery();renderDetail(imgs.find(i=>i.id===obj.id))}
-async function delImg(id){imgs=imgs.filter(i=>i.id!==id);scheduleSave();selId=null;renderAll();renderDetail(null);toast('Imagem removida','ok')}
+async function saveImg(){const reg=document.getElementById('i-reg').value.trim(),str=document.getElementById('i-str').value.trim(),les=document.getElementById('i-les').value.trim();if(!reg||!str||!les){toast('Preencha região, estrutura e achado','err');return}const btn=document.getElementById('save-btn');btn.disabled=true;btn.textContent='Salvando...';const obj={id:editId||Date.now().toString(),region:reg,structure:str,lesion:les,category:document.getElementById('i-cat').value,level:document.getElementById('i-lvl').value.trim(),description:document.getElementById('i-desc').value.trim(),dataURL,date:editId?(imgs.find(i=>i.id===editId)?.date||new Date().toISOString()):new Date().toISOString()};if(editId){const x=imgs.findIndex(i=>i.id===editId);if(x>-1)imgs[x]=obj}else imgs.unshift(obj);scheduleSave();closeModal();btn.disabled=false;btn.innerHTML='<i class="ti ti-check" style="font-size:12px"></i> Salvar imagem';renderAll();toast(editId?'Imagem atualizada':'Imagem salva','ok')}
+async function delImg(id){if(!confirm('Excluir esta imagem?'))return;imgs=imgs.filter(i=>i.id!==id);scheduleSave();renderAll();toast('Imagem removida','ok')}
 function filterBy(v,el){filter=v;region=null;document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));el.classList.add('active');renderGallery()}
 function filterReg(r,el){region=r;filter=null;document.querySelectorAll('.sb-item').forEach(e=>e.classList.remove('active'));el.classList.add('active');renderGallery()}
 function setView(v){view=v;document.getElementById('vg').classList.toggle('on',v==='grid');document.getElementById('vl').classList.toggle('on',v==='list');renderGallery()}
 function getFiltered(){const q=document.getElementById('q').value.toLowerCase();return imgs.filter(img=>{if(filter&&filter!=='all'&&img.category!==filter)return false;if(region&&img.region!==region)return false;if(q){const h=[img.region,img.structure,img.lesion,img.description,img.level].join(' ').toLowerCase();if(!h.includes(q))return false}return true})}
 function bCls(c){return c==='normal'?'b-norm':c==='variante'?'b-var':'b-pat'}
 function bLbl(c){return c==='normal'?'Normal':c==='variante'?'Variante':'Patologia'}
-function renderGallery(){const f=getFiltered(),g=document.getElementById('gallery');if(!f.length){g.innerHTML='<div class="empty-g"><i class="ti ti-photo-off"></i><h3>Nenhuma imagem encontrada</h3><p>Adicione imagens ou ajuste os filtros.</p></div>';return}if(view==='grid'){g.innerHTML=`<div class="g-grid">${f.map(img=>{const s=img.id===selId?'sel':'',th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i><span>Sem imagem</span></div>';return`<div class="icard ${s}" onclick="selectImg('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-reg">${img.region}</div><div class="i-str">${img.structure}</div><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div></div></div>`}).join('')}</div>`}else{g.innerHTML=`<div class="g-list">${f.map(img=>{const s=img.id===selId?'sel':'',th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>';return`<div class="lrow ${s}" onclick="selectImg('${img.id}')"><div class="lthumb">${th}</div><div class="linfo"><div class="l-title">${img.structure} — ${img.lesion}</div><div class="l-sub">${img.region}${img.level?' · '+img.level:''}</div></div><span class="lbadge ${bCls(img.category)}">${bLbl(img.category)}</span></div>`}).join('')}</div>`}}
+function renderGallery(){const f=getFiltered(),g=document.getElementById('gallery');if(!f.length){g.innerHTML='<div class="empty-g"><i class="ti ti-photo-off"></i><h3>Nenhuma imagem encontrada</h3><p>Adicione imagens ou ajuste os filtros.</p></div>';return}if(view==='grid'){g.innerHTML=`<div class="g-grid">${f.map(img=>{const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="ithumb-ph"><i class="ti ti-photo"></i><span>Sem imagem</span></div>';return`<div class="icard" onclick="openViewModal('${img.id}')"><div class="ithumb">${th}<span class="ibadge ${bCls(img.category)}">${bLbl(img.category)}</span></div><div class="iinfo"><div class="i-reg">${img.region}</div><div class="i-str">${img.structure}</div><div class="i-les">${img.lesion}${img.level?' — '+img.level:''}</div></div></div>`}).join('')}</div>`}else{g.innerHTML=`<div class="g-list">${f.map(img=>{const th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<i class="ti ti-photo"></i>';return`<div class="lrow" onclick="openViewModal('${img.id}')"><div class="lthumb">${th}</div><div class="linfo"><div class="l-title">${img.structure} — ${img.lesion}</div><div class="l-sub">${img.region}${img.level?' · '+img.level:''}</div></div><span class="lbadge ${bCls(img.category)}">${bLbl(img.category)}</span></div>`}).join('')}</div>`}}
 function renderSidebar(){const regs=[...new Set(imgs.map(i=>i.region))].filter(Boolean).sort();document.getElementById('sb-regions').innerHTML=regs.map(r=>{const c=imgs.filter(i=>i.region===r).length,icons={Ombro:'user',Joelho:'run',Tornozelo:'run',Cotovelo:'user',Mão:'hand-stop',Punho:'wrist-watch',Quadril:'user',Abdômen:'ripple',Tireoide:'ripple',Mama:'ripple',Vascular:'waves',Pélvico:'ripple'};return`<div class="sb-item" onclick="filterReg('${r}',this)"><i class="ti ti-${icons[r]||'circle'}"></i>${r}<span class="n">${c}</span></div>`}).join('');const ct={all:imgs.length,patologia:0,normal:0,variante:0};imgs.forEach(i=>{if(ct[i.category]!==undefined)ct[i.category]++});document.getElementById('cn-all').textContent=ct.all;document.getElementById('cn-pat').textContent=ct.patologia;document.getElementById('cn-norm').textContent=ct.normal;document.getElementById('cn-var').textContent=ct.variante;document.getElementById('top-stat').textContent=`${imgs.length} imagem${imgs.length!==1?'ns':''}`}
-function selectImg(id){selId=id;renderGallery();renderDetail(imgs.find(i=>i.id===id))}
-function renderDetail(img){const p=document.getElementById('detail');if(!img){p.innerHTML='<div class="d-empty"><i class="ti ti-hand-click"></i><p>Selecione uma imagem para ver detalhes</p></div>';return}const dt=img.date?new Date(img.date).toLocaleDateString('pt-BR'):'',th=img.dataURL?`<img src="${img.dataURL}" alt="">`:'<div class="d-img-ph"><i class="ti ti-photo"></i></div>';p.innerHTML=`<div class="d-img">${th}</div><div class="d-body"><div class="d-reg">${img.region}</div><div class="d-title">${img.structure}</div><div class="d-str">${img.lesion}${img.level?' — '+img.level:''}</div><div class="d-pills"><span class="pill ${bCls(img.category)==='b-pat'?'pill-navy':'pill-beige'}">${bLbl(img.category)}</span>${img.level?`<span class="pill pill-beige">${img.level}</span>`:''}</div>${img.description?`<div class="d-desc-lbl">Descrição do achado</div><div class="d-desc">${img.description}</div>`:''}<div class="d-date">${dt}</div></div><div class="d-actions"><button class="act-btn" onclick="openModal('${img.id}')"><i class="ti ti-edit" style="font-size:13px"></i> Editar</button><button class="act-btn del" onclick="delImg('${img.id}')"><i class="ti ti-trash" style="font-size:13px"></i> Excluir</button></div>`}
 function renderAll(){renderSidebar();renderGallery()}
-function toast(msg,type='ok'){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.className=`toast show ${type}`;t.querySelector('i').className=type==='ok'?'ti ti-check':type==='info'?'ti ti-info-circle':'ti ti-alert-circle';setTimeout(()=>{t.className='toast'},2800)}
+function toast(msg,type='ok'){const t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.className=`toast show ${type}`;t.querySelector('i').className=type==='ok'?'ti ti-check':'ti ti-alert-circle';setTimeout(()=>{t.className='toast'},2800)}
 function exportData(){if(!imgs.length){toast('Nenhuma imagem para exportar','err');return}const b=new Blob([JSON.stringify(imgs,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=`sonovault-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(u);toast('Backup exportado','ok')}
 window.onload=()=>{initGoogleAuth()}
 </script>
